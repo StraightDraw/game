@@ -1,0 +1,22 @@
+format: jb-book
+root: Introduction
+parts:
+  - caption: Zero Sum Games
+    chapters:
+    - file: Z0
+    - file: Z1
+  - caption: Non Zero Sum Games
+    chapters:
+    - file: N0
+    - file: N1
+  - caption: Tools
+    chapters:
+    - file: T0
+    - file: T1
+    - file: T2
+      sections:
+      - file: T2a
+      - file: T2b
+      - file: T2c
+      - file: T2d
+    - file: T3
