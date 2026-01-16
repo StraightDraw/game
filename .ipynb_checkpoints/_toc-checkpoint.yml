@@ -1,5 +1,7 @@
 format: jb-book
 root: Introduction
+options:
+  numbered: true
 parts:
   - caption: Zero Sum Games
     chapters:
@@ -8,7 +10,6 @@ parts:
   - caption: Non Zero Sum Games
     chapters:
     - file: N0
-    - file: N1
   - caption: Tools
     chapters:
     - file: T0
