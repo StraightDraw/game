@@ -57,11 +57,13 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'T0';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Dollar Sign Mathematics" href="T1.html" />
-    <link rel="prev" title="Second Page in Non-zero-sum Games" href="N1.html" />
+    <link rel="prev" title="Non-zero-sum Games" href="N0.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,19 +177,18 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="Introduction.html">
-                    <center>Course Notes: Game Theory</center>
+                    <center><span style="color: blue; font-size: 1.1em;"><b>Game Theory</b></span></center>
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Zero Sum Games</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Z0.html">Zero Sum Games</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Z1.html">Zero Sum Game</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Z0.html">The Nature of Games</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Z1.html">Strategies and Solutions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Non Zero Sum Games</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="N0.html">Non Zero Sum Games</a></li>
-<li class="toctree-l1"><a class="reference internal" href="N1.html">Second Page in Non-zero-sum Games</a></li>
+<li class="toctree-l1"><a class="reference internal" href="N0.html">Non-zero-sum Games</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tools</span></p>
 <ul class="current nav bd-sidenav">
@@ -196,6 +197,8 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="T2.html">Graphics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="T2a.html">Graphing Window and XY-Axis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="T2b.html">Horiztonal and Vertical Lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T2c.html">Line Through 2 Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T2d.html">Polygons</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="T3.html">Game Solver Code</a></li>
@@ -382,10 +385,21 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tools-of-game-theory">
 <h1>Tools of Game Theory<a class="headerlink" href="#tools-of-game-theory" title="Link to this heading">#</a></h1>
-<p>As we use Python and the tools in our UNG datahub, you will find several reference pages useful:</p>
+<p>The first helpful tool we will provide here is a glossary of terms.</p>
 <ul class="simple">
-<li><p>Dollar Sign Mathematics</p></li>
-<li><p>Graphing</p></li>
+<li><p>Glossary</p></li>
+</ul>
+<p>As we use Python and the tools in the UNG datahub, several reference pages will prove useful:</p>
+<ul class="simple">
+<li><p>Dollar Sign Mathematics and Equations</p></li>
+<li><p>Graphing</p>
+<ul>
+<li><p>Graphing window and <span class="math notranslate nohighlight">\(xy\)</span>-axes</p></li>
+<li><p>Horizontal and Vertical Lines</p></li>
+<li><p>Line through Two Points</p></li>
+<li><p>Polygons</p></li>
+</ul>
+</li>
 <li><p>Game Solver Code</p></li>
 </ul>
 </section>
@@ -421,12 +435,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="N1.html"
+       href="N0.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Second Page in Non-zero-sum Games</p>
+        <p class="prev-next-title">Non-zero-sum Games</p>
       </div>
     </a>
     <a class="right-next"

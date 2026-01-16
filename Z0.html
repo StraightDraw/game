@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Zero Sum Games &#8212; Game Theory</title>
+    <title>The Nature of Games &#8212; Game Theory</title>
   
   
   
@@ -60,8 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Z0';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Zero Sum Game" href="Z1.html" />
-    <link rel="prev" title="Course Notes: Game Theory" href="Introduction.html" />
+    <link rel="next" title="Strategies" href="Z1.html" />
+    <link rel="prev" title="Game Theory" href="Introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,14 +175,15 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="Introduction.html">
-                    <center>Course Notes: Game Theory</center>
+                    <center><span style="color: blue; font-size: 1.1em;"><b>Game Theory</b></span></center>
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Zero Sum Games</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Zero Sum Games</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Z1.html">Zero Sum Game</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">The Nature of Games</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Z1.html">Strategies</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Non Zero Sum Games</span></p>
 <ul class="nav bd-sidenav">
@@ -196,6 +197,8 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="T2.html">Graphics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="T2a.html">Graphing Window and XY-Axis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="T2b.html">Horiztonal and Vertical Lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T2c.html">Line Through 2 Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T2d.html">Polygons</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="T3.html">Game Solver Code</a></li>
@@ -355,7 +358,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -366,11 +371,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Zero Sum Games</h1>
+    <h1>The Nature of Games</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rational-play-principle">Rational Play Principle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#players">Players</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -380,9 +394,47 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="zero-sum-games">
-<h1>Zero Sum Games<a class="headerlink" href="#zero-sum-games" title="Link to this heading">#</a></h1>
-<p>Some text will go here. Updates soon.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="the-nature-of-games">
+<h1>The Nature of Games<a class="headerlink" href="#the-nature-of-games" title="Link to this heading">#</a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">Discovering Game Theory</p>
+<p>This course uses an <strong>online textbook</strong>: <a class="reference external" href="https://nordstrommath.com/IntroGameTheory2e/intro_game_theory.html">Game Theory, a Discovery Approach</a>, by Jennifer Nordstrom.</p>
+</aside>
+<p>What is the nature of game theory? What are we to accomplish? <strong>What is winning</strong> in a game theory game? Our textbook launches with a quote that will help us see to the heart of the matter.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Game Theory is not about <em>playing games</em>. It is about conflict resolution among <strong>rational</strong> but <strong>distrustful</strong> beings (emphasis added). </br>
+- - Poundstone</p>
+</div>
+<p>Nordstrom provides an excellent introduction which should be read. She argues that, while games are often enjoyable recreation, even simple games can model real-world situations such as social, economic or even political scenarios.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Scientists can utilize game theory once its structure is developed. They can study evolutionary biology, philosophy, missile defense, nuclear weapons proliferation, and economics.</p>
+</div>
+<p>The key to games are the distrustful but rational players.</p>
+<section id="rational-play-principle">
+<h2>Rational Play Principle<a class="headerlink" href="#rational-play-principle" title="Link to this heading">#</a></h2>
+<aside class="sidebar">
+<p class="sidebar-title">Assignment</p>
+<p>Read Chapter 1 in our textbook which starts
+<a href="https://nordstrommath.com/IntroGameTheory2e/intro_game_theory-4.html" target="_blank">here</a> and continues through Sections 1.1 and 1.2.</p>
+</aside>
+<p>The rational play principle is introduced by Nordstrom as having <a class="reference external" href="https://nordstrommath.com/IntroGameTheory2e/S_intro.html">two components</a>:</p>
+<ol class="arabic simple">
+<li><p><strong>Players are <span style="color: purple;">self-interested</span>.</strong> The goal is to win the most or lose the least.</p></li>
+<li><p><strong>Players are <span style="color: purple;">perfectly rational</span>.</strong> A player will always take into account all available information and make the decision which maximizes his payoff. This includes knowing that his opponent is also making the best decision for herself.</p></li>
+</ol>
+<p>The two key player qualities are <strong>rationality</strong> and <strong>self-interest</strong>. Together, these qualities create the conflict we will try to resolve in a way that is satifactory to both players.</p>
+</section>
+<section id="players">
+<h2>Players<a class="headerlink" href="#players" title="Link to this heading">#</a></h2>
+<aside class="sidebar">
+<p class="sidebar-title">Assignment</p>
+<p>Be sure to do the <strong>Check Your Understanding</strong> questions for section 1.1 at <a href="https://nordstrommath.com/IntroGameTheory2e/S_intro.html#S_intro-5" target="_blank">this link</a>.</p>
+</aside>
+<p>While we generally think of human beings as the players in our games, please note that players are the actors. For example, we can have a <span style="color: purple;">game against nature</span> where nature (the winds or tides or rain) is the actor. The stock market is sometimes modeled as a game againsts nature. We can model <strong>black jack</strong> as a game against nature where the house (or casino) plays by certain rules and is governed largely by probability.</p>
+<p>We begin by modeling games that humans play although, at times, chance will enter into the game scheme and affect our decisions. <strong>Poker</strong> is an example of such a game where the cards dealt to each player will influence their choice of strategies. While cooperation is possible amongst players of a game, to begin we will assume that the interests of the human players are <span style="color: purple;"><b>perfectly opposed</b></span>.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -421,7 +473,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><center>Course Notes: Game Theory</center></p>
+        <p class="prev-next-title"><center><span style="color: blue; font-size: 1.1em;"><b>Game Theory</b></span></center></p>
       </div>
     </a>
     <a class="right-next"
@@ -429,7 +481,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Zero Sum Game</p>
+        <p class="prev-next-title">Strategies</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -439,6 +491,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rational-play-principle">Rational Play Principle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#players">Players</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

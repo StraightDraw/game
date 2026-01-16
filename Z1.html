@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Zero Sum Game &#8212; Game Theory</title>
+    <title>Strategies and Solutions &#8212; Game Theory</title>
   
   
   
@@ -60,8 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Z1';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Non Zero Sum Games" href="N0.html" />
-    <link rel="prev" title="Zero Sum Games" href="Z0.html" />
+    <link rel="next" title="Non-zero-sum Games" href="N0.html" />
+    <link rel="prev" title="The Nature of Games" href="Z0.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,19 +175,18 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="Introduction.html">
-                    <center>Course Notes: Game Theory</center>
+                    <center><span style="color: blue; font-size: 1.1em;"><b>Game Theory</b></span></center>
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Zero Sum Games</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Z0.html">Zero Sum Games</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Zero Sum Game</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Z0.html">The Nature of Games</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Strategies and Solutions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Non Zero Sum Games</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="N0.html">Non Zero Sum Games</a></li>
-<li class="toctree-l1"><a class="reference internal" href="N1.html">Second Page in Non-zero-sum Games</a></li>
+<li class="toctree-l1"><a class="reference internal" href="N0.html">Non-zero-sum Games</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tools</span></p>
 <ul class="nav bd-sidenav">
@@ -196,6 +195,8 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="T2.html">Graphics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="T2a.html">Graphing Window and XY-Axis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="T2b.html">Horiztonal and Vertical Lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T2c.html">Line Through 2 Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T2d.html">Polygons</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="T3.html">Game Solver Code</a></li>
@@ -355,7 +356,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -366,11 +369,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Zero Sum Game</h1>
+    <h1>Strategies and Solutions</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information">Information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -380,9 +392,41 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="zero-sum-game">
-<h1>Zero Sum Game<a class="headerlink" href="#zero-sum-game" title="Link to this heading">#</a></h1>
-<p>Some text will go here. Updates soon.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="strategies-and-solutions">
+<h1>Strategies and Solutions<a class="headerlink" href="#strategies-and-solutions" title="Link to this heading">#</a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">Discovering Game Theory</p>
+<p>This course uses an <strong>online textbook</strong>: <a class="reference external" href="https://nordstrommath.com/IntroGameTheory2e/intro_game_theory.html">Game Theory, a Discovery Approach</a>, by Jennifer Nordstrom.</p>
+</aside>
+<p>In our textbook, Dr. Nordstrom provides the following:</p>
+<dl class="simple myst">
+<dt><strong>Strategy</strong></dt><dd><p>A <em>strategy</em> for a player is a complete way to play the game regardless of what the other player does.</p>
+</dd>
+</dl>
+<p>As we develop strategies for the players, we must consider what the players know at the point in the game where they make decisions. In chess, the players know the exact board state. While the opponent’s strategy may not be clear to us, we can still all the moves she has made.</p>
+<p>In baseball or softball, the pitcher is getting signs from the dugout or the catcher. The pitcher knows what pitch will be thrown, but the batter does not. The batter must deal with the fastball or curve or slider without knowing exactly which one will be thrown.</p>
+<section id="information">
+<h2>Information<a class="headerlink" href="#information" title="Link to this heading">#</a></h2>
+<p>From the Nordstrom text, we learn the definition for the information sets of games like checkers and chess.</p>
+<dl class="simple myst">
+<dt><strong>Perfect Information</strong></dt><dd><p>If players have perfect information, each player knows what all of his or her own options are, what all of his or her opponent’s options are, and both players know what the outcome of each option is. Additionally, players know that both players have all of this information.</p>
+</dd>
+</dl>
+<p>Poker is an example of a game with <strong>imperfect information</strong>. When Joanna has to make a decision to raise, call or fold, she knows her cards but not her opponent’s cards.</p>
+</section>
+<section id="solutions">
+<h2>Solutions<a class="headerlink" href="#solutions" title="Link to this heading">#</a></h2>
+<p>Note from above that a strategy indicates how the player will play the game in its entirity from the first decision made until the last. The reason will be clear as we consider the next definition.</p>
+<dl class="simple myst">
+<dt><strong>Solution</strong></dt><dd><p>A <em>solution</em> for a game consists of a strategy for each player and the outcome of the game when each player plays his or her strategy.</p>
+</dd>
+</dl>
+<p>The value of the game is the outcome of the game and must be described for both players.</p>
+<dl class="simple myst">
+<dt><strong>Finite</strong></dt><dd><p>A <em>finite game</em> means the game must end after a finite number of moves or turns. In other words, the game cannot go on forever.</p>
+</dd>
+</dl>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -421,7 +465,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Zero Sum Games</p>
+        <p class="prev-next-title">The Nature of Games</p>
       </div>
     </a>
     <a class="right-next"
@@ -429,7 +473,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Non Zero Sum Games</p>
+        <p class="prev-next-title">Non-zero-sum Games</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -439,6 +483,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information">Information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
