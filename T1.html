@@ -185,6 +185,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Z0.html">The Nature of Games</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Z1.html">Strategies and Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Z2.html">Game Matrices</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Non Zero Sum Games</span></p>
 <ul class="nav bd-sidenav">
@@ -389,6 +390,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gathering-multiple-equations">Gathering Multiple Equations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-in-equations">Text in Equations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors">Vectors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices">Matrices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-lines">Adding Lines</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-games">Matrix Games</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-player-subtitles">Adding Player Subtitles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rose-and-colin">Rose and Colin</a></li>
 </ul>
             </nav>
         </div>
@@ -409,28 +417,21 @@ document.write(`
 <p>We use the carat symbol ^ for exponents and the underscore _ for subscripts.</p>
 <section id="exponents">
 <h3>Exponents<a class="headerlink" href="#exponents" title="Link to this heading">#</a></h3>
-<p>The text</p>
-<center><b>7x^3-2x^2-5x+1</b></center>
-<p>will display as</p>
+<p>The text <code class="docutils literal notranslate"><span class="pre">$$7x^3-2x^2-5x+1$$</span></code> will display as below when included inside dollar signs:</p>
 <div class="math notranslate nohighlight">
 \[7x^3-2x^2-5x+1\]</div>
 </section>
 <section id="subscripts">
 <h3>Subscripts<a class="headerlink" href="#subscripts" title="Link to this heading">#</a></h3>
-<p>The following text</p>
-<center><b>x_1 = 5</center></b>
-<p>will displas as</p>
+<p>Subscripts are coded as <code class="docutils literal notranslate"><span class="pre">$x_1</span> <span class="pre">=</span> <span class="pre">5$</span></code> and will displas as shown:</p>
 <div class="math notranslate nohighlight">
 \[x_1 = 5\]</div>
 </section>
 </section>
 <section id="gathering-multiple-equations">
 <h2>Gathering Multiple Equations<a class="headerlink" href="#gathering-multiple-equations" title="Link to this heading">#</a></h2>
-<p>We have the <strong>align</strong> environment for multiple equations that we would like to see centered and aligned. The double slash ends a line while the ampersand symbol forces the alignment at that spot. The text below will work in LaTeX, but we must end each equation line with a double backslash:</p>
-<p>\begin{align}</p>
-<p>E(Rose A) &amp;= 5x + 2y</p>
-<p>E(Rose B) &amp;= 2x - 42y</p>
-<p>\end{align}</p>
+<p>We have the <strong>align</strong> environment for multiple equations that we would like to see centered and aligned. The double slash ends a line while the ampersand symbol forces the alignment at that spot. The text below shows four lines of LaTeX code, but hard returns should exist between the lines.:</p>
+<p><code class="docutils literal notranslate"><span class="pre">\begin{align}</span>&#160;&#160;&#160; <span class="pre">E(Rose</span> <span class="pre">A)</span> <span class="pre">&amp;=</span> <span class="pre">5x</span> <span class="pre">+</span> <span class="pre">2y\\</span>&#160;&#160;&#160; <span class="pre">E(Rose</span> <span class="pre">B)</span> <span class="pre">&amp;=</span> <span class="pre">2x</span> <span class="pre">-</span> <span class="pre">42y\\</span> <span class="pre">\end{align}</span></code></p>
 <p>The display looks as follows:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align}
@@ -440,40 +441,70 @@ document.write(`
 </section>
 <section id="text-in-equations">
 <h2>Text in Equations<a class="headerlink" href="#text-in-equations" title="Link to this heading">#</a></h2>
-<p>When we want to create the expected value of “Rose Strategy A”, the standard LaTeX displays all characters as variables. The code:</p>
-<center><b>E(Rose A)</b></center>
-<p>displays as</p>
-<div class="math notranslate nohighlight">
-\[E(Rose A)\]</div>
-<p>As you can see if you look closely, the italicized font used for variables looks awkward when used for a word. However, we can use the \text{} command to print text inside the equation. The results of</p>
-<center><b>E(\text{Rose A})</b></center>
-<p>is shown below:</p>
+<p>When we want to create the expected value of “Rose Strategy A”, the standard LaTeX displays all characters as variables. The code: <code class="docutils literal notranslate"><span class="pre">$E(Rose</span> <span class="pre">A)$</span></code> displays as</p>
+<p><span class="math notranslate nohighlight">\(E(Rose A)\)</span></p>
+<p>As you can see if you look closely, the italicized font used for variables looks awkward when used for a word. However, we can use the \text{} command to print text inside the equation. The results of <code class="docutils literal notranslate"><span class="pre">$E(\text{Rose</span> <span class="pre">A})$</span></code> looks much more pleasing to the eye:</p>
 <div class="math notranslate nohighlight">
 \[E(\text{Rose A})\]</div>
 </section>
 <section id="vectors">
 <h2>Vectors<a class="headerlink" href="#vectors" title="Link to this heading">#</a></h2>
-<p>The code to create the symbol for a vector is straightforward:</p>
-<center><b>\vec{r}</b></center>
-<p>displays as</p>
+<p>The code to create the symbol for a vector is <code class="docutils literal notranslate"><span class="pre">\vec{r}</span></code> which displays as shown:</p>
 <div class="math notranslate nohighlight">
-\[\vec{r}\]</div>
+\[\vec r\]</div>
 <p>For the values in the matrix and brackets to enclose the matrix, we must work a bit harder. To create a column vector, we create an <span class="math notranslate nohighlight">\(n\times 1\)</span> matrix with a double backslash indicating the end of row in the matrix:</p>
-<p>\begin{array}{r}</p>
-<p>1</p>
-<p>2</p>
-<p>-3</p>
-<p>\end{array}</p>
-<p>which displays as:</p>
+<p><code class="docutils literal notranslate"><span class="pre">$\begin{array}{r}</span> <span class="pre">1</span> <span class="pre">\\</span> <span class="pre">2</span>&#160; <span class="pre">\\</span> <span class="pre">-3</span> <span class="pre">\end{array}$</span></code></p>
+<p>which displays as shown below:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\vec{r} = \begin{array}{r}1\\2\\-3\end{array}\end{split}\]</div>
-<p>We can add brackets using the following enclosures:</p>
-<p>\left[</p>
-<p>and</p>
-<p>\right]</p>
-<p>which displays as follows:</p>
+\[\begin{split}\vec r = \begin{array}{r}1\\2\\-3\end{array}\end{split}\]</div>
+<p>We can add brackets by including <code class="docutils literal notranslate"><span class="pre">\left[</span></code> to begin and  <code class="docutils literal notranslate"><span class="pre">\right]</span></code> to close which displays as follows:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\vec{r} = \left[\begin{array}{r}1\\2\\-3\end{array}\right]\end{split}\]</div>
+</section>
+<section id="matrices">
+<h2>Matrices<a class="headerlink" href="#matrices" title="Link to this heading">#</a></h2>
+<p>The basic code for creating a matrix is similar to vectors. As a matter of fact, both are created with arrays. We first create the array using <code class="docutils literal notranslate"><span class="pre">\begin{array}{rr}</span> <span class="pre">1</span> <span class="pre">&amp;</span> <span class="pre">3</span> <span class="pre">\\</span> <span class="pre">2</span> <span class="pre">&amp;</span> <span class="pre">-1</span> <span class="pre">\end{array}</span></code> where the <code class="docutils literal notranslate"><span class="pre">{rr}</span></code> indicate two columns of right-justified text.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{rr} 1 &amp; 3 \\ 2 &amp; -1 \end{array}\end{split}\]</div>
+<p>If we add the two strategies for each player, <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, we need the code <code class="docutils literal notranslate"><span class="pre">\begin{array}{r|rr}</span> <span class="pre">&amp;</span> <span class="pre">A</span> <span class="pre">&amp;</span> <span class="pre">B</span> <span class="pre">\\\hline</span> <span class="pre">A</span> <span class="pre">&amp;</span> <span class="pre">1</span> <span class="pre">&amp;</span> <span class="pre">3</span> <span class="pre">\\</span> <span class="pre">B</span> <span class="pre">&amp;2</span> <span class="pre">&amp;</span> <span class="pre">-1</span> <span class="pre">\end{array}</span></code> to produce this:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{r|rr} &amp; A &amp; B \\\hline A &amp; 1 &amp; 3 \\ B &amp;2 &amp; -1 \end{array}\end{split}\]</div>
+<section id="adding-lines">
+<h3>Adding Lines<a class="headerlink" href="#adding-lines" title="Link to this heading">#</a></h3>
+<p>The game matrix above includes vertical and horizontal lines. Between the columns, we change <code class="docutils literal notranslate"><span class="pre">{rrr}</span></code> to  <code class="docutils literal notranslate"><span class="pre">{r|rr}</span></code> which produces the vertical line betwee the first and second columns. The <code class="docutils literal notranslate"><span class="pre">\hline</span></code> command inserts a horizontal between the two lines it is placed between.
+Thus, the code <code class="docutils literal notranslate"><span class="pre">\begin{array}{r|rr}</span> <span class="pre">&amp;</span> <span class="pre">A</span> <span class="pre">&amp;</span> <span class="pre">B</span> <span class="pre">\\\hline</span> <span class="pre">A</span> <span class="pre">&amp;</span> <span class="pre">1</span> <span class="pre">&amp;</span> <span class="pre">3</span> <span class="pre">\\</span> <span class="pre">B</span> <span class="pre">&amp;2</span> <span class="pre">&amp;</span> <span class="pre">-1</span> <span class="pre">\end{array}</span></code> will display as shown:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{r|rr} &amp; A &amp; B \\\hline A &amp; 1 &amp; 3 \\ B &amp;2 &amp; -1 \end{array}\end{split}\]</div>
+</section>
+</section>
+<section id="matrix-games">
+<h2>Matrix Games<a class="headerlink" href="#matrix-games" title="Link to this heading">#</a></h2>
+<p>We will nest our game matrix inside another matrix that provides captions for the players. The external matrix will be created with <code class="docutils literal notranslate"><span class="pre">\begin{array}{cc}&amp;\text{Column</span> <span class="pre">Player}\\\text{Row</span> <span class="pre">Player}&amp;0\end{array}</span></code></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\text{Column Player}\\\text{Row Player}&amp;0\end{array}\end{split}\]</div>
+<p>Note the following:</p>
+<ul class="simple">
+<li><p>The <span class="math notranslate nohighlight">\(0\)</span> is a place holder showing where our game matrix will reside.</p></li>
+<li><p>We leave an empty cell in this array to align the elements properly.</p></li>
+</ul>
+</section>
+<section id="adding-player-subtitles">
+<h2>Adding Player Subtitles<a class="headerlink" href="#adding-player-subtitles" title="Link to this heading">#</a></h2>
+<p>We will simply insert the code for the matrix where the <span class="math notranslate nohighlight">\(0\)</span> displays above. The combined code looks like this:</p>
+<p><code class="docutils literal notranslate"><span class="pre">\begin{array}{cc}&amp;\text{Column</span> <span class="pre">Player}\\\text{Row</span> <span class="pre">Player}&amp;</span> <span class="pre">\begin{array}{r|rr}</span> <span class="pre">&amp;</span> <span class="pre">A</span> <span class="pre">&amp;</span> <span class="pre">B</span> <span class="pre">\\\hline</span> <span class="pre">A</span> <span class="pre">&amp;</span> <span class="pre">1</span> <span class="pre">&amp;</span> <span class="pre">3</span> <span class="pre">\\</span> <span class="pre">B</span> <span class="pre">&amp;2</span> <span class="pre">&amp;</span> <span class="pre">-1</span> <span class="pre">\end{array}</span> <span class="pre">\end{array}</span></code></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\text{Column Player}\\\text{Row Player}&amp;\begin{array}{r|rr} &amp; A &amp; B \\\hline A &amp; 1 &amp; 3 \\ B &amp;2 &amp; -1 \end{array}\end{array}\end{split}\]</div>
+</section>
+<section id="rose-and-colin">
+<h2>Rose and Colin<a class="headerlink" href="#rose-and-colin" title="Link to this heading">#</a></h2>
+<p>With a hat tip to Philip Straffin whose book is suggested as a supplementary text for this course, I will use the player names <strong>Rose</strong> and <strong>Colin</strong>. Why?</p>
+<ul class="simple">
+<li><p><strong>Rose</strong> plays the row strategies (e.g. “rows”)</p></li>
+<li><p><strong>Colin</strong> plays the column strategies (e.g. “columns”)</p></li>
+</ul>
+<p>The same code as shown above work here with the text of subtitles altered appropriately:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|rr} &amp; A &amp; B \\\hline A &amp; 1 &amp; 3 \\ B &amp;2 &amp; -1 \end{array}\end{array}\end{split}\]</div>
 </section>
 </section>
 
@@ -549,6 +580,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gathering-multiple-equations">Gathering Multiple Equations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-in-equations">Text in Equations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors">Vectors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices">Matrices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-lines">Adding Lines</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-games">Matrix Games</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-player-subtitles">Adding Player Subtitles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rose-and-colin">Rose and Colin</a></li>
 </ul>
   </nav></div>
 
