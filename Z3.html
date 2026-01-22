@@ -6,8 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; Game Theory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Equilibrium Pairs &#8212; Game Theory</title>
   
   
   
@@ -56,9 +57,13 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
-    <link rel="index" title="Index" href="#" />
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Z3';</script>
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Non-zero-sum Games" href="N0.html" />
+    <link rel="prev" title="Game Matrices" href="Z2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -121,8 +126,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,11 +182,11 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Zero Sum Games</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Z0.html">The Nature of Games</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Z1.html">Strategies and Solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Z2.html">Game Matrices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Z3.html">Equilibrium Pairs</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Equilibrium Pairs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Non Zero Sum Games</span></p>
 <ul class="nav bd-sidenav">
@@ -245,6 +248,85 @@
 
 
 
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/StraightDraw/game/master?urlpath=tree/content/Z3.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Z3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
 <button onclick="toggleFullScreen()"
   class="btn btn-sm btn-fullscreen-button"
   title="Fullscreen mode"
@@ -278,7 +360,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -289,11 +373,24 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1></h1>
+    <h1>Equilibrium Pairs</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constant-sum-games">Constant Sum Games</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cake-cutting-game">Cake Cutting Game</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibria">Equilibria</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-equilibrium-pairs">Finding Equilibrium Pairs</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -303,13 +400,97 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <section class="tex2jax_ignore mathjax_ignore" id="equilibrium-pairs">
+<h1>Equilibrium Pairs<a class="headerlink" href="#equilibrium-pairs" title="Link to this heading">#</a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">Discovering Game Theory</p>
+<p>This course uses an <strong>online textbook</strong>: <a class="reference external" href="https://nordstrommath.com/IntroGameTheory2e/intro_game_theory.html">Game Theory, a Discovery Approach</a>, by Jennifer Nordstrom.</p>
+</aside>
+<dl class="simple myst">
+<dt>Equilibrium Pairs</dt><dd><p>A pair of strategies is an <strong>equilibrium pair</strong> if neither player gains by changing strategies.</p>
+</dd>
+</dl>
+<p>Thus, we see our textbook definition of an <strong>equilibrium</strong> is a point from which neither player wishes to deviate. In a contest where we repeatedly play this game, the players will settle on the equilibrium.</p>
+<section id="constant-sum-games">
+<h2>Constant Sum Games<a class="headerlink" href="#constant-sum-games" title="Link to this heading">#</a></h2>
+<p>One special type of game can be solved exactly as zero sum games.</p>
+<dl class="simple myst">
+<dt>Constant Sum Games</dt><dd><p>A two player game is called a <strong>constant sum game</strong> if the sum of the payoffs to each player is constant for all possible outcomes of the game. More specifically, the coordinates in each payoff vector must add up to the same value for each payoff vector.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Our textbook refers to constant sum games as zero sum games since the solution path for both is identical.</p>
 </div>
+<section id="cake-cutting-game">
+<h3>Cake Cutting Game<a class="headerlink" href="#cake-cutting-game" title="Link to this heading">#</a></h3>
+<p>As an example, our textbook points the following game where outcomes are shown in percentages of the cake.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\text{Chooser}\\\text{Cutter}&amp;\begin{array}{c|cc}&amp;\text{Larger Piece}&amp;\text{Smaller Piece}\\\hline\text{Cut Evenly}&amp;(50,50)&amp;(50,50)\\\text{Cut Unevenly}&amp;(40,60)&amp;(60,40)\end{array}\end{array}\end{split}\]</div>
+<p>To divide the cake fairly between two children, say, one may cut the cake while the other may choose which of the two pieces to eat. The cutter knows that a completely unfair cut, say <span class="math notranslate nohighlight">\((75,25)\)</span>, will result in the chooser getting much more cake.</p>
+</section>
+<section id="equilibria">
+<h3>Equilibria<a class="headerlink" href="#equilibria" title="Link to this heading">#</a></h3>
+<aside class="sidebar">
+<p class="sidebar-title">John Nash</p>
+<p>The <b>equilibrium</b> of a matrix game is known as the <span style="color: purple;"><b>Nash Equilbrium</b></span> named for the Nobel Prize winning mathematician who proved several essential theorems during the development of game theory.</p>
+</aside>
+<p>The <strong>chooser</strong> will always choose the larger piece if they are not even. Hence, the <strong>cutter</strong> does best to divide the cake evenly.</p>
+<p>The <strong>equlibrium pair</strong> for this game is the strategy pair denoted <span class="math notranslate nohighlight">\((\text{Cut Evenly}, \text{Larger Piece})\)</span>, with resulting payoff vector <span class="math notranslate nohighlight">\((50,50)\)</span>. We will call this the outcome of the game or the <strong>equilibrium</strong>.</p>
+</section>
+</section>
+<section id="finding-equilibrium-pairs">
+<h2>Finding Equilibrium Pairs<a class="headerlink" href="#finding-equilibrium-pairs" title="Link to this heading">#</a></h2>
+<p>We will develop mathematical strategies for finding the &lt;span style=’color:blue;”&gt;<b>Nash Equilibrium</b></span> of various matrix games. However, at this point in &lt;span style=’color:blue;”&gt;discovering game theory</span>, the author of our textbook suggests the method of</br></p>
+<center><b><span style="color:red;">guess and check</span></b></center></br>
+<p>We proceed as follows:</p>
+<ol class="arabic simple">
+<li><p>Assume Rose plays strategy A all of the time.</p></li>
+<li><p>What would Colin do?</p></li>
+<li><p>Assume Colin plays strategy A all of time.</p></li>
+<li><p>What would Rose do?</p></li>
+<li><p>What if Rose plays B or C?</p></li>
+<li><p>What if Colin plays B or C?</p></li>
+</ol>
+<p>Repeating questions (1) and (2) for each pair of strategies, we may find that one pair is better for both Rose and Colin. If we do find such a pair, that is the <strong>equlibrium pair</strong>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As we analyze, we must remember the <strong>rational play principle</strong>. Both Rose and Colin will play <span style="color:red;">rationally</span> and with <span style="color:red;">self-interest</span>. We must reason for each player as though they would choose the best strategy option to maximize their gains and minimize their losses.</p>
+</div>
+<p>At times, matrix games do not seem fair. When the equilibrium turns to be</p>
+<div class="math notranslate nohighlight">
+\[(3, -3)\]</div>
+<p>for example, we find that Rose is winning 3 units every time the game is played while Colin loses 3. While Colin is unhappy with the above example, Rose would be unhappy with the equilibrium below:</p>
+<div class="math notranslate nohighlight">
+\[(-2,2)\]</div>
+<p>This scenario is not uncommon in game theory. In fact, it happens often enough to earned a name.</p>
+<dl class="simple myst">
+<dt>Competitive Advantage</dt><dd><p>In a zero sum game where the equilbrium pair is <span class="math notranslate nohighlight">\((a,-a)\)</span> for some <span class="math notranslate nohighlight">\(a &gt; 0\)</span>, the value <span class="math notranslate nohighlight">\(a\)</span> is the competitive advantage for Player 1.</p>
+</dd>
+</dl>
+<p>If <span class="math notranslate nohighlight">\(a&lt;0\)</span>, then we say that Player 2 would have a competitive advantage of <span class="math notranslate nohighlight">\(|-a|\)</span>.</p>
+</section>
+</section>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -321,12 +502,50 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="Z2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Game Matrices</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="N0.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Non-zero-sum Games</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constant-sum-games">Constant Sum Games</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cake-cutting-game">Cake Cutting Game</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibria">Equilibria</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-equilibrium-pairs">Finding Equilibrium Pairs</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
