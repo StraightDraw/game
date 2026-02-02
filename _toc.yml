@@ -9,6 +9,8 @@ parts:
     - file: Z1
     - file: Z2
     - file: Z3
+    - file: Z4
+    - file: Z5
   - caption: Non Zero Sum Games
     chapters:
     - file: N0
