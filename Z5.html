@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Expected Value &#8212; Game Theory</title>
+    <title>Expectation &#8212; Game Theory</title>
   
   
   
@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Z5';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Non-zero-sum Games" href="N0.html" />
+    <link rel="next" title="Expected Value" href="Z5a.html" />
     <link rel="prev" title="Dominance" href="Z4.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -188,7 +188,11 @@
 <li class="toctree-l1"><a class="reference internal" href="Z2.html">Game Matrices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Z3.html">Equilibrium Pairs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Z4.html">Dominance</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Expected Value</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Expectation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Z5a.html">Expected Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z5b.html">Examples</a></li>
+</ul>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Non Zero Sum Games</span></p>
 <ul class="nav bd-sidenav">
@@ -376,7 +380,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Expected Value</h1>
+    <h1>Expectation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -386,8 +390,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formula">Formula</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-theory-application">Game Theory Application</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equalized-expectations">Equalized Expectations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-value-formula">Expected Value Formula</a></li>
 </ul>
             </nav>
         </div>
@@ -399,63 +403,38 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="expected-value">
-<h1>Expected Value<a class="headerlink" href="#expected-value" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="expectation">
+<h1>Expectation<a class="headerlink" href="#expectation" title="Link to this heading">#</a></h1>
 <aside class="sidebar">
 <p class="sidebar-title">Discovering Game Theory</p>
 <p>This course uses an <strong>online textbook</strong>: <a class="reference external" href="https://nordstrommath.com/IntroGameTheory2e/intro_game_theory.html">Game Theory, a Discovery Approach</a>, by Jennifer Nordstrom.</p>
 </aside>
-<p>In probability theory, we find the general formula for <strong>expected value</strong>. Consider a numeric data set <span class="math notranslate nohighlight">\(X\)</span> of sample size <span class="math notranslate nohighlight">\(n\)</span> with outcomes <span class="math notranslate nohighlight">\(X=\left\{x_1, x_2, \dots , x_n\right\}\)</span> and associated probabilities of <span class="math notranslate nohighlight">\(\left\{p(x_1), p(x_2), \dots , p(x_n)\right\}\)</span>. A t-chart often helps to visualize the scenario as is shown in the example below:</p>
+<p>Given the rationale play principle, we know that repeatedly playing the same game will provide players with enough time and information to optimize their strategies. Repeated play allows the players to develop an understanding of <span style="color:red"><b>expectation</b></span> within the game. Different strategies will lead to different expected values.</p>
+<div class="admonition-nash-equilibrium admonition">
+<p class="admonition-title">Nash Equilibrium</p>
+<p>Nobel Prize winning mathematician John Nash considered game theory strategy in terms of optimization. In calculus or differential equations, we often find a saddle point exists. When we find such a saddle point in game theory, neither player can improve their payoff by switching strategies. In such a case, we call the resulting equilibrium pair or mixed strategy solution the <strong>Nash Equilibrium</strong>.</p>
+</div>
+<section id="equalized-expectations">
+<h2>Equalized Expectations<a class="headerlink" href="#equalized-expectations" title="Link to this heading">#</a></h2>
+<p>We will soon see why the idea of <strong>equalized expectations</strong> is so powerful in two-person, zero-sum matrix games. If Rose chooses</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{r|c}x&amp;p(x)\\ \hline 2&amp;\frac{1}{5}\\0&amp;\frac{1}{7}\\-1&amp;\frac{1}{4} \\ \vdots&amp;\vdots \\3&amp;\frac{1}{3}  \end{array}\end{split}\]</div>
-<section id="formula">
-<h2>Formula<a class="headerlink" href="#formula" title="Link to this heading">#</a></h2>
+\[\begin{split}\vec r = \left[\begin{array}{c}0.25\\0.50\\0.25\end{array}\right]\end{split}\]</div>
+<p>such that the expected value of strategies <span class="math notranslate nohighlight">\(A,B\)</span> and <span class="math notranslate nohighlight">\(C\)</span> are identical, then Colin has incentive to switch his strategy choice. No matter what choice he makes, his expected value will remain fixed.</p>
+<p>Thus, the idea of <strong>equalized expectations</strong> will allow to develop a solution path for finding the Nash Equilibria for many games.</p>
+</section>
+<section id="expected-value-formula">
+<h2>Expected Value Formula<a class="headerlink" href="#expected-value-formula" title="Link to this heading">#</a></h2>
+<p>What would happen if perfectly rational and self-interested players engaged in repeated play of a game? They will quickly settle down to an <strong>equilibrium pair</strong> if the game had a Pure Strategy Solution (PSS) or to an optimal set of mixed strategies played in precise proportion for an MSS.</p>
+<p>Repeated play in game theory behaves exactly as it Bournouli trials behave in probability problem solving. Over the course of many thousands of trials, the payoff to a player for playing a single strategy will be fixed. This is the expected value.</p>
 <div class="admonition-expected-value admonition">
 <p class="admonition-title">Expected Value</p>
 <p>Given a set <span class="math notranslate nohighlight">\(X\)</span> of <span class="math notranslate nohighlight">\(n\in\mathbb{N}\)</span> outcomes and <span class="math notranslate nohighlight">\(n\)</span> associate probabilities, the expected value of <span class="math notranslate nohighlight">\(X\)</span> is given as follows:</p>
 <div class="math notranslate nohighlight">
 \[E(X) =\sum x_ip(x_i)\]</div>
 </div>
-<p>In expanded form, we have the formula as follows:</p>
-<div class="math notranslate nohighlight">
-\[E(X) =x_1p(x_1)+x_2p(x_2)+\dots+x_np(x_n)\]</div>
-<p>We convert to summation notation to see how the traditional formula shown above arrives:</p>
-<div class="math notranslate nohighlight">
-\[E(X) =\sum_{i=1}^{n}x_ip(x_i)\]</div>
 </section>
-<section id="game-theory-application">
-<h2>Game Theory Application<a class="headerlink" href="#game-theory-application" title="Link to this heading">#</a></h2>
-<p>In a matrix game, each row and column have an expected value only if we know (or can guess) the opponent’s strategy mixture.</p>
-<div class="admonition-example admonition">
-<p class="admonition-title">Example</p>
-<p>Given that Colin will play the strategy mixture <span class="math notranslate nohighlight">\(\vec c = \left(\frac{3}{4},\frac{1}{4}\right)\)</span>, calculate the expected values for Rose’s strategies.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|rr}&amp;A&amp;B\\\hline A&amp;12&amp;-2\\B&amp;4&amp;3\\C&amp;9&amp;11\end{array}\end{array}\end{split}\]</div>
+<div class="toctree-wrapper compound">
 </div>
-<p><strong>Solution.</strong> We first notice that <span class="math notranslate nohighlight">\(\textbf{Rose C}\geq\textbf{Rose B}\)</span> because</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(9\geq 4\)</span>, and</p></li>
-<li><p><span class="math notranslate nohighlight">\(11\geq 3\)</span></p></li>
-</ul>
-<p>Since Rose will never play a dominated strategy, we can see that <span class="math notranslate nohighlight">\(E\left(\text{Rose B}\right) = 0\)</span></p>
-<p>\begin{align}
-E\left(\text{Rose A}\right) &amp;= 12c_1-2c_2\
-&amp;=12\left(\frac{3}{4}\right) - 2\left(\frac{1}{4}\right)\
-&amp;=9-\frac{1}{2}\
-&amp;=8.5
-\end{align}</p>
-<p>For Rose’s strategy C, we can calculate the following:</p>
-<p>\begin{align}
-E\left(\text{Rose C}\right) &amp;= 9c_1+11c_2\
-&amp;=9\left(\frac{3}{4}\right) + 11\left(\frac{1}{4}\right)\
-&amp;=\frac{38}{4}\
-&amp;=9.5
-\end{align}</p>
-<p>Gathering the results, we see that</p>
-<div class="math notranslate nohighlight">
-\[E\left(\text{Rose C}\right) = 9.5 &gt; 8.5 = E\left(\text{Rose A}\right)\]</div>
-<p>and that Rose, given Colin’s plays <span class="math notranslate nohighlight">\(\vec c = \left(\frac{3}{4},\frac{1}{4}\right)\)</span>, will be better off playing strategy <span class="math notranslate nohighlight">\(C\)</span> than any other option. Given the <strong>rational play principle</strong>, we know that Rose will play <span class="math notranslate nohighlight">\(C\)</span>.</p>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -498,11 +477,11 @@ E\left(\text{Rose C}\right) &amp;= 9c_1+11c_2\
       </div>
     </a>
     <a class="right-next"
-       href="N0.html"
+       href="Z5a.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Non-zero-sum Games</p>
+        <p class="prev-next-title">Expected Value</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -522,8 +501,8 @@ E\left(\text{Rose C}\right) &amp;= 9c_1+11c_2\
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formula">Formula</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-theory-application">Game Theory Application</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equalized-expectations">Equalized Expectations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-value-formula">Expected Value Formula</a></li>
 </ul>
   </nav></div>
 
