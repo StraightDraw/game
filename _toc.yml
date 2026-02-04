@@ -24,4 +24,5 @@ parts:
       - file: T2b
       - file: T2c
       - file: T2d
+      - file: T2e
     - file: T3
