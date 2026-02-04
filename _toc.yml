@@ -11,6 +11,9 @@ parts:
     - file: Z3
     - file: Z4
     - file: Z5
+      sections:
+      - file: Z5a
+      - file: Z5b
   - caption: Non Zero Sum Games
     chapters:
     - file: N0
