@@ -188,7 +188,11 @@
 <li class="toctree-l1"><a class="reference internal" href="Z2.html">Game Matrices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Z3.html">Equilibrium Pairs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Z4.html">Dominance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Z5.html">Expected Value</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Z5.html">Expectation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Z5a.html">Expected Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z5b.html">Examples</a></li>
+</ul>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Non Zero Sum Games</span></p>
 <ul class="nav bd-sidenav">
@@ -388,6 +392,8 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematics">Mathematics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code">Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rationalize-values">Rationalize Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-example-rationalized-intersection-with-updated-label">Final Example: Rationalized Intersection with Updated Label</a></li>
 </ul>
             </nav>
         </div>
@@ -412,6 +418,7 @@ document.write(`
 <span class="n">plots</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fractions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Fraction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">linprog</span>
 </pre></div>
 </div>
@@ -537,6 +544,77 @@ and
 </div>
 </div>
 </section>
+<section id="rationalize-values">
+<h2>Rationalize Values<a class="headerlink" href="#rationalize-values" title="Link to this heading">#</a></h2>
+<p>When python calculates a value, we can force it to remain in exact value mode and produce, where possible, the improper fraction. The code to do this involves the package</p>
+<center><b><span style="color:red">fraction</span></b></center>
+<p>Notice how, in the code below, we can rationalize the values <span class="math notranslate nohighlight">\((x_0, y_0)\)</span> using the Fraction() function. Rather than a decimal approximation, we retrieve the improper fraction which will often be more helpful in game theory settings.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">points2</span> <span class="o">=</span> <span class="p">(</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="n">m1</span><span class="p">,</span> <span class="n">b1</span> <span class="o">=</span> <span class="n">get_slope_int</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">points</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">m2</span><span class="p">,</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">get_slope_int</span><span class="p">(</span><span class="n">points2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">points2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">x_0</span> <span class="o">=</span> <span class="p">(</span><span class="n">b2</span> <span class="o">-</span> <span class="n">b1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">m1</span> <span class="o">-</span> <span class="n">m2</span><span class="p">)</span>
+<span class="n">y_0</span> <span class="o">=</span> <span class="n">m1</span> <span class="o">*</span> <span class="n">x_0</span> <span class="o">+</span> <span class="n">b1</span>
+
+<span class="c1"># Rationalize the values</span>
+<span class="n">rx</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">()</span>
+<span class="n">ry</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">y_0</span><span class="p">)</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">rx</span><span class="p">,</span> <span class="n">ry</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>71/19 63/19
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="final-example-rationalized-intersection-with-updated-label">
+<h2>Final Example: Rationalized Intersection with Updated Label<a class="headerlink" href="#final-example-rationalized-intersection-with-updated-label" title="Link to this heading">#</a></h2>
+<p>We can add the rationalized coordinates of the point of intersection into our label and legend with the command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">label=f'Intersection</span> <span class="pre">({rx},</span> <span class="pre">{ry})'</span></code></p>
+<p>Gathering all of the above information, the final graphic of two lines intersecting with the intersection point solved for, rationalized and printed would look like this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span> <span class="n">plots</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="n">points</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Strategy A&#39;</span><span class="p">)</span>
+<span class="n">points2</span> <span class="o">=</span> <span class="p">(</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points2</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Strategy B&#39;</span><span class="p">)</span>
+
+<span class="n">m1</span><span class="p">,</span> <span class="n">b1</span> <span class="o">=</span> <span class="n">get_slope_int</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">points</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">m2</span><span class="p">,</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">get_slope_int</span><span class="p">(</span><span class="n">points2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">points2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">x_0</span> <span class="o">=</span> <span class="p">(</span><span class="n">b2</span> <span class="o">-</span> <span class="n">b1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">m1</span> <span class="o">-</span> <span class="n">m2</span><span class="p">)</span>
+<span class="n">y_0</span> <span class="o">=</span> <span class="n">m1</span> <span class="o">*</span> <span class="n">x_0</span> <span class="o">+</span> <span class="n">b1</span>
+
+<span class="c1"># Rationalize the values</span>
+<span class="n">rx</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">()</span>
+<span class="n">ry</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">y_0</span><span class="p">)</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">()</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_0</span><span class="p">,</span> <span class="n">y_0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Intersection (</span><span class="si">{</span><span class="n">rx</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">ry</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Rose&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Colin&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Plotting 2 Strategies&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">),</span><span class="n">framealpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b8ec49befb23572742312693ac826c176572bae5d08e7773758e00f66b21a3d9.png" src="_images/b8ec49befb23572742312693ac826c176572bae5d08e7773758e00f66b21a3d9.png" />
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -605,6 +683,8 @@ and
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematics">Mathematics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code">Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rationalize-values">Rationalize Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-example-rationalized-intersection-with-updated-label">Final Example: Rationalized Intersection with Updated Label</a></li>
 </ul>
   </nav></div>
 
