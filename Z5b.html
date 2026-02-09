@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Examples &#8212; Game Theory</title>
+    <title>Equalized Expectations &#8212; Game Theory</title>
   
   
   
@@ -57,10 +57,12 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Z5b';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Non-zero-sum Games" href="N0.html" />
+    <link rel="next" title="Oddments" href="Z6.html" />
     <link rel="prev" title="Expected Value" href="Z5a.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -188,9 +190,10 @@
 <li class="toctree-l1"><a class="reference internal" href="Z4.html">Dominance</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="Z5.html">Expectation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Z5a.html">Expected Value</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Examples</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Equalized Expectations</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1"><a class="reference internal" href="Z6.html">Oddments</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Non Zero Sum Games</span></p>
 <ul class="nav bd-sidenav">
@@ -376,7 +379,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Examples</h1>
+    <h1>Equalized Expectations</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -390,13 +393,48 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="examples">
-<h1>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="equalized-expectations">
+<h1>Equalized Expectations<a class="headerlink" href="#equalized-expectations" title="Link to this heading">#</a></h1>
 <aside class="sidebar">
 <p class="sidebar-title">Discovering Game Theory</p>
 <p>This course uses an <strong>online textbook</strong>: <a class="reference external" href="https://nordstrommath.com/IntroGameTheory2e/intro_game_theory.html">Game Theory, a Discovery Approach</a>, by Jennifer Nordstrom.</p>
 </aside>
-<p>We will present several worked examples in this section to provide context for the discussion and practice with solving matrix games.</p>
+<p>For an <span class="math notranslate nohighlight">\(n\times n\)</span> matrix game with no PSS, we may use the idea of equalized expectations to solve for optimal strategy mixtures algebraically. Recall that, in the <span class="math notranslate nohighlight">\(3\times 3\)</span> case, we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec r = \left[\begin{array}{r}r_1\\r_2\\r_3\end{array}\right]\hspace{5mm}\text{and}\hspace{5mm}\vec c = \left[\begin{array}{r}c_1\\c_2\\c_3\end{array}\right]\end{split}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}0\leq r_1,r_2,r_3 &amp;\leq 1\\[3mm]r_1 + r_2 + r_3 &amp;= 1\end{align}\end{split}\]</div>
+<p>Also, the same is true for <span class="math notranslate nohighlight">\(c_1,c_2,\)</span> and <span class="math notranslate nohighlight">\(c_3\)</span>.</p>
+<div class="admonition-example-1 admonition">
+<p class="admonition-title">Example 1</p>
+<p>Given the following matrix game, first verify there is no reduction by dominance. Then solve for the optimal strategy mixtures for Rose and for Colin. What is the value of the game?</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|rrr}&amp;A&amp;B&amp;C\\\hline A&amp;1&amp;-1&amp;6&amp;\\B&amp;9&amp;3&amp;-2&amp;\\C&amp;0&amp;6&amp;-2&amp;\end{array}\end{array}\end{split}\]</div>
+</div>
+<p>We consider the two values <span class="math notranslate nohighlight">\(c_1\)</span> and <span class="math notranslate nohighlight">\(c_2\)</span> since</p>
+<div class="math notranslate nohighlight">
+\[c_3 = 1 - c_1 - c_2\]</div>
+<p>We are thus trying to solve the example game:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|rrc}&amp;Ac_1&amp;Bc_2&amp;C(1-c_1-c_2)\\\hline A&amp;1&amp;-1&amp;6&amp;\\B&amp;9&amp;3&amp;-2&amp;\\C&amp;0&amp;6&amp;-2&amp;\end{array}\end{array}\end{split}\]</div>
+<p>where Colin ensures that:</p>
+<ul class="simple">
+<li><p>Strategy A is played <span class="math notranslate nohighlight">\(c_1\)</span> proportion of the time,</p></li>
+<li><p>Strategy B is played <span class="math notranslate nohighlight">\(c_2\)</span> proportion of the time, and</p></li>
+<li><p>Strategy C is played <span class="math notranslate nohighlight">\(1-c_1-c_2\)</span> proportion of the time.</p></li>
+</ul>
+<p>Then, we have the three expected value calculations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}E(\text{Rose} A) = c_1 - c_2 + 6(1-c_1-c_2) &amp;= 6 -7c_2\\[2mm]E(\text{Rose} B) = 9c_1 + 3c_2 - 2(1-c_1-c_2)&amp;=11c_1 + 5c_2 -2\\[2mm]E(\text{Rose} C) = (0)c_1 + 6c_2 - 2(1-c_1-c_2)&amp;=2c_1+8c_2-2\end{align}\end{split}\]</div>
+<p>We can create a linear system of two equations and two unknowns by setting the first and second equations equal to one another and the second and third equations equal to each other.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}6 -7c_2&amp;=11c_1 + 5c_2 -2\\[2mm]11c_1 + 5c_2 -2&amp;=2c_1+8c_2-2\end{align}\end{split}\]</div>
+<p>Moving terms to the same side, we find the following:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}11c_1 + 12c_2 -8&amp;=0\\[2mm]9c_1 - 3c_2&amp;=0\end{align}\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\text{Rose} = (1/2, 1/6, 1/3)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\text{Rose} = (2/13, 6/13, 5/13)\)</span></p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -439,11 +477,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="N0.html"
+       href="Z6.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Non-zero-sum Games</p>
+        <p class="prev-next-title">Oddments</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
