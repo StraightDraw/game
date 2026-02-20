@@ -442,12 +442,16 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(9\geq 4\)</span>, and</p></li>
 <li><p><span class="math notranslate nohighlight">\(11\geq 3\)</span></p></li>
 </ul>
-<p>Since Rose will never play a dominated strategy, we can see that <span class="math notranslate nohighlight">\(E\left(\text{Rose B}\right) = 0\)</span></p>
+<p>Since Rose will never play a dominated strategy, we can see that <span class="math notranslate nohighlight">\(E\left(\text{Rose B}\right) = 0\)</span>, and we are now able to \textbf{reduce by dominance} to the following <span class="math notranslate nohighlight">\(2\times 2\)</span> game:
+$<span class="math notranslate nohighlight">\(\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|rr}&amp;A&amp;B\\\hline A&amp;12&amp;-2\\C&amp;9&amp;11\end{array}\end{array}\)</span>$</p>
+<p>With Colin playing the strategy set <span class="math notranslate nohighlight">\(\vec c = \left[\begin{array}{r}\frac{3}{4}\\\frac{1}{4}\end{array}\right]\)</span>, the expected value calculations for Rose’s strategies <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(C\)</span> are as follows:</p>
 <p>\begin{align}
-E\left(\text{Rose A}\right) &amp;= 12c_1-2c_2\
-&amp;=12\left(\frac{3}{4}\right) - 2\left(\frac{1}{4}\right)\
-&amp;=9-\frac{1}{2}\
-&amp;=8.5
+E\left(\text{Rose }A\right) &amp;= 12c_1-2c_2=12\left(\frac{3}{4}\right) - 2\left(\frac{1}{4}\right)\
+E\left(\text{Rose }C\right) &amp;= 9c_1+11c_2= 9\left(\frac{3}{4}\right)+11\left(\frac{1}{4}\right)\[3mm]
+E\left(\text{Rose }A\right) &amp;= \frac{36}{4}-\frac{2}{4}=\frac{34}{4}\
+E\left(\text{Rose }C\right) &amp;= \frac{27}{4}-\frac{11}{4}=\frac{26}{4} \hspace{5mm} \implies \[3mm]
+E\left(\text{Rose }A\right) &amp;= \frac{17}{2}=8.5\
+E\left(\text{Rose }C\right) &amp;= \frac{13}{2}=6.5
 \end{align}</p>
 <p>Gathering the results, we see that</p>
 <div class="math notranslate nohighlight">
