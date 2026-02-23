@@ -368,7 +368,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -384,6 +386,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problem-1">Practice Problem 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problem-2">Practice Problem 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problem-3">Practice Problem 3</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -519,6 +531,97 @@ Colin Strategy: [0.333, 0.667]
 </div>
 </div>
 <p>Hence, we have verified that our oddments solution above was indeed correct.</p>
+<div class="admonition-additional-practice admonition">
+<p class="admonition-title">Additional Practice</p>
+<p>Let’s now provide some game examples so that we can practice how to compute matrix game solutions using oddments.</p>
+</div>
+<section id="practice-problem-1">
+<h2>Practice Problem 1<a class="headerlink" href="#practice-problem-1" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|rr}&amp;A&amp;B&amp;\\ \hline A&amp;1&amp;3\\B&amp;11&amp;-1
+\end{array}\end{array}\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do your work in this cell:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">11</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">solver</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Game Value: 2.429
+Rose Strategy: [0.857, 0.143]
+Colin Strategy: [0.286, 0.714]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="practice-problem-2">
+<h2>Practice Problem 2<a class="headerlink" href="#practice-problem-2" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|rr}&amp;A&amp;B&amp;\\ \hline A&amp;0&amp;6\\B&amp;2&amp;0
+\end{array}\end{array}\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do your work in this cell:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+
+<span class="n">solver</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Game Value: 1.5
+Rose Strategy: [0.25, 0.75]
+Colin Strategy: [0.75, 0.25]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="practice-problem-3">
+<h2>Practice Problem 3<a class="headerlink" href="#practice-problem-3" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|rr}&amp;A&amp;B&amp;\\ \hline A&amp;-3&amp;9\\B&amp;0&amp;-4
+\end{array}\end{array}\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do your work in this cell:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">]])</span>
+
+<span class="n">solver</span><span class="p">(</span><span class="n">p3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Game Value: -0.75
+Rose Strategy: [0.25, 0.75]
+Colin Strategy: [0.812, 0.188]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -575,6 +678,23 @@ Colin Strategy: [0.333, 0.667]
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problem-1">Practice Problem 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problem-2">Practice Problem 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problem-3">Practice Problem 3</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
