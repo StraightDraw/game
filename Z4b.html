@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Dominance &#8212; Game Theory</title>
+    <title>Exercises &#8212; Game Theory</title>
   
   
   
@@ -57,13 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Z4';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Z4b';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Exercises" href="Z4a.html" />
-    <link rel="prev" title="Equilibrium Pairs" href="Z3.html" />
+    <link rel="next" title="Expectation" href="Z5.html" />
+    <link rel="prev" title="Exercises" href="Z4a.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -187,9 +185,9 @@
 <li class="toctree-l1"><a class="reference internal" href="Z1.html">Strategies and Solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Z2.html">Game Matrices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Z3.html">Equilibrium Pairs</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Dominance</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Z4.html">Dominance</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Z4a.html">Exercises</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Z4b.html">Exercises</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Exercises</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="Z5.html">Expectation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -270,7 +268,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/StraightDraw/game/master?urlpath=tree/content/Z4.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/StraightDraw/game/master?urlpath=tree/content/Z4b.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -301,7 +299,7 @@
       
       
       
-      <li><a href="_sources/Z4.ipynb" target="_blank"
+      <li><a href="_sources/Z4b.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -372,9 +370,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -385,21 +381,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Dominance</h1>
+    <h1>Exercises</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-better-strategies">Choosing Better Strategies</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduction-by-dominance">Reduction by Dominance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-strategy-solutions">Pure Strategy Solutions</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -409,91 +395,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="dominance">
-<h1>Dominance<a class="headerlink" href="#dominance" title="Link to this heading">#</a></h1>
-<aside class="sidebar">
-<p class="sidebar-title">Discovering Game Theory</p>
-<p>This course uses an <strong>online textbook</strong>: <a class="reference external" href="https://nordstrommath.com/IntroGameTheory2e/intro_game_theory.html">Game Theory, a Discovery Approach</a>, by Jennifer Nordstrom.</p>
-</aside>
-<p>When solving a zero-sum matrix game, we begin by searching for dominated strategies. The rational play principle allows us to ignore dominated strategies as the logical, self-interested player will never play them.</p>
-<section id="choosing-better-strategies">
-<h2>Choosing Better Strategies<a class="headerlink" href="#choosing-better-strategies" title="Link to this heading">#</a></h2>
-<p>When one strategy is inferior to another strategy that player can play, the rational player will discard the inferior one.</p>
-<dl class="simple myst">
-<dt>Dominated Strategy</dt><dd><p>A strategy <span class="math notranslate nohighlight">\(S\)</span> dominates a strategy <span class="math notranslate nohighlight">\(T\)</span> if every entry for <span class="math notranslate nohighlight">\(S\)</span> is greater than or equal to the corresponding entry for <span class="math notranslate nohighlight">\(T\)</span>.</p>
-</dd>
-</dl>
-<p>If this is the case, we say that <span class="math notranslate nohighlight">\(T\)</span> is dominated by <span class="math notranslate nohighlight">\(S\)</span> and write:</p>
-<div class="math notranslate nohighlight">
-\[S\geq T\]</div>
-<div class="admonition-example-1 admonition">
-<p class="admonition-title">Example 1</p>
-<p>Given the following game, determine if any Colin strategy is dominated.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|rrr}&amp;A&amp;B&amp;C\\ \hline A&amp;-1&amp;6&amp;1\\B&amp;0&amp;4&amp;10\end{array}\end{array}\end{split}\]</div>
-</div>
-<p>Remember, in this condensed zero-sum game matrix setup, Colin’s outcome values are the opposite of the ones diplayed. Colin is trying to <strong>minimize</strong> here.</p>
-<aside class="sidebar">
-<p class="sidebar-title">Colin Dominance</p>
-<p>Since Colin is minimizing in the condensed representation of a zero-sum game, we write <span class="math notranslate nohighlight">\(A\leq B\)</span> when Conlin’s strategy A dominates A.</p>
-</aside>
-<p><strong>Solution.</strong> In the original game, you should verify that neither Rose strategy is dominated by the other. Let’s scan instead for Colin dominance.</p>
-<p>The best strategy for Colin is <strong>Colin A</strong> where  For <span class="math notranslate nohighlight">\(A\leq B\)</span>, we see that:</p>
-<div class="math notranslate nohighlight">
-\[-1&lt;6\hspace{5mm}\text{and}\hspace{5mm}0\leq 4\]</div>
-<p>Similarly, for <span class="math notranslate nohighlight">\(A\leq C\)</span>, we find:</p>
-<div class="math notranslate nohighlight">
-\[-1&lt;1\hspace{5mm}\text{and}\hspace{5mm}0\leq 10\]</div>
-<p>Thus, we have shown that <span class="math notranslate nohighlight">\(A\leq B\)</span> and <span class="math notranslate nohighlight">\(A\leq C\)</span>. Hence, Colin will never choose to play either <strong>Colin B</strong> or <strong>Colin C</strong>. His strategy <span class="math notranslate nohighlight">\(A\)</span> is at least as good or better for every outcome in <span class="math notranslate nohighlight">\(B\)</span> or <span class="math notranslate nohighlight">\(C\)</span> regardless of the strategy Rose employs. We therefore write the following:</p>
-<div class="math notranslate nohighlight">
-\[\text{Colin B}\geq \text{Colin A}\]</div>
-<div class="admonition-example-2a admonition">
-<p class="admonition-title">Example 2a</p>
-<p>Given the following game, determine if any Rose strategy is dominated.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|rrr}&amp;A&amp;B&amp;C\\ \hline A&amp;5&amp;0&amp;2\\B&amp;5&amp;8&amp;5\\C&amp;11&amp;8&amp;-3\end{array}\end{array}\end{split}\]</div>
-</div>
-<p><strong>Solution.</strong> In the original game, we notice that <strong>Rose C</strong> has values of <span class="math notranslate nohighlight">\(11\)</span> and <span class="math notranslate nohighlight">\(8\)</span>. Yet, while these values are good for Rose, the last value is a <span class="math notranslate nohighlight">\(-3\)</span>. This outcome prevents Rose C from dominating the other rows.</p>
-<p>Let’s compare <strong>Rose A</strong> to <strong>Rose B</strong> instead. Since we have</p>
-<div class="math notranslate nohighlight">
-\[5\geq 5,\hspace{5mm} 8\geq 0,\hspace{5mm}\text{and}\hspace{5mm} 5\geq 2\]</div>
-<p>We see that, for Rose, strategy <span class="math notranslate nohighlight">\(B\)</span> dominates <span class="math notranslate nohighlight">\(A\)</span>, and so we write as follows:</p>
-<div class="math notranslate nohighlight">
-\[\text{Rose B}\geq \text{Rose A}\]</div>
-</section>
-<section id="reduction-by-dominance">
-<h2>Reduction by Dominance<a class="headerlink" href="#reduction-by-dominance" title="Link to this heading">#</a></h2>
-<p>In Example 2a, we found that <strong>Rose A</strong> is dominated. Since Rose will never play it, we can discard it from our game analysis. The process is called <strong><span style = "color:blue;">reduction by dominance</span></strong>.</p>
-<div class="admonition-example-2b admonition">
-<p class="admonition-title">Example 2b</p>
-<p>We showed that the game in <em>Example 2</em> has strategy <span class="math notranslate nohighlight">\(A\)</span> for Rose included, but it is dominated. We can rewrite the game without it as Rose will never choose to play it.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|rrr}&amp;A&amp;B&amp;C\\ \hline B&amp;5&amp;8&amp;5\\C&amp;11&amp;8&amp;-3\end{array}\end{array}\end{split}\]</div>
-</div>
-<p>Find any dominance in Colin’s strategies in the reduced game shown above.</p>
-<p><strong>Solution.</strong> The strategy <strong>Colin C</strong> appears at first glance to be very good as Colin is minimizing. When we check, we find that <span class="math notranslate nohighlight">\(\text{Colin C}\leq\text{Colin A}\)</span> due to the following comparisons:</p>
-<div class="math notranslate nohighlight">
-\[5\leq 5\hspace{5mm}\text{and}\hspace{5mm} -3\leq 11\]</div>
-<p>We also find <span class="math notranslate nohighlight">\(\text{Colin C}\leq\text{Colin B}\)</span> because of these:</p>
-<div class="math notranslate nohighlight">
-\[5\leq 8\hspace{5mm}\text{and}\hspace{5mm} -3\leq 8\]</div>
-</section>
-<section id="pure-strategy-solutions">
-<h2>Pure Strategy Solutions<a class="headerlink" href="#pure-strategy-solutions" title="Link to this heading">#</a></h2>
-<p>Note how the game can once again be reduced by dominance into a single column:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|r}&amp;C\\ \hline B&amp;5\\C&amp;-3\end{array}\end{array}\end{split}\]</div>
-<p>Given the choices, Rose will maximize her outcome by always choosing strategy <span class="math notranslate nohighlight">\(B\)</span>.</p>
-<p>In vector form, we say that Rose’s optimal strategy set is given by</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\vec r = \left[\begin{array}{r}0\\1\\0\end{array}\right]\end{split}\]</div>
-<p>while Colin’s is given by</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\vec c = \left[\begin{array}{r}0\\0\\1\end{array}\right]\end{split}\]</div>
-<p>For a pure strategy solution (PSS), we often say the solution of the game is <strong>Rose B, Colin C</strong>. The value of the game is <span class="math notranslate nohighlight">\(v=5\)</span>.</p>
-</section>
-<div class="toctree-wrapper compound">
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="exercises">
+<h1>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h1>
+<p>This is file Z4b.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -527,20 +431,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Z3.html"
+       href="Z4a.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Equilibrium Pairs</p>
+        <p class="prev-next-title">Exercises</p>
       </div>
     </a>
     <a class="right-next"
-       href="Z4a.html"
+       href="Z5.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Exercises</p>
+        <p class="prev-next-title">Expectation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -550,23 +454,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-better-strategies">Choosing Better Strategies</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduction-by-dominance">Reduction by Dominance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-strategy-solutions">Pure Strategy Solutions</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
