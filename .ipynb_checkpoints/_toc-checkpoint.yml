@@ -10,6 +10,9 @@ parts:
     - file: Z2
     - file: Z3
     - file: Z4
+      sections:
+      - file: Z4a
+      - file: Z4b
     - file: Z5
       sections:
       - file: Z5a
