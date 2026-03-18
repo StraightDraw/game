@@ -1,0 +1,730 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Graphical Method &#8212; Game Theory</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Z7';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Police versus Guerillas" href="Z8.html" />
+    <link rel="prev" title="Exercises" href="Z6e.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="Introduction.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/UNG.logo.png" class="logo__image only-light" alt="Game Theory - Home"/>
+    <script>document.write(`<img src="_static/UNG.logo.png" class="logo__image only-dark" alt="Game Theory - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
+                    <center><span style="color: blue; font-size: 1.1em;"><b>Game Theory</b></span></center>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Zero Sum Games</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Z0.html">The Nature of Games</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Z1.html">Strategies and Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Z2.html">Game Matrices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Z3.html">Equilibrium Pairs</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Z4.html">Dominance</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Z4e.html">Exercises</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Z5.html">Expectation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Z5a.html">Expected Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z5b.html">Equalized Expectations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z5e.html">Exercises</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Z6.html">Oddments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Z6e.html">Exercises</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Graphical Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Z8.html">Police versus Guerillas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Non Zero Sum Games</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="N0.html">Non-zero-sum Games</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tools</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="T0.html">Tools of Game Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="T1.html">Dollar Sign Mathematics</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="T2.html">Graphics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="T2a.html">Graphing Window and XY-Axis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T2b.html">Horiztonal and Vertical Lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T2c.html">Line Through 2 Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T2d.html">Polygons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T2e.html">Finding Intersection of 2 Lines</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="T3.html">Game Solver Code</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/StraightDraw/game/master?urlpath=tree/content/Z7.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Z7.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Graphical Method</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blackhawk-down">Blackhawk Down</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-payoff-matrix">The Payoff Matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-graphics-mean">What the Graphics Mean</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-strategy">Optimal Strategy</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#equations-of-the-lines">Equations of the Lines</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#game-value">Game Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-strategy-set-for-the-other-player">Optimal Strategy Set for the Other Player</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-solution">Overall Solution</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="graphical-method">
+<h1>Graphical Method<a class="headerlink" href="#graphical-method" title="Link to this heading">#</a></h1>
+<p>Two special cases of zero-sum matrix games can be handled using a visual display:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n \times 2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(2\times n\)</span></p></li>
+</ul>
+<p>We will employ the <span style='color:blue'><b>graphical method</span></b> to solve these two cases.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Do not change this cell, only execute it. </span>
+<span class="c1">## This cell initializes Python so that pandas, numpy and scipy packages are ready to use.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">datascience</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plots</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">stats</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\robbs\anaconda3\envs\GameTheory\Lib\site-packages\datascience\maps.py:13: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
+  import pkg_resources
+</pre></div>
+</div>
+</div>
+</div>
+<section id="blackhawk-down">
+<h2>Blackhawk Down<a class="headerlink" href="#blackhawk-down" title="Link to this heading">#</a></h2>
+<p>The <strong>primary example</strong> in this section relates to the backstory to the Blackhawk Down <a class="reference external" href="https://en.wikipedia.org/wiki/Battle_of_Mogadishu_(1993)">movie plot</a> was a <strong>logistics standoff</strong> between international relief organizations trying to help prevent starvation due to a famine and warlords who were diverting the aid. If the warlords seized control of some of the donated supplies, they could profit by selling the supplies to the civilians who needed them. The situation oocurs often, sadly, and forms the basis for our game in this lesson.</p>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<p>Imagine a <span style="color: blue;"><b>logistics coordinator</b></span> for a relief agency and a <span style="color: red;"><b>Local Warlord</b></span> in a fictional region. The Coordinator must choose one of two routes to deliver supplies, while the Warlord can choose from three different locations to set up a checkpoint to tax or seize the goods. This is a zero-sum game: any supplies seized by the Warlord are a direct loss to the Coordinator.</p>
+<section id="the-payoff-matrix">
+<h4>The Payoff Matrix<a class="headerlink" href="#the-payoff-matrix" title="Link to this heading">#</a></h4>
+<p>The outcomes in the game matrix represent the Coordinator’s gains. The <span style="color: blue;"><b>Coordinator (Row Player)</span></b> has two strategies: Route A and Route B. The <span style="color: red;"><b>Warlord (Column Player)</span></b> has three strategies: Checkpoint 1, 2, or 3. The payoffs to the players represent the percentage of the total supplies that reach their destination successfully.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Warlord}\\\textbf{Coordinator}&amp; \begin{array}{r|cc} &amp; 1 &amp; 2 &amp; 3\\\hline A &amp; 80 &amp; 20 &amp; 50 \\ B &amp; 10 &amp; 90 &amp; 40 \end{array} \end{array}\end{split}\]</div>
+<p>With no dominance available to simplify the game, we <span style="color: darkblue;"><b>graph the <span class="math notranslate nohighlight">\(3\)</span> column strategies</span></b> to determine what the Row Player should do. Using the method of graphing a line through 2 points, we display three lines representing the outcomes of all three column strategies. Recall:</p>
+<ul class="simple">
+<li><p>The row player is <strong>maximizing</strong>, and</p></li>
+<li><p>The column player in <strong>minimizing</strong>.</p></li>
+</ul>
+<p>The <span style='color:red'><b>key point in the graph below</span></b> is that the <span style='color:blue;'><b>coordinator</span></b> will play along the upper envelope in an attempt to <span style='color:red;'><b>maximize</span></b> the outcomes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">);</span> <span class="n">plots</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;x = 1&#39;</span><span class="p">)</span>
+<span class="n">points1</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points1</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Checkpoint 1&#39;</span><span class="p">)</span>
+
+<span class="n">points2</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points2</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Checkpoint 2&#39;</span><span class="p">)</span>
+
+<span class="n">points3</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points3</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Checkpoint 3&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add labels and title</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Coordinator&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Warlord&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Plotting the 3 Column Strategies&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add a grid, add legend, and place legend below figure.</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">),</span><span class="n">framealpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c0590e173bc310cdcc612c3ddafb1394d158089a0d2f078337c93b131aeed82c.png" src="_images/c0590e173bc310cdcc612c3ddafb1394d158089a0d2f078337c93b131aeed82c.png" />
+</div>
+</div>
+</section>
+<section id="what-the-graphics-mean">
+<h4>What the Graphics Mean<a class="headerlink" href="#what-the-graphics-mean" title="Link to this heading">#</a></h4>
+<p>Consider that the row player is choosing the value of <span class="math notranslate nohighlight">\(x\)</span> which is the proportion of times, in repeated play, that he or she will choose Route A. Thus, the <span style="color:blue"><b>coordinator (row player)</span></b> will play the optimal strategy set:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x\)</span> : proportion of times choosing A</p></li>
+<li><p><span class="math notranslate nohighlight">\(1-x\)</span> : proportion of times choosing B</p></li>
+</ul>
+<p>We have two vertical lines in the graphic above:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x=0\)</span> : where coordinator chooses to play <span class="math notranslate nohighlight">\(0\%\)</span> A</p></li>
+<li><p><span class="math notranslate nohighlight">\(x=1\)</span> : where coordinator choose to play <span class="math notranslate nohighlight">\(100\%\)</span> A</p></li>
+</ul>
+<p>For the column player, the value at <span class="math notranslate nohighlight">\(x=0\)</span> is the outcome in Row B, while the value at <span class="math notranslate nohighlight">\(x=1\)</span> is the outcome in Row A. Hence, the row player hopes to maximize which will only happen if he or she can <span style="color:darkblue"><b>play along the upper envelope</span></b> shown above.</p>
+</section>
+</section>
+<section id="optimal-strategy">
+<h3>Optimal Strategy<a class="headerlink" href="#optimal-strategy" title="Link to this heading">#</a></h3>
+<p>The row player optimizes by finding the intersection of the green and red lines above. The <span class="math notranslate nohighlight">\(x\)</span>-coordinate of the intersection represents the equilibrium value for proprotion of times to play strategy A, and the <span class="math notranslate nohighlight">\(y\)</span>-value is the game’s equilibrium value.</p>
+<section id="equations-of-the-lines">
+<h4>Equations of the Lines<a class="headerlink" href="#equations-of-the-lines" title="Link to this heading">#</a></h4>
+<p>The graph essentially shows the <span class="math notranslate nohighlight">\(y\)</span>-intercept with the <strong>slope</strong> easily calculated since the “change in x” (or denominator) is equal to <span class="math notranslate nohighlight">\(1\)</span>. The warlord (column player) will choose to play the red and green strategies.</p>
+<ul>
+<li><p><strong>Red Line</strong></p>
+<div class="math notranslate nohighlight">
+\[y = 70x+10\]</div>
+</li>
+<li><p><strong>Green Line</strong></p>
+<div class="math notranslate nohighlight">
+\[y=-70x+90\]</div>
+</li>
+</ul>
+<p>The slope of the red line is <span class="math notranslate nohighlight">\(70\)</span> units, and its intercept is <span class="math notranslate nohighlight">\(10\)</span>. The slope of the green line is <span class="math notranslate nohighlight">\(-70\)</span> with an intercept of <span class="math notranslate nohighlight">\(90\)</span>. When we set the <span class="math notranslate nohighlight">\(y\)</span>-values equal and solve, we find:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}140x&amp;=80\\
+x&amp;=\frac{8}{14}\\
+x&amp;=\frac{4}{7}
+\end{align}\end{split}\]</div>
+<p>This indicates that the coordinator’s (row player’s) optimal strategy set is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec r = \left[\begin{array}{r}\frac{4}{7}\\ \frac{3}{7}\end{array}\right]\end{split}\]</div>
+</section>
+</section>
+<section id="game-value">
+<h3>Game Value<a class="headerlink" href="#game-value" title="Link to this heading">#</a></h3>
+<p>The value of the game is the <span class="math notranslate nohighlight">\(y\)</span> coordinate of the intersection point which can be found by plugging <span class="math notranslate nohighlight">\(x=\frac{4}{7}\)</span> into either the red or green equation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}y&amp;=70\left(\frac{4}{7}\right)+10\\y&amp;=40+10\\y&amp;=50\end{align}\end{split}\]</div>
+</section>
+<section id="optimal-strategy-set-for-the-other-player">
+<h3>Optimal Strategy Set for the Other Player<a class="headerlink" href="#optimal-strategy-set-for-the-other-player" title="Link to this heading">#</a></h3>
+<aside class="sidebar">
+<p>The key to solving a</br>
+<span class="math notranslate nohighlight">\(\hspace{5mm}2\times n\)</span> or</br>
+<span class="math notranslate nohighlight">\(\hspace{5mm}n \times 2\)</span> </br>
+matrix game is finding the correct <span class="math notranslate nohighlight">\(2\times 2\)</span> subgame to solve.</p>
+</aside>
+<p>The graphical method shows only player’s optimal strategy set. How do we find the other? We use</p>
+<center><span style='color:blue'><b>Oddments</b></span></center></br>
+<p>after identifying the correct <span class="math notranslate nohighlight">\(2\times 2\)</span> matrix subgame to solve. The graphical method not only provides us with this knowledge, we can solve for one player’s optimal strategy set and the game value. Thus, the graphical method also confirms that the answer at which we arrive using oddments is correct.</p>
+<div class="admonition-square-matrix-solution-principal admonition">
+<p class="admonition-title"><strong>Square Matrix Solution Principal</strong></p>
+<p>In an <span class="math notranslate nohighlight">\(m\times n\)</span> zero-sum matrix game, the solution will be a sqaure matrix subgame where both players have the same number of active strategies. For example, if the strategy is an MSS, the solution to a <span class="math notranslate nohighlight">\(3\times 4\)</span> matrix game will be either a <span class="math notranslate nohighlight">\(3\times 3\)</span> or a <span class="math notranslate nohighlight">\(2\times 2\)</span> matrix subgame.</p>
+</div>
+<p>By the square matrix solution principal and a quick check of the graph above, we can see the correct subgame to solve is the following:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Warlord}\\\textbf{Coordinator}&amp; \begin{array}{r|cc} &amp; 1 &amp; 2\\\hline A &amp; 80 &amp; 20 \\ B &amp; 10 &amp; 90 \end{array} \end{array}\end{split}\]</div>
+<p>The <span style='color:blue'><b>blue line</b></span> in the graph represented the Checkpoint 3 strategy which, while not dominated by either <span style='color:red'><b>red</b></span> or <span style='color:green'><b>green</b></span>, still is outclassed by a combination of the two.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Reduction Issues</strong></p>
+<p>The above example shows a situation where the game reduces, but <span sytle ='color:red'><b>the game does not reduce by dominance</span></b>.</p>
+</div>
+</section>
+</section>
+<section id="overall-solution">
+<h2>Overall Solution<a class="headerlink" href="#overall-solution" title="Link to this heading">#</a></h2>
+<p>The row oddments are <span class="math notranslate nohighlight">\(60\)</span> and <span class="math notranslate nohighlight">\(80\)</span> which gives the optimal strategy set</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec r = \left[\begin{array}{r}\frac{4}{7}\\\frac{3}{7}\end{array}\right]\end{split}\]</div>
+<p>which, happily, aggrees with our work above.</p>
+<p>For the column player, the oddments are <span class="math notranslate nohighlight">\(70\)</span> and <span class="math notranslate nohighlight">\(70\)</span>. Hence, the warlord (column player) will play:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec c = \left[\begin{array}{r}\frac{1}{2}\\\frac{1}{2}\end{array}\right]\end{split}\]</div>
+<p>A quick glance at the original matrix knowing the warlord’s optimal strategies indicates the</p>
+<center><span style='color:red'>game value is 50.<b></b></span></center></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Z6e.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Exercises</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Z8.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Police versus Guerillas</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blackhawk-down">Blackhawk Down</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-payoff-matrix">The Payoff Matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-graphics-mean">What the Graphics Mean</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-strategy">Optimal Strategy</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#equations-of-the-lines">Equations of the Lines</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#game-value">Game Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-strategy-set-for-the-other-player">Optimal Strategy Set for the Other Player</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-solution">Overall Solution</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robb Sinn
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
