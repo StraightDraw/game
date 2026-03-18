@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Non-zero-sum Games" href="N0.html" />
-    <link rel="prev" title="Graphical Method" href="Z7.html" />
+    <link rel="prev" title="Graphical Method: \(n\times 2\)" href="Z7a.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -201,8 +201,11 @@
 <li class="toctree-l2"><a class="reference internal" href="Z6e.html">Exercises</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="Z7.html">Graphical Method</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Police versus Guerillas</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Z7.html">Graphical Method</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Z7a.html">Graphical Method: <span class="math notranslate nohighlight">\(n\times 2\)</span></a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Police versus Guerillas</a></li>
+</ul>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Non Zero Sum Games</span></p>
 <ul class="nav bd-sidenav">
@@ -377,7 +380,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -393,6 +398,19 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intial-values">Intial Values</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#words">Words</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results-table">Results Table</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -437,6 +455,8 @@ Common scenarios would have us analyzing 5P vs 3G, 7P vs 5G, or 8P vs 7G. We wil
 </div>
 </div>
 </div>
+<section id="intial-values">
+<h2>Intial Values<a class="headerlink" href="#intial-values" title="Link to this heading">#</a></h2>
 <p>We first initialize the values we need:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(p\)</span> : number of police units</p></li>
@@ -448,52 +468,42 @@ Common scenarios would have us analyzing 5P vs 3G, 7P vs 5G, or 8P vs 7G. We wil
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">g</span> <span class="o">=</span> <span class="mi">7</span>
-
-<span class="n">p_strat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">p</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">p_strat</span><span class="p">)</span>
-<span class="n">p_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">p_strat</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">p_index</span><span class="p">)</span>
-
-<span class="n">g_strat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">g</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">g_strat</span><span class="p">)</span>
-<span class="n">g_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">g_strat</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">g_index</span><span class="p">)</span>
-<span class="n">engine</span> <span class="o">=</span> <span class="n">inflect</span><span class="o">.</span><span class="n">engine</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4 5 6 7 8]
-[1 2 3 4 5]
-[4 5 6 7]
-[1 2 3 4]
 </pre></div>
 </div>
 </div>
 </div>
+<section id="dictionaries">
+<h3>Dictionaries<a class="headerlink" href="#dictionaries" title="Link to this heading">#</a></h3>
+<p>Below, we create a function that creates player dictionaries to keep track of row-column indexes for the results table and strategies listed by integer value.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_player_dict</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">anchor_val</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a dictionary containing player info, strategy sets, and index sets.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Calculate the strategy set: from ceil(n/2) to n (inclusive)</span>
     <span class="n">strat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">anchor_val</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">anchor_val</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    
-    <span class="c1"># Create an index set starting from 1</span>
     <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">strat</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    
     <span class="k">return</span> <span class="p">{</span>
         <span class="s1">&#39;player&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
         <span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="n">index</span><span class="p">,</span>
         <span class="s1">&#39;strat&#39;</span><span class="p">:</span> <span class="n">strat</span>
     <span class="p">}</span>
-
-<span class="c1"># Creating the dictionaries</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating the dictionaries</span>
 <span class="n">P</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
-
-<span class="c1"># Displaying the results</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Displaying the results</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
 </pre></div>
@@ -506,9 +516,10 @@ Common scenarios would have us analyzing 5P vs 3G, 7P vs 5G, or 8P vs 7G. We wil
 </div>
 </div>
 </div>
+<p>We can also display the indexes for a single player or the strategies for that player.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">])</span> <span class="p">;</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">])</span> <span class="p">;</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span> <span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -516,11 +527,12 @@ Common scenarios would have us analyzing 5P vs 3G, 7P vs 5G, or 8P vs 7G. We wil
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4 5 6 7 8]
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 3, 4, 5])
-</pre></div>
 </div>
 </div>
-</div>
+</section>
+<section id="words">
+<h3>Words<a class="headerlink" href="#words" title="Link to this heading">#</a></h3>
+<p>The strategies we use can be indexed by integer, say, 7. However, the following function will covert integers to the appropriate words which, for the preceding case, would be “seven”.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">words</span><span class="p">(</span><span class="n">num_array</span><span class="p">):</span>
@@ -557,60 +569,16 @@ Common scenarios would have us analyzing 5P vs 3G, 7P vs 5G, or 8P vs 7G. We wil
 </div>
 </div>
 </div>
+</section>
+<section id="results-table">
+<h3>Results Table<a class="headerlink" href="#results-table" title="Link to this heading">#</a></h3>
+<p>The following code simply sets up a table in which we plan to store the win percentages for each strategy matchup. The values in the table are irrelevant to the actual game and will serve as placeholders.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">play</span><span class="p">(</span><span class="n">p_max</span><span class="p">,</span> <span class="n">g_max</span><span class="p">,</span> <span class="n">p_A</span><span class="p">,</span> <span class="n">g_A</span><span class="p">):</span>
-   <span class="n">A</span> <span class="o">=</span> <span class="n">p_A</span> <span class="p">;</span> <span class="n">B</span> <span class="o">=</span> <span class="n">p_max</span> <span class="o">-</span> <span class="n">A</span> <span class="p">;</span>
-   <span class="n">res</span> <span class="o">=</span> <span class="p">()</span>
-   <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">90</span><span class="p">):</span>
-      <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">make_array</span><span class="p">(</span> <span class="n">g_A</span><span class="p">,</span> <span class="n">g_max</span> <span class="o">-</span> <span class="n">g_A</span> <span class="p">)</span> <span class="p">)</span> <span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">g_max</span> <span class="o">-</span> <span class="n">a</span> <span class="p">;</span>
-      <span class="k">if</span> <span class="p">(</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">A</span> <span class="p">)</span> <span class="ow">or</span> <span class="p">(</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="n">B</span> <span class="p">):</span>
-         <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>
-      <span class="k">else</span><span class="p">:</span>
-            <span class="n">v</span> <span class="o">=</span> <span class="mi">1</span>
-      <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-   <span class="n">temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span> <span class="p">(</span> <span class="nb">sum</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span> <span class="p">)</span> <span class="o">/</span> <span class="mf">100.0</span> <span class="p">,</span> <span class="mi">3</span> <span class="p">)</span>
-   <span class="n">t</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
-   <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">play</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.050000000000000003
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">])):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
-2
-3
-4
-5
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tab</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">words</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">words</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">]))</span>
 <span class="k">for</span> <span class="n">t</span>  <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">])):</span>
-    <span class="n">tab</span> <span class="o">=</span> <span class="n">tab</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span><span class="n">word</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">][</span><span class="n">t</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">g_strat</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">+</span><span class="n">t</span><span class="p">)</span>
-<span class="n">tab</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span><span class="n">word</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">][</span><span class="n">t</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">+</span><span class="n">t</span><span class="p">)</span>
+<span class="n">results</span>
 </pre></div>
 </div>
 </div>
@@ -639,131 +607,39 @@ Common scenarios would have us analyzing 5P vs 3G, 7P vs 5G, or 8P vs 7G. We wil
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tab</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="p">,</span> <span class="n">g</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(8, 7)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">play</span><span class="p">(</span><span class="n">p_max</span><span class="p">,</span> <span class="n">g_max</span><span class="p">,</span> <span class="n">p_strat</span><span class="p">,</span> <span class="n">g_strat</span><span class="p">):</span>
+   <span class="n">A</span> <span class="o">=</span> <span class="n">p_strat</span> <span class="p">;</span> <span class="n">B</span> <span class="o">=</span> <span class="n">p_max</span> <span class="o">-</span> <span class="n">A</span> <span class="p">;</span>
+   <span class="n">res</span> <span class="o">=</span> <span class="p">()</span>
+   <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">90</span><span class="p">):</span>
+      <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">make_array</span><span class="p">(</span> <span class="n">g_strat</span><span class="p">,</span> <span class="n">g_max</span> <span class="o">-</span> <span class="n">g_strat</span> <span class="p">)</span> <span class="p">)</span> <span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">g_strat</span> <span class="o">-</span> <span class="n">a</span> <span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">A</span> <span class="p">)</span> <span class="ow">or</span> <span class="p">(</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="n">B</span> <span class="p">)</span> <span class="p">):</span>
+         <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">else</span><span class="p">:</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+   <span class="n">temp</span> <span class="o">=</span> <span class="p">(</span> <span class="nb">sum</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span> <span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+   <span class="n">t</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+   <span class="k">return</span> <span class="n">t</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">p</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">g</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">play</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4, 4)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.40000000000000002
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_offset</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">p</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span> <span class="p">;</span> <span class="n">g_offset</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">g</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="p">;</span>
-<span class="n">p_offset</span> <span class="p">,</span> <span class="n">g_offset</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 4)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.41999999999999998
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tab</span><span class="p">[</span><span class="mi">6</span><span class="o">-</span><span class="n">p_offset</span><span class="p">][</span><span class="mi">6</span><span class="o">-</span><span class="n">g_offset</span><span class="p">]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">tab</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table border="1" class="dataframe">
-    <thead>
-        <tr>
-            <th></th> <th>four</th> <th>five</th> <th>six</th> <th>seven</th> <th>eight</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>four </td> <td>0   </td> <td>1   </td> <td>2   </td> <td>3    </td> <td>4    </td>
-        </tr>
-        <tr>
-            <td>five </td> <td>1   </td> <td>2   </td> <td>3   </td> <td>4    </td> <td>5    </td>
-        </tr>
-        <tr>
-            <td>six  </td> <td>2   </td> <td>3   </td> <td>0.5 </td> <td>5    </td> <td>6    </td>
-        </tr>
-        <tr>
-            <td>seven</td> <td>3   </td> <td>4   </td> <td>5   </td> <td>6    </td> <td>7    </td>
-        </tr>
-    </tbody>
-</table></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tab</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.,  1.,  2.,  3.])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">row_1</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;four&#39;, &#39;0.0&#39;, &#39;1.0&#39;, &#39;2.0&#39;, &#39;3.0&#39;, &#39;4.0&#39;],
-      dtype=&#39;&lt;U32&#39;)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row_1</span> <span class="o">=</span> <span class="n">row_1</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-<span class="n">row_1</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;0.0&#39;, &#39;1.0&#39;, &#39;2.0&#39;, &#39;3.0&#39;, &#39;4.0&#39;],
-      dtype=&#39;&lt;U32&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for i in range(len(P[&#39;index&#39;])):</span>
+<span class="c1">#     print(P[&#39;index&#39;][i])</span>
 </pre></div>
 </div>
 </div>
@@ -776,6 +652,8 @@ Common scenarios would have us analyzing 5P vs 3G, 7P vs 5G, or 8P vs 7G. We wil
 </div>
 </div>
 </div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -809,12 +687,12 @@ Common scenarios would have us analyzing 5P vs 3G, 7P vs 5G, or 8P vs 7G. We wil
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Z7.html"
+       href="Z7a.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Graphical Method</p>
+        <p class="prev-next-title">Graphical Method: <span class="math notranslate nohighlight">\(n\times 2\)</span></p>
       </div>
     </a>
     <a class="right-next"
@@ -832,6 +710,26 @@ Common scenarios would have us analyzing 5P vs 3G, 7P vs 5G, or 8P vs 7G. We wil
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intial-values">Intial Values</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#words">Words</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results-table">Results Table</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

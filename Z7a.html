@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Game Theory &#8212; Game Theory</title>
+    <title>Graphical Method: \(n\times 2\) &#8212; Game Theory</title>
   
   
   
@@ -59,10 +59,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Introduction';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Z7a';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="The Nature of Games" href="Z0.html" />
+    <link rel="next" title="Police versus Guerillas" href="Z8.html" />
+    <link rel="prev" title="Graphical Method" href="Z7.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -125,8 +126,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -145,7 +144,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="Introduction.html">
   
   
   
@@ -176,14 +175,14 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
                     <center><span style="color: blue; font-size: 1.1em;"><b>Game Theory</b></span></center>
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Zero Sum Games</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Z0.html">The Nature of Games</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Z1.html">Strategies and Solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Z2.html">Game Matrices</a></li>
@@ -202,8 +201,8 @@
 <li class="toctree-l2"><a class="reference internal" href="Z6e.html">Exercises</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="Z7.html">Graphical Method</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Z7a.html">Graphical Method: <span class="math notranslate nohighlight">\(n\times 2\)</span></a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Z7.html">Graphical Method</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Graphical Method: <span class="math notranslate nohighlight">\(n\times 2\)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="Z8.html">Police versus Guerillas</a></li>
 </ul>
 </details></li>
@@ -279,7 +278,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/StraightDraw/game/master?urlpath=tree/content/Introduction.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/StraightDraw/game/master?urlpath=tree/content/Z7a.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -310,7 +309,7 @@
       
       
       
-      <li><a href="_sources/Introduction.ipynb" target="_blank"
+      <li><a href="_sources/Z7a.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -394,7 +393,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><center><span style="color: blue; font-size: 1.1em;"><b>Game Theory</b></span></center></h1>
+    <h1>Graphical Method: n\times 2</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -404,10 +403,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructor-and-author"><span style="color: darkblue; font-size: 1.055em;"><b>Instructor and Author</b></span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#university-of-north-georgia">University of North Georgia</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-missile-defense">Example: Missile Defense</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -419,51 +418,93 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="game-theory">
-<h1><center><span style="color: blue; font-size: 1.1em;"><b>Game Theory</b></span></center><a class="headerlink" href="#game-theory" title="Link to this heading">#</a></h1>
-<center><span style="color: gold; font-size: 1.1em;"><b>Course Notes for the University of North Georgia Game Theory Class</b></span></center><section id="instructor-and-author">
-<h2><span style="color: darkblue; font-size: 1.055em;"><b>Instructor and Author</b></span><a class="headerlink" href="#instructor-and-author" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="graphical-method-n-times-2">
+<h1>Graphical Method: <span class="math notranslate nohighlight">\(n\times 2\)</span><a class="headerlink" href="#graphical-method-n-times-2" title="Link to this heading">#</a></h1>
 <aside class="sidebar">
 <p class="sidebar-title">Discovering Game Theory</p>
 <p>This course uses an <strong>online textbook</strong>: <a class="reference external" href="https://nordstrommath.com/IntroGameTheory2e/intro_game_theory.html">Game Theory, a Discovery Approach</a>, by Jennifer Nordstrom.</p>
 </aside>
-<ul class="simple">
-<li><p>Robb Sinn</p></li>
-<li><p>Spring 2026</p></li>
-</ul>
-</section>
-<section id="university-of-north-georgia">
-<h2>University of North Georgia<a class="headerlink" href="#university-of-north-georgia" title="Link to this heading">#</a></h2>
-<p>The <strong>Game Theory</strong> course taught by Dr. Sinn is UNG’s MATH 3590. The textbook is shown above and right while will use several tools to help deliver instruction. Python is housed in the UNG Datahub, and each student will receive a personal portal inside the Datahub where all course files will be kept and saved.</p>
-<p>These online course notes will accompany the textbook and will include practice problems along with some solutions. The notes will include a glossary of key terms along with helpful Python code for graphics we will need. There is also a help page for Dollar Sign Mathematics, the LaTeX equation editor available in our Datahub notebooks and in D2L.</p>
-</section>
-<section id="python">
-<h2>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
-<p>To help us learn game thoery concepts, we will be using the software <strong>python</strong> this semester. UNG students can use <strong>python</strong> in the <span style="color: darkblue;"><b>UNG datahub</b></span> which is free to all students and accessible via your UNG credentials. We can always work in <strong>pyton</strong> using the UNG datahub from any computer, tablet or smartphone (e.g. any device that has a browser and a connection to the internet).</p>
-</section>
-<section id="resources">
-<h2>Resources<a class="headerlink" href="#resources" title="Link to this heading">#</a></h2>
-<p>While I have created much of the content herein, I have used several Game Theory textbooks in my career which inform how I teach this course. The two best resources for the course and for learning the basics of solving matrix games are below:</p>
-<ul class="simple">
-<li><p><strong>Game Theory and Strategy</strong>, by Philip D. Straffin</p>
-<ul>
-<li><p><a class="reference external" href="https://www.bookfinder.com/search/?isbn=9780883856376">Linked on BookFinder</a></p></li>
-</ul>
-</li>
-<li><p><strong>The Compleat Strategist</strong>, by J. D. Williams</p>
-<ul>
-<li><p><a class="reference external" href="https://www.bookfinder.com/search/?isbn=9780486251011">Linked on BookFinder</a></p></li>
-</ul>
-</li>
-</ul>
-<p>These textbooks can be found used online and, at times, for less than <span class="math notranslate nohighlight">\(\$15\)</span>. The Straffin book is one of the best 3 mathematics textbooks I have ever read, and it would be a great supplement to the class if it can be found at a reasonable price (say, <span class="math notranslate nohighlight">\(\$25\)</span> or less). The book by Williams is an inconic and early work which would be less useful for this course than Straffin. Yet, it is a classic, and a mathematics major with a serious interest in Game Theory will appreciate aquiring it inexpensively.</p>
-</section>
-<div class="toctree-wrapper compound">
+<p>When the column player has 2 strategies but the row player has <span class="math notranslate nohighlight">\(n&gt;2\)</span> strategies, the graphical method reverses due to the fact the <strong>column player is minimizing</strong>. This means the <span style='color:blue'><b>best strategic choice will lie along the lower envelope</b></span> of graph.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Do not change this cell, only execute it. </span>
+<span class="c1">## This cell initializes Python so that pandas, numpy and scipy packages are ready to use.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">datascience</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plots</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">stats</span>
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
 </div>
-<div class="toctree-wrapper compound">
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\robbs\anaconda3\envs\GameTheory\Lib\site-packages\datascience\maps.py:13: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
+  import pkg_resources
+</pre></div>
 </div>
+</div>
+</div>
+<section id="example-missile-defense">
+<h2>Example: Missile Defense<a class="headerlink" href="#example-missile-defense" title="Link to this heading">#</a></h2>
+<p>In a missile defense scenario, the <span style='color:blue'><b>Attacker (Row Player)</b></span> chooses from <span class="math notranslate nohighlight">\(\textbf{\textcolor{blue}{n}}\)</span> different warhead configurations, while the <span style='color:red'><b>Defender (Column Player)</b></span> chooses between <span class="math notranslate nohighlight">\(\textbf{\textcolor{red}{2}}\)</span> interceptor systems. In this model, the values in the matrix represent the probability of a missile successfully evading the interceptors.</p>
+<p>The game is zero-sum. Thus, the Attacker wishes to maximize this probability while the Defender wants to minimize it. The game matrix is shown below with whole number percentages of success are represented as single digits. For example, an <span class="math notranslate nohighlight">\(8\)</span> in the game matrix indicates an <span class="math notranslate nohighlight">\(80\%\)</span> success rate, and so on.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Defense}\\\textbf{Attack}&amp; \begin{array}{r|cc} &amp; \text{Kinetic} &amp; \text{Laser}\\\hline \text{Fast} &amp; 8 &amp; 2 \\ \text{Stealth} &amp; 4 &amp; 7 \\ \text{Decoy} &amp; 6 &amp; 5 \end{array} \end{array}\end{split}\]</div>
+<p>The attackers have three warhead types (Fast, Stealthy, Decoy-Heavy) against two interceptor systems (High-Altitude Kinetic vs. Low-Altitude Laser). The decoy-heavy attack uses a combination of real and fake warheads so that the interceptors chase kill the dummy warheads rather than the real threat.</p>
+<p>The payoff <span class="math notranslate nohighlight">\(a_{ij}\)</span> represents the hit probability for warhead <span class="math notranslate nohighlight">\(i\)</span> against interceptor <span class="math notranslate nohighlight">\(j\)</span>. Note that the percentages do not necessarily sum to <span class="math notranslate nohighlight">\(100\%\)</span>. Each entry represents the specific success rate given the attacker’s choice and the defense’s choice.</p>
+<p>The key point in the graph below is that the <span style='color:red'><b>defender</span></b> will play along the <span style='color:red'><b>lower envelope</span></b> in an attempt to maximize the outcomes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">);</span> <span class="n">plots</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;x = 1&#39;</span><span class="p">)</span>
+<span class="n">points1</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points1</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fast&#39;</span><span class="p">)</span>
+
+<span class="n">points2</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points2</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Stealth&#39;</span><span class="p">)</span>
+
+<span class="n">points3</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points3</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Decoy&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add labels and title</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Defense&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Attack&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Plotting the 3 Column Strategies&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add a grid, add legend, and place legend below figure.</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">),</span><span class="n">framealpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/d6705e5ab64ef56f9a346a97d47453b8cfccd0c89aa5476f47ed510d82d30885.png" src="_images/d6705e5ab64ef56f9a346a97d47453b8cfccd0c89aa5476f47ed510d82d30885.png" />
+</div>
+</div>
+<section id="solution">
+<h3>Solution<a class="headerlink" href="#solution" title="Link to this heading">#</a></h3>
+<p>The defense will play along the lower envelope, so the correct proportion will be found as the <span class="math notranslate nohighlight">\(x\)</span>-coordinate of the piont of intersection of the red (fast) and green (stealth) strategies. Thus, the game to be solved using oddments is shown below:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Defense}\\\textbf{Attack}&amp; \begin{array}{r|cc} &amp; \text{Kinetic} &amp; \text{Laser}\\\hline \text{Fast} &amp; 8 &amp; 2 \\ \text{Stealth} &amp; 4 &amp; 7 \end{array} \end{array}\end{split}\]</div>
+<p>The row oddments are <span class="math notranslate nohighlight">\(6\)</span> and <span class="math notranslate nohighlight">\(3\)</span>, and thus the optimal strategy set is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec r = \left[\begin{array}{c}\frac{1}{3}\\\frac{2}{3}\end{array}\right]\end{split}\]</div>
+<p>The column oddments are <span class="math notranslate nohighlight">\(4\)</span> and <span class="math notranslate nohighlight">\(5\)</span>, and the corresponding optimal strategy set is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec c = \left[\begin{array}{c}\frac{5}{9}\\\frac{4}{9}\end{array}\right]\end{split}\]</div>
+<p>The value of the game will be</p>
+<div class="math notranslate nohighlight">
+\[v=\frac{16}{3}\]</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -496,12 +537,21 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="Z7.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Graphical Method</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="Z0.html"
+       href="Z8.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">The Nature of Games</p>
+        <p class="prev-next-title">Police versus Guerillas</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -521,10 +571,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructor-and-author"><span style="color: darkblue; font-size: 1.055em;"><b>Instructor and Author</b></span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#university-of-north-georgia">University of North Georgia</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-missile-defense">Example: Missile Defense</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
