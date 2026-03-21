@@ -25,6 +25,8 @@ parts:
       - file: Z7a
       - file: Z7b
     - file: Z8
+      sections:
+      - file: Z8a
   - caption: Non Zero Sum Games
     chapters:
     - file: N0
