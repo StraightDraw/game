@@ -409,7 +409,6 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intial-values">Intial Values</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#words">Words</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#init-function">Init() Function</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results-table">Results Table</a></li>
 </ul>
@@ -447,11 +446,7 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">string</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">inflect</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">stats</span>
-
-<span class="n">engine</span> <span class="o">=</span> <span class="n">inflect</span><span class="o">.</span><span class="n">engine</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -485,16 +480,32 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_player_dict</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">anchor_val</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Creates a dictionary containing player info, strategy sets, and index sets.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">strat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">anchor_val</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">anchor_val</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">strat</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">strat_name</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">anchor_val</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">strat</span><span class="p">]</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="s1">&#39;player&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
         <span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="n">index</span><span class="p">,</span>
-        <span class="s1">&#39;strat&#39;</span><span class="p">:</span> <span class="n">strat</span>
+        <span class="s1">&#39;strat&#39;</span><span class="p">:</span> <span class="n">strat</span><span class="p">,</span>
+        <span class="s1">&#39;strat_name&#39;</span><span class="p">:</span> <span class="n">strat_name</span>
     <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anchor_val</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">strat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">anchor_val</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">anchor_val</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">strat</span><span class="p">)</span>
+<span class="n">strat_name</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">anchor_val</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">strat</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">strat_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3 4 5]
+[&#39;3 - 2&#39;, &#39;4 - 1&#39;, &#39;5 - 0&#39;]
 </pre></div>
 </div>
 </div>
@@ -518,8 +529,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;player&#39;: &#39;P&#39;, &#39;index&#39;: array([1, 2, 3, 4]), &#39;strat&#39;: array([4, 5, 6, 7])}
-{&#39;player&#39;: &#39;G&#39;, &#39;index&#39;: array([0, 1, 2]), &#39;strat&#39;: array([3, 4, 5])}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;player&#39;: &#39;P&#39;, &#39;index&#39;: array([1, 2, 3, 4]), &#39;strat&#39;: array([4, 5, 6, 7]), &#39;strat_name&#39;: [&#39;4 - 3&#39;, &#39;5 - 2&#39;, &#39;6 - 1&#39;, &#39;7 - 0&#39;]}
+{&#39;player&#39;: &#39;G&#39;, &#39;index&#39;: array([0, 1, 2]), &#39;strat&#39;: array([3, 4, 5]), &#39;strat_name&#39;: [&#39;3 - 2&#39;, &#39;4 - 1&#39;, &#39;5 - 0&#39;]}
 </pre></div>
 </div>
 </div>
@@ -536,46 +547,6 @@ document.write(`
 [1 2 3 4]
 [3 4 5]
 [0 1 2]
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="words">
-<h3>Words<a class="headerlink" href="#words" title="Link to this heading">#</a></h3>
-<p>The strategies we use can be indexed by integer, say, 7. However, the following function will covert integers to the appropriate words which, for the preceding case, would be “seven”.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">words</span><span class="p">(</span><span class="n">num_array</span><span class="p">):</span>
-
-    <span class="k">return</span> <span class="p">[</span><span class="n">engine</span><span class="o">.</span><span class="n">number_to_words</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">num_array</span><span class="p">]</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">word</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-   <span class="k">return</span> <span class="n">engine</span><span class="o">.</span><span class="n">number_to_words</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">words</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;four&#39;, &#39;five&#39;, &#39;six&#39;, &#39;seven&#39;]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">word</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;four&#39;
 </pre></div>
 </div>
 </div>
@@ -604,57 +575,61 @@ document.write(`
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">])</span>
+<span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3 4 5]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;3 - 2&#39;, &#39;4 - 1&#39;, &#39;5 - 0&#39;]
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="results-table">
 <h3>Results Table<a class="headerlink" href="#results-table" title="Link to this heading">#</a></h3>
 <p>The following code simply sets up a table in which we plan to store the win percentages for each strategy matchup. The values in the table are irrelevant to the actual game and will serve as placeholders.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">words</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span><span class="n">word</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">+</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">+</span><span class="n">t</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
   <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
     <span class="n">results</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">init</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">][</span><span class="n">s</span><span class="p">])</span>
 
-<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerillas&lt;/b&gt;&quot;</span><span class="p">))</span>
+<span class="c1">#display(Markdown(f&quot;&lt;b&gt;{p} Police vs. {g} Guerillas&lt;/b&gt;&quot;))</span>
 <span class="n">results</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<p><b>7 Police vs. 5 Guerillas</b></p>
 <div class="output text_html"><table border="1" class="dataframe">
     <thead>
         <tr>
-            <th></th> <th>four</th> <th>five</th> <th>six</th> <th>seven</th>
+            <th></th> <th>4 - 3</th> <th>5 - 2</th> <th>6 - 1</th> <th>7 - 0</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>three</td> <td>0.9 </td> <td>0.9 </td> <td>0.9 </td> <td>0.58 </td>
+            <td>3 - 2</td> <td>0.9  </td> <td>0.9  </td> <td>0.9  </td> <td>0.48 </td>
         </tr>
         <tr>
-            <td>four </td> <td>0.9 </td> <td>0.44</td> <td>0.48</td> <td>0.52 </td>
+            <td>4 - 1</td> <td>0.9  </td> <td>0.54 </td> <td>0.42 </td> <td>0.38 </td>
         </tr>
         <tr>
-            <td>five </td> <td>0.1 </td> <td>0.52</td> <td>0.48</td> <td>0.52 </td>
+            <td>5 - 0</td> <td>0.1  </td> <td>0.42 </td> <td>0.6  </td> <td>0.46 </td>
         </tr>
     </tbody>
 </table></div></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.57999999999999996
-</pre></div>
-</div>
-</div>
-</div>
+<p>The code to this point has created a Police vs. Guerrillas game for 7P vs. 5G. Now, we need a function to select a random strategy for each player, play those strategies against each other, and compute the exponential moving average (ema) of the win percentage.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">play</span><span class="p">(</span><span class="n">p_0</span><span class="p">,</span> <span class="n">g_0</span><span class="p">):</span>
@@ -664,95 +639,61 @@ document.write(`
         <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">v</span> <span class="o">=</span> <span class="mi">1</span>
-        
-    <span class="k">return</span> <span class="n">v</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">a</span>  <span class="c1"># This returns a &quot;tuple&quot; of three values</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span>
+    <span class="n">current_ema</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">p_0</span><span class="p">][</span><span class="n">g_0</span><span class="p">]</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">current_ema</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">))</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">p_0</span><span class="p">][</span><span class="n">g_0</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value</span>  <span class="c1"># This returns a &quot;tuple&quot; of three values</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">val</span><span class="p">,</span> <span class="n">pol</span><span class="p">,</span> <span class="n">rilla</span><span class="p">]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">pol</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">rilla</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">val</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
-6
-4
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+3
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.47999999999999998
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for i in range(len(P[&#39;index&#39;])):</span>
-<span class="c1">#     print(P[&#39;index&#39;][i])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#results = Table().with_columns(&#39;&#39;, words(G[&#39;strat&#39;]))</span>
-<span class="n">p_offset</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">g_offset</span> <span class="o">=</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
-   <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">])):</span>
-      <span class="n">results</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">t</span><span class="o">+</span><span class="n">p_offset</span><span class="p">,</span><span class="n">s</span><span class="o">+</span><span class="n">g_offset</span><span class="p">)</span>
-<span class="n">results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">])):</span>
-<span class="ne">----&gt; </span><span class="mi">6</span>       <span class="n">results</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">t</span><span class="o">+</span><span class="n">p_offset</span><span class="p">,</span><span class="n">s</span><span class="o">+</span><span class="n">g_offset</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">results</span>
-
-<span class="ne">TypeError</span>: play() takes 2 positional arguments but 4 were given
-</pre></div>
+<div class="output text_html"><table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th></th> <th>4 - 3</th> <th>5 - 2</th> <th>6 - 1</th> <th>7 - 0</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>3 - 2</td> <td>0.9  </td> <td>0.9  </td> <td>0.9  </td> <td>0.48 </td>
+        </tr>
+        <tr>
+            <td>4 - 1</td> <td>0.9  </td> <td>0.54 </td> <td>0.42 </td> <td>0.38 </td>
+        </tr>
+        <tr>
+            <td>5 - 0</td> <td>0.1  </td> <td>0.42 </td> <td>0.48 </td> <td>0.46 </td>
+        </tr>
+    </tbody>
+</table></div></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">update_ema</span><span class="p">(</span><span class="n">current_ema</span><span class="p">,</span> <span class="n">outcome</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">outcome</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">current_ema</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># results = Table().with_columns(&#39;&#39;, words(G[&#39;strat&#39;]))</span>
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
-  <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
-    <span class="n">results</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">][</span><span class="n">s</span><span class="p">])</span> 
-<span class="n">results</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>   <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
-<span class="ne">----&gt; </span><span class="mi">4</span>     <span class="n">results</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat&#39;</span><span class="p">][</span><span class="n">s</span><span class="p">])</span> 
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">results</span>
-
-<span class="ne">TypeError</span>: play() takes 2 positional arguments but 4 were given
-</pre></div>
-</div>
-</div>
-</div>
+<p>When done, this function should be able to iterate the play function thousands of times. If the next strategy choices are randomly chosen based upon past winning percentage probabilities, the simulation will iterate to a table showing that converges to the correct solution for the game matrix shown.</p>
 </section>
 </section>
 </section>
@@ -823,7 +764,6 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intial-values">Intial Values</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#words">Words</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#init-function">Init() Function</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results-table">Results Table</a></li>
 </ul>

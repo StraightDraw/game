@@ -407,7 +407,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-play">Game Play</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#units">Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-police-versus-2-guerrillas">Example: 3 Police versus 2 Guerrillas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-5-police-versus-4-guerrillas">Example: 5 Police versus 4 Guerrillas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domination">Domination</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -426,35 +432,62 @@ document.write(`
 <p>This course uses an <strong>online textbook</strong>: <a class="reference external" href="https://nordstrommath.com/IntroGameTheory2e/intro_game_theory.html">Game Theory, a Discovery Approach</a>, by Jennifer Nordstrom.</p>
 </aside>
 <p>We will investigate a genre of games called <span style='color:blue'><b>Police versus Guerrillas</b></span>. The idea is that an insurgency (the guerrilla force) is striking against the government (the police). The police have two arsenals filled with weapons and amunition, and the guerrillas would like to take either one of them, or both, if possible.</p>
+<section id="game-play">
+<h2>Game Play<a class="headerlink" href="#game-play" title="Link to this heading">#</a></h2>
+<p>The police defend <span class="math notranslate nohighlight">\(2\)</span> arsenals and the guerrillas win if they can take over either one, or both. The two players know at nightfall when the attack(s) will take place, but the police do not know how many attackers will be which locations. The guerrillas do not know how the police will arrange their forces.</p>
+<p><span style='color:blue'><b>Key:</b></span> The police <strong>hold</strong> an arsenal if an equal number of attacking and defending units engage there.</p>
+<p><strong>Suppose the police have <span class="math notranslate nohighlight">\(4\)</span> units</strong>. For a strategy such as</p>
+<center><span style='color:blue'>$\textbf{3 - 1}$</span></center></br>
+<p>they will randomize their choice of which arsenal to send their greater force to protect.</p>
+<p><strong>If the guerrillas have <span class="math notranslate nohighlight">\(3\)</span> units</strong> with which they can attack, they may play a strategy like</p>
+<center><span style='color:blue'>$\textbf{2 - 1}$</span></center></br>
+<p>As do the police, the guerrillas will randomly select to which of the arsenals they will the greater force.</p>
+</section>
 <section id="units">
 <h2>Units<a class="headerlink" href="#units" title="Link to this heading">#</a></h2>
-<p>The police have <span class="math notranslate nohighlight">\(p\)</span> units they can send to defend the arsenals while the guerrillas have <span class="math notranslate nohighlight">\(g\)</span> units with which they can attack. Since <span class="math notranslate nohighlight">\(p\geq 2g\)</span> implies the <strong>police always win</strong> and <span class="math notranslate nohighlight">\(p\leq g\)</span> implies the guerrillas always have a winning strategy, we generally are sovling games where</p>
+<p>We must decide before analyzing outcomes the configuration of forces for both players. The police will have <span class="math notranslate nohighlight">\(p\)</span> units with which they may defend the arsenals while the guerrillas will have <span class="math notranslate nohighlight">\(g\)</span> units with which they can attack. Since <span class="math notranslate nohighlight">\(p\geq 2g\)</span> implies the <strong>police always win</strong> by dividing their forces equally, and <span class="math notranslate nohighlight">\(p\leq g\)</span> implies the guerrillas always have a winning strategy (send forces to one arsenal), we must only solve games where</p>
 <div class="math notranslate nohighlight">
 \[g \leq p &lt; 2g\]</div>
-<p>Common scenarios would have us analyzing 5P vs 3G, 7P vs 5G, or 8P vs 7G.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Do not change this cell, only execute it. </span>
-<span class="c1">## This cell initializes Python so that pandas, numpy and scipy packages are ready to use.</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">datascience</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plots</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">stats</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\robbs\anaconda3\envs\GameTheory\Lib\site-packages\datascience\maps.py:13: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
-  import pkg_resources
-</pre></div>
-</div>
-</div>
-</div>
+<p>Common scenarios would have us analyzing</p>
+<ul class="simple">
+<li><p>5P vs 3G</p></li>
+<li><p>7P vs 5G, or</p></li>
+<li><p>8P vs 7G</p></li>
+</ul>
+</section>
+<section id="example-3-police-versus-2-guerrillas">
+<h2>Example: 3 Police versus 2 Guerrillas<a class="headerlink" href="#example-3-police-versus-2-guerrillas" title="Link to this heading">#</a></h2>
+<p>The police with <span class="math notranslate nohighlight">\(3\)</span> units have only two distinct strategies:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\textbf{3 - 0}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\textbf{2 - 1}\)</span></p></li>
+</ul>
+<p>The strategies of <span class="math notranslate nohighlight">\(\textbf{0 - 3}\)</span> and <span class="math notranslate nohighlight">\(\textbf{2 - 1}\)</span> are just permutations of the above strategies that will randomize in exactly the same way. Therefore, we only need to analyze the two shown in the bullets above.</p>
+<p>The guerrillas with <span class="math notranslate nohighlight">\(2\)</span> units have two distinct stragegies:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\textbf{2 - 0}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\textbf{1 - 1}\)</span></p></li>
+</ul>
+<p>Hence, the game they are playing can be shown in matrix form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|cc} &amp; \textbf{2 - 0} &amp; \textbf{1 - 1}\\ \hline \textbf{3 - 0} &amp; \frac{1}{2} &amp; 0 \\ \textbf{2 - 1} &amp; 1 &amp; 1 \end{array} \end{array}\end{split}\]</div>
+<p>Notice the outcome of <span class="math notranslate nohighlight">\(\textbf{3 - 0}\)</span> versus <span class="math notranslate nohighlight">\(\textbf{2 - 0}\)</span> is an expected value. Half the time, the units will be sent to the same arsenal, and the police will win. When the units are sent to different arsenals, the guerrillas win. Thus,
+$<span class="math notranslate nohighlight">\(E(X) = \frac{1}{2}(0) + \frac{1}{2}(1) = \frac{1}{2}\)</span>$</p>
+<p>You can verify the other three outcomes are the same regardless of the random location to which the forces are sent. The analysis is straightforward once we have constructed the matrix game. Police <span class="math notranslate nohighlight">\(\textbf{2 - 1}\)</span> dominates <span class="math notranslate nohighlight">\(\textbf{3 - 0}\)</span>, so the Police will always play it. You should verify the guerrillas also have a dominated strategy. Thus, the equilibrium of the game is
+$<span class="math notranslate nohighlight">\(\begin{align}\textbf{Police: }&amp;\textbf{ 2 - 1}\\\textbf{Guerrillas: }&amp;\textbf{ 1 - 1}\\v &amp;= 1\end{align}\)</span>$</p>
+</section>
+<section id="example-5-police-versus-4-guerrillas">
+<h2>Example: 5 Police versus 4 Guerrillas<a class="headerlink" href="#example-5-police-versus-4-guerrillas" title="Link to this heading">#</a></h2>
+<p>Reasoning as above, the game matrix for these forces is as follow:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|ccc} &amp; \textbf{4 - 0} &amp; \textbf{3 - 1} &amp; \textbf{2 - 2}\\ \hline \textbf{5 - 0} &amp; \frac{1}{2} &amp; 0 &amp; 0 \\ \textbf{4 - 1} &amp; \frac{1}{2} &amp; \frac{1}{2} &amp; 0 \\ \textbf{3 - 2} &amp; 0 &amp; 1 &amp; 1\end{array} \end{array}\end{split}\]</div>
+<p>You should work through each strategy pair to ensure you know how to do the calcuations of the expected values correctly.</p>
+<section id="domination">
+<h3>Domination<a class="headerlink" href="#domination" title="Link to this heading">#</a></h3>
+<p>The <span class="math notranslate nohighlight">\(\textbf{Police : 5 - 0}\)</span> strategy is dominated as is the <span class="math notranslate nohighlight">\(\textbf{Guerrillas : 3 - 1}\)</span> strategy. Thus, the game reduces to the following:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|cc} &amp; \textbf{4 - 0} &amp; \textbf{2 - 2}\\ \hline \textbf{4 - 1} &amp; \frac{1}{2} &amp; 0 \\ \textbf{3 - 2} &amp; 0 &amp; 1\end{array} \end{array}\end{split}\]</div>
+</section>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -524,7 +557,13 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-play">Game Play</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#units">Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-police-versus-2-guerrillas">Example: 3 Police versus 2 Guerrillas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-5-police-versus-4-guerrillas">Example: 5 Police versus 4 Guerrillas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domination">Domination</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
