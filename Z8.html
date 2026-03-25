@@ -209,6 +209,7 @@
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Police versus Guerillas</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="Z8a.html">Simulating P vs. G</a></li>
 
+<li class="toctree-l2"><a class="reference internal" href="Z8b.html">Simulating P vs. G</a></li>
 </ul>
 </details></li>
 </ul>
@@ -438,17 +439,17 @@ document.write(`
 <p>The police defend <span class="math notranslate nohighlight">\(2\)</span> arsenals and the guerrillas win if they can take over either one, or both. The two players know at nightfall when the attack(s) will take place, but the police do not know how many attackers will be which locations. The guerrillas do not know how the police will arrange their forces.</p>
 <p><span style='color:blue'><b>Key:</b></span> The police <strong>hold</strong> an arsenal if an equal number of attacking and defending units engage there.</p>
 <p><strong>Suppose the police have <span class="math notranslate nohighlight">\(4\)</span> units</strong>. For a strategy such as</p>
-<center><span style='color:blue'>$\textbf{3 - 1}$</span></center></br>
+<center><span style='color:blue'>3 - 1</span></center></br>
 <p>they will randomize their choice of which arsenal to send their greater force to protect.</p>
 <p><strong>If the guerrillas have <span class="math notranslate nohighlight">\(3\)</span> units</strong> with which they can attack, they may play a strategy like</p>
-<center><span style='color:blue'>$\textbf{2 - 1}$</span></center></br>
+<center><span style='color:blue'>2 - 1 </span></center></br>
 <p>As do the police, the guerrillas will randomly select to which of the arsenals they will the greater force.</p>
 </section>
 <section id="units">
 <h2>Units<a class="headerlink" href="#units" title="Link to this heading">#</a></h2>
 <p>We must decide before analyzing outcomes the configuration of forces for both players. The police will have <span class="math notranslate nohighlight">\(p\)</span> units with which they may defend the arsenals while the guerrillas will have <span class="math notranslate nohighlight">\(g\)</span> units with which they can attack. Since <span class="math notranslate nohighlight">\(p\geq 2g\)</span> implies the <strong>police always win</strong> by dividing their forces equally, and <span class="math notranslate nohighlight">\(p\leq g\)</span> implies the guerrillas always have a winning strategy (send forces to one arsenal), we must only solve games where</p>
 <div class="math notranslate nohighlight">
-\[g \leq p &lt; 2g\]</div>
+\[g &lt; p &lt; 2g\]</div>
 <p>Common scenarios would have us analyzing</p>
 <ul class="simple">
 <li><p>5P vs 3G</p></li>
