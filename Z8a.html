@@ -408,14 +408,16 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-game">Setting up the Game</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#game-matrix">Game Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries-and-game-matrix-layout">Dictionaries and Game Matrix Layout</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Setting Up the Game</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#play-function">Play() Function</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-matrix-5-police-vs-4-guerrillas">Game Matrix: 5 Police vs. 4 Guerrillas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-matrix-3-police-vs-2-guerrillas">Game Matrix: 3 Police vs. 2 Guerrillas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-matrix-7-police-vs-5-guerrillas">Game Matrix: 7 Police vs. 5 Guerrillas</a></li>
 </ul>
             </nav>
         </div>
@@ -435,8 +437,13 @@ document.write(`
 </aside>
 <p>Following on from the previous section, we would like to be able to construct a way to simulate the <strong>Police vs. Guerrillas</strong> game. The functions below will create the correct game matrix and will calculate the winning percentages of the various strategies.</p>
 <p>Based upon the winning percentages, the simulation will choose from the strategies that have performed best in the past. Using an <strong>exponential moving average (ema)</strong>, the winning percentages will be updated after each round of simulation. The convergence to the correct strategy mixture for each player will be sped up as the <strong>ema</strong> will emphasize recent results over the older, less accurate results.</p>
-<p>The simulation functions are described below.</p>
-<div class="cell docutils container">
+<p>The simulation functions are described further below. The next code block will initialize python and load the packages we need.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Do not change this cell, only execute it. </span>
 <span class="c1">## This cell initializes Python so that pandas, numpy and scipy packages are ready to use.</span>
@@ -455,6 +462,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="setting-up-the-game">
 <h2>Setting up the Game<a class="headerlink" href="#setting-up-the-game" title="Link to this heading">#</a></h2>
@@ -475,15 +483,22 @@ document.write(`
 <li><p><strong>create_players_dict()</strong></p></li>
 <li><p><strong>game_matrix()</strong></p></li>
 </ol>
-<section id="dictionaries">
-<h3>Dictionaries<a class="headerlink" href="#dictionaries" title="Link to this heading">#</a></h3>
-<p>The function below creates player dictionaries and keeps track of the following:</p>
+<section id="dictionaries-and-game-matrix-layout">
+<h3>Dictionaries and Game Matrix Layout<a class="headerlink" href="#dictionaries-and-game-matrix-layout" title="Link to this heading">#</a></h3>
+<p>The <span style='color:blue'><b>create_player_dict()</b></span> function creates player dictionaries that keep track of the following:</p>
 <ul class="simple">
 <li><p>Row-Column indexes in the results table,</p></li>
 <li><p>Strategy numbers (integers), and</p></li>
 <li><p>Strategy names.</p></li>
 </ul>
-<div class="cell docutils container">
+<p>The <span style='color:blue'><b>game_matrix()</b></span> function takes the players and their strategies as configured above, and from there develops a tenative outline of the game including initial values for the outcomes.</p>
+<p><span style='color:red'><b>The code for both functions can be collapsed or expanded below:</b></span></p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_player_dict</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">anchor_val</span><span class="p">):</span>
     <span class="n">strat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">anchor_val</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">anchor_val</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -495,17 +510,8 @@ document.write(`
         <span class="s1">&#39;strat&#39;</span><span class="p">:</span> <span class="n">strat</span><span class="p">,</span>
         <span class="s1">&#39;strat_name&#39;</span><span class="p">:</span> <span class="n">strat_name</span>
     <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="game-matrix">
-<h3>Game Matrix<a class="headerlink" href="#game-matrix" title="Link to this heading">#</a></h3>
-<p>Given that we have two player dictionaries, the following function will create a game matrix with outcomes all set to <span class="math notranslate nohighlight">\(1/2\)</span>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">game_matrix</span><span class="p">(</span><span class="n">player1</span><span class="p">,</span> <span class="n">player2</span><span class="p">):</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">game_matrix</span><span class="p">(</span><span class="n">player1</span><span class="p">,</span> <span class="n">player2</span><span class="p">):</span>
    <span class="c1"># Create an empty DataFrame with specified index and columns</span>
    <span class="n">res</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">player1</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">player2</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">],</span> 
                        <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
@@ -513,88 +519,64 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 </section>
 </section>
 <section id="id1">
 <h2>Setting Up the Game<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>The code below initializes values for <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(g\)</span> and creates the initial game matrix:</p>
+<p>The functions above work only if the values for <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are known. If so, the player dictionaries and initial game matrix can be developed quickly. The code to do so is given below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="n">g</span> <span class="o">=</span> <span class="mi">7</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting number of Police and Guerrillas to p and g respectively</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mi">4</span>
+
 <span class="c1"># Creating the dictionaries</span>
 <span class="n">P</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+
+<span class="c1"># Creating the game matrix</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">game_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">G</span><span class="p">)</span>
-<span class="n">results</span>
+<span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerrillas&lt;/b&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
+<div class="output text_html"><style type="text/css">
 </style>
-<table border="1" class="dataframe">
+<table id="T_25aa5">
+  <caption><b>5 Police vs. 4 Guerrillas</b></caption>
   <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>4 - 3</th>
-      <th>5 - 2</th>
-      <th>6 - 1</th>
-      <th>7 - 0</th>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_25aa5_level0_col0" class="col_heading level0 col0" >2 - 2</th>
+      <th id="T_25aa5_level0_col1" class="col_heading level0 col1" >3 - 1</th>
+      <th id="T_25aa5_level0_col2" class="col_heading level0 col2" >4 - 0</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>4 - 4</th>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>0.5</td>
+      <th id="T_25aa5_level0_row0" class="row_heading level0 row0" >3 - 2</th>
+      <td id="T_25aa5_row0_col0" class="data row0 col0" >0.5</td>
+      <td id="T_25aa5_row0_col1" class="data row0 col1" >0.5</td>
+      <td id="T_25aa5_row0_col2" class="data row0 col2" >0.5</td>
     </tr>
     <tr>
-      <th>5 - 3</th>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>0.5</td>
+      <th id="T_25aa5_level0_row1" class="row_heading level0 row1" >4 - 1</th>
+      <td id="T_25aa5_row1_col0" class="data row1 col0" >0.5</td>
+      <td id="T_25aa5_row1_col1" class="data row1 col1" >0.5</td>
+      <td id="T_25aa5_row1_col2" class="data row1 col2" >0.5</td>
     </tr>
     <tr>
-      <th>6 - 2</th>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>0.5</td>
-    </tr>
-    <tr>
-      <th>7 - 1</th>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>0.5</td>
-    </tr>
-    <tr>
-      <th>8 - 0</th>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>0.5</td>
+      <th id="T_25aa5_level0_row2" class="row_heading level0 row2" >5 - 0</th>
+      <td id="T_25aa5_row2_col0" class="data row2 col0" >0.5</td>
+      <td id="T_25aa5_row2_col1" class="data row2 col1" >0.5</td>
+      <td id="T_25aa5_row2_col2" class="data row2 col2" >0.5</td>
     </tr>
   </tbody>
 </table>
-</div></div></div>
+</div></div>
 </div>
 <p>We can access the <span class="math notranslate nohighlight">\((i,j)\)</span> entry in the matrix above using the pandas method</p>
 <center><span style='color:blue'>.iloc[i,j]</span></center></br>
@@ -602,8 +584,13 @@ document.write(`
 <p>if we know the column strategy or row strategy indentifier.</p>
 <section id="play-function">
 <h3>Play() Function<a class="headerlink" href="#play-function" title="Link to this heading">#</a></h3>
-<p>The interior entries of the <strong>results</strong> dataframe will be winning percentages of the row and column strategies when played against one another. To calculate the outcomes for the interior of the dataframe, we begin by playing each column strategy against each row strategy in <span class="math notranslate nohighlight">\(10,000\)</span> simulated battles. The <span style='color:blue'><b>init()</b></span> function code is given below.</p>
-<div class="cell docutils container">
+<p>The interior entries of the <strong>results</strong> dataframe will be winning percentages of the row and column strategies when played against one another. To calculate the outcomes for the interior of the dataframe, we begin by playing each column strategy against each row strategy in <span class="math notranslate nohighlight">\(10,000\)</span> simulated battles. The <span style='color:blue'><b>play()</b></span> function code is given below.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">play</span><span class="p">(</span><span class="n">p_max</span><span class="p">,</span> <span class="n">g_max</span><span class="p">,</span> <span class="n">p_strat</span><span class="p">,</span> <span class="n">g_strat</span><span class="p">):</span>
    <span class="n">A_0</span> <span class="o">=</span> <span class="n">p_strat</span> <span class="p">;</span> <span class="n">B_0</span> <span class="o">=</span> <span class="n">p_max</span> <span class="o">-</span> <span class="n">A_0</span>
@@ -635,8 +622,13 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p>The function above will be used in a nested for-loop to calculate the needed values and assign them to the correct entry in the <strong>results</strong> dataframe. The code below accomplishes the initialization of the <strong>results</strong> table created above.</p>
+</section>
+</section>
+<section id="game-matrix-5-police-vs-4-guerrillas">
+<h2>Game Matrix: 5 Police vs. 4 Guerrillas<a class="headerlink" href="#game-matrix-5-police-vs-4-guerrillas" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
@@ -646,65 +638,168 @@ document.write(`
 
 <span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="c1"># To give the &quot;table&quot; a title in a Jupyter Notebook display:</span>
-<span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerrillas&lt;/b&gt;&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerrillas&lt;/b&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_f182a">
-  <caption><b>8 Police vs. 7 Guerrillas</b></caption>
+<table id="T_da253">
+  <caption><b>5 Police vs. 4 Guerrillas</b></caption>
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_f182a_level0_col0" class="col_heading level0 col0" >4 - 3</th>
-      <th id="T_f182a_level0_col1" class="col_heading level0 col1" >5 - 2</th>
-      <th id="T_f182a_level0_col2" class="col_heading level0 col2" >6 - 1</th>
-      <th id="T_f182a_level0_col3" class="col_heading level0 col3" >7 - 0</th>
+      <th id="T_da253_level0_col0" class="col_heading level0 col0" >2 - 2</th>
+      <th id="T_da253_level0_col1" class="col_heading level0 col1" >3 - 1</th>
+      <th id="T_da253_level0_col2" class="col_heading level0 col2" >4 - 0</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_f182a_level0_row0" class="row_heading level0 row0" >4 - 4</th>
-      <td id="T_f182a_row0_col0" class="data row0 col0" >1</td>
-      <td id="T_f182a_row0_col1" class="data row0 col1" >0</td>
-      <td id="T_f182a_row0_col2" class="data row0 col2" >0</td>
-      <td id="T_f182a_row0_col3" class="data row0 col3" >0</td>
+      <th id="T_da253_level0_row0" class="row_heading level0 row0" >3 - 2</th>
+      <td id="T_da253_row0_col0" class="data row0 col0" >1</td>
+      <td id="T_da253_row0_col1" class="data row0 col1" >1/2</td>
+      <td id="T_da253_row0_col2" class="data row0 col2" >0</td>
     </tr>
     <tr>
-      <th id="T_f182a_level0_row1" class="row_heading level0 row1" >5 - 3</th>
-      <td id="T_f182a_row1_col0" class="data row1 col0" >1/2</td>
-      <td id="T_f182a_row1_col1" class="data row1 col1" >1/2</td>
-      <td id="T_f182a_row1_col2" class="data row1 col2" >0</td>
-      <td id="T_f182a_row1_col3" class="data row1 col3" >0</td>
+      <th id="T_da253_level0_row1" class="row_heading level0 row1" >4 - 1</th>
+      <td id="T_da253_row1_col0" class="data row1 col0" >0</td>
+      <td id="T_da253_row1_col1" class="data row1 col1" >1/2</td>
+      <td id="T_da253_row1_col2" class="data row1 col2" >1/2</td>
     </tr>
     <tr>
-      <th id="T_f182a_level0_row2" class="row_heading level0 row2" >6 - 2</th>
-      <td id="T_f182a_row2_col0" class="data row2 col0" >0</td>
-      <td id="T_f182a_row2_col1" class="data row2 col1" >1/2</td>
-      <td id="T_f182a_row2_col2" class="data row2 col2" >1/2</td>
-      <td id="T_f182a_row2_col3" class="data row2 col3" >0</td>
-    </tr>
-    <tr>
-      <th id="T_f182a_level0_row3" class="row_heading level0 row3" >7 - 1</th>
-      <td id="T_f182a_row3_col0" class="data row3 col0" >0</td>
-      <td id="T_f182a_row3_col1" class="data row3 col1" >0</td>
-      <td id="T_f182a_row3_col2" class="data row3 col2" >1/2</td>
-      <td id="T_f182a_row3_col3" class="data row3 col3" >1/2</td>
-    </tr>
-    <tr>
-      <th id="T_f182a_level0_row4" class="row_heading level0 row4" >8 - 0</th>
-      <td id="T_f182a_row4_col0" class="data row4 col0" >0</td>
-      <td id="T_f182a_row4_col1" class="data row4 col1" >0</td>
-      <td id="T_f182a_row4_col2" class="data row4 col2" >0</td>
-      <td id="T_f182a_row4_col3" class="data row4 col3" >1/2</td>
+      <th id="T_da253_level0_row2" class="row_heading level0 row2" >5 - 0</th>
+      <td id="T_da253_row2_col0" class="data row2 col0" >0</td>
+      <td id="T_da253_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_da253_row2_col2" class="data row2 col2" >1/2</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 </section>
+<section id="game-matrix-3-police-vs-2-guerrillas">
+<h2>Game Matrix: 3 Police vs. 2 Guerrillas<a class="headerlink" href="#game-matrix-3-police-vs-2-guerrillas" title="Link to this heading">#</a></h2>
+<p>Using all the above user-defined functions, we can quickly create the new game matrix:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting number of Police and Guerrillas to p and g respectively</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># Recreating the dictionaries</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+
+<span class="c1"># Recreating the game matrix</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">game_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">G</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+   <span class="c1">##print(f&quot;Processing row {i}...&quot;) # Debugging line</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+      <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="c1"># To give the &quot;table&quot; a title in a Jupyter Notebook display:</span>
+<span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerrillas&lt;/b&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_d9581">
+  <caption><b>3 Police vs. 2 Guerrillas</b></caption>
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_d9581_level0_col0" class="col_heading level0 col0" >1 - 1</th>
+      <th id="T_d9581_level0_col1" class="col_heading level0 col1" >2 - 0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_d9581_level0_row0" class="row_heading level0 row0" >2 - 1</th>
+      <td id="T_d9581_row0_col0" class="data row0 col0" >1</td>
+      <td id="T_d9581_row0_col1" class="data row0 col1" >1/2</td>
+    </tr>
+    <tr>
+      <th id="T_d9581_level0_row1" class="row_heading level0 row1" >3 - 0</th>
+      <td id="T_d9581_row1_col0" class="data row1 col0" >0</td>
+      <td id="T_d9581_row1_col1" class="data row1 col1" >1/2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="game-matrix-7-police-vs-5-guerrillas">
+<h2>Game Matrix: 7 Police vs. 5 Guerrillas<a class="headerlink" href="#game-matrix-7-police-vs-5-guerrillas" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting number of Police and Guerrillas to p and g respectively</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># Recreating the dictionaries</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+
+<span class="c1"># Recreating the game matrix</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">game_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">G</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+   <span class="c1">##print(f&quot;Processing row {i}...&quot;) # Debugging line</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+      <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="c1"># To give the &quot;table&quot; a title in a Jupyter Notebook display:</span>
+<span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerrillas&lt;/b&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_abcfe">
+  <caption><b>7 Police vs. 5 Guerrillas</b></caption>
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_abcfe_level0_col0" class="col_heading level0 col0" >3 - 2</th>
+      <th id="T_abcfe_level0_col1" class="col_heading level0 col1" >4 - 1</th>
+      <th id="T_abcfe_level0_col2" class="col_heading level0 col2" >5 - 0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_abcfe_level0_row0" class="row_heading level0 row0" >4 - 3</th>
+      <td id="T_abcfe_row0_col0" class="data row0 col0" >1</td>
+      <td id="T_abcfe_row0_col1" class="data row0 col1" >1/2</td>
+      <td id="T_abcfe_row0_col2" class="data row0 col2" >0</td>
+    </tr>
+    <tr>
+      <th id="T_abcfe_level0_row1" class="row_heading level0 row1" >5 - 2</th>
+      <td id="T_abcfe_row1_col0" class="data row1 col0" >1/2</td>
+      <td id="T_abcfe_row1_col1" class="data row1 col1" >1/2</td>
+      <td id="T_abcfe_row1_col2" class="data row1 col2" >1/2</td>
+    </tr>
+    <tr>
+      <th id="T_abcfe_level0_row2" class="row_heading level0 row2" >6 - 1</th>
+      <td id="T_abcfe_row2_col0" class="data row2 col0" >0</td>
+      <td id="T_abcfe_row2_col1" class="data row2 col1" >1/2</td>
+      <td id="T_abcfe_row2_col2" class="data row2 col2" >1/2</td>
+    </tr>
+    <tr>
+      <th id="T_abcfe_level0_row3" class="row_heading level0 row3" >7 - 0</th>
+      <td id="T_abcfe_row3_col0" class="data row3 col0" >0</td>
+      <td id="T_abcfe_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_abcfe_row3_col2" class="data row3 col2" >1/2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
 </section>
 </section>
 
@@ -773,14 +868,16 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-game">Setting up the Game</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#game-matrix">Game Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries-and-game-matrix-layout">Dictionaries and Game Matrix Layout</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Setting Up the Game</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#play-function">Play() Function</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-matrix-5-police-vs-4-guerrillas">Game Matrix: 5 Police vs. 4 Guerrillas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-matrix-3-police-vs-2-guerrillas">Game Matrix: 3 Police vs. 2 Guerrillas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-matrix-7-police-vs-5-guerrillas">Game Matrix: 7 Police vs. 5 Guerrillas</a></li>
 </ul>
   </nav></div>
 
