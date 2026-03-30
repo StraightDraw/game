@@ -410,7 +410,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-game">Setting up the Game</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#game-matrix">Game Matrix</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#init-function">Init() Function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Setting Up the Game</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#play-function">Play() Function</a></li>
 </ul>
 </li>
 </ul>
@@ -448,6 +451,7 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">stats</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fractions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Fraction</span>
 </pre></div>
 </div>
 </div>
@@ -464,9 +468,9 @@ document.write(`
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(p\)</span> : number of police units</p></li>
 <li><p><span class="math notranslate nohighlight">\(g\)</span> : number of guerrilla units</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> : the memory factor for the exponential moving average</p></li>
 </ul>
-<p>The player dictionaries will be created based upon the specific values of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(g\)</span>.</p>
-<p>We will create 2 functions to accomplish the task:</p>
+<p>The player dictionaries will be created based upon the specific values of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(g\)</span>, and two functions will help accomplish the task:</p>
 <ol class="arabic simple">
 <li><p><strong>create_players_dict()</strong></p></li>
 <li><p><strong>game_matrix()</strong></p></li>
@@ -495,13 +499,26 @@ document.write(`
 </div>
 </div>
 </div>
-<p>We will initialize the values for</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(p\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(g\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\alpha\)</span></p></li>
-</ul>
-<p>Then we will create both player dictionaries.</p>
+</section>
+<section id="game-matrix">
+<h3>Game Matrix<a class="headerlink" href="#game-matrix" title="Link to this heading">#</a></h3>
+<p>Given that we have two player dictionaries, the following function will create a game matrix with outcomes all set to <span class="math notranslate nohighlight">\(1/2\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">game_matrix</span><span class="p">(</span><span class="n">player1</span><span class="p">,</span> <span class="n">player2</span><span class="p">):</span>
+   <span class="c1"># Create an empty DataFrame with specified index and columns</span>
+   <span class="n">res</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">player1</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">player2</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">],</span> 
+                       <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+   <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id1">
+<h2>Setting Up the Game<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>The code below initializes values for <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(g\)</span> and creates the initial game matrix:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">8</span>
@@ -509,46 +526,7 @@ document.write(`
 <span class="c1"># Creating the dictionaries</span>
 <span class="n">P</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
-<span class="c1"># Uncomment the lines below to see the structures we have created</span>
-<span class="c1"># print(P)</span>
-<span class="c1"># print(G)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="game-matrix">
-<h3>Game Matrix<a class="headerlink" href="#game-matrix" title="Link to this heading">#</a></h3>
-<p>Now that we have the player dictionaries as well as the values <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(g\)</span> initialized, the following function will create a game matrix with outcomes all set to <span class="math notranslate nohighlight">\(0.0\)</span>.</p>
-<p>First, let’s verify the values of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(g\)</span> we are working with.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
-7
-</pre></div>
-</div>
-</div>
-</div>
-<p>The following code creates the contours of our game matrix with interior values set equal to <span class="math notranslate nohighlight">\(0.0\)</span>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">game_matrix</span><span class="p">(</span><span class="n">player1</span><span class="p">,</span> <span class="n">player2</span><span class="p">):</span>
-   <span class="c1"># Create an empty DataFrame with specified index and columns</span>
-   <span class="n">res</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">player1</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">player2</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">])</span>
-   <span class="k">return</span> <span class="n">res</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">game_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">G</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">game_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">G</span><span class="p">)</span>
 <span class="n">results</span>
 </pre></div>
 </div>
@@ -581,38 +559,38 @@ document.write(`
   <tbody>
     <tr>
       <th>4 - 4</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.5</td>
+      <td>0.5</td>
+      <td>0.5</td>
+      <td>0.5</td>
     </tr>
     <tr>
       <th>5 - 3</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.5</td>
+      <td>0.5</td>
+      <td>0.5</td>
+      <td>0.5</td>
     </tr>
     <tr>
       <th>6 - 2</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.5</td>
+      <td>0.5</td>
+      <td>0.5</td>
+      <td>0.5</td>
     </tr>
     <tr>
       <th>7 - 1</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.5</td>
+      <td>0.5</td>
+      <td>0.5</td>
+      <td>0.5</td>
     </tr>
     <tr>
       <th>8 - 0</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.5</td>
+      <td>0.5</td>
+      <td>0.5</td>
+      <td>0.5</td>
     </tr>
   </tbody>
 </table>
@@ -622,20 +600,18 @@ document.write(`
 <center><span style='color:blue'>.iloc[i,j]</span></center></br>
 <p>We can also use <center><span style='color:blue'>.loc[P[‘strat_name’][i],G[‘strat_name’][j]]</span></center></br></p>
 <p>if we know the column strategy or row strategy indentifier.</p>
-</section>
-<section id="init-function">
-<h3>Init() Function<a class="headerlink" href="#init-function" title="Link to this heading">#</a></h3>
-<p>The interior entries of the <strong>results</strong> dataframe will be winning percentages of the row and column strategies when played against one another.</p>
-<p>To initialize these values, we begin by playing each column strategy against each row strategy. We plan for 40 simulated battles with <span class="math notranslate nohighlight">\(10\)</span> <strong>ghost results</strong>.  With <span class="math notranslate nohighlight">\(5\)</span> ghost wins and <span class="math notranslate nohighlight">\(5\)</span> ghost losses, the win percentages will skew toward the center (e.g. 0.5). The <strong>ghost results</strong> approach is typical when we wish to avoid seeding the simulation with extreme values, in this case, zeroes and ones.</p>
-<p>With <span class="math notranslate nohighlight">\(10\)</span> ghost results included, the simulation results appear as though <span class="math notranslate nohighlight">\(50\)</span> total results were simulated. The <strong>init()</strong> function code is given below.</p>
+<section id="play-function">
+<h3>Play() Function<a class="headerlink" href="#play-function" title="Link to this heading">#</a></h3>
+<p>The interior entries of the <strong>results</strong> dataframe will be winning percentages of the row and column strategies when played against one another. To calculate the outcomes for the interior of the dataframe, we begin by playing each column strategy against each row strategy in <span class="math notranslate nohighlight">\(10,000\)</span> simulated battles. The <span style='color:blue'><b>init()</b></span> function code is given below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">p_max</span><span class="p">,</span> <span class="n">g_max</span><span class="p">,</span> <span class="n">p_strat</span><span class="p">,</span> <span class="n">g_strat</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">play</span><span class="p">(</span><span class="n">p_max</span><span class="p">,</span> <span class="n">g_max</span><span class="p">,</span> <span class="n">p_strat</span><span class="p">,</span> <span class="n">g_strat</span><span class="p">):</span>
    <span class="n">A_0</span> <span class="o">=</span> <span class="n">p_strat</span> <span class="p">;</span> <span class="n">B_0</span> <span class="o">=</span> <span class="n">p_max</span> <span class="o">-</span> <span class="n">A_0</span>
    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="n">A_0</span><span class="p">,</span> <span class="n">B_0</span><span class="p">])</span>
-   <span class="n">B</span> <span class="o">=</span> <span class="n">p_max</span> <span class="o">-</span> <span class="n">A</span> <span class="p">;</span>
-   <span class="n">res</span> <span class="o">=</span> <span class="p">()</span>
-   <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">):</span>
+   <span class="n">B</span> <span class="o">=</span> <span class="n">p_max</span> <span class="o">-</span> <span class="n">A</span> 
+   <span class="n">reps</span> <span class="o">=</span> <span class="mi">10000</span>
+   <span class="n">win_pct_ema</span> <span class="o">=</span> <span class="mf">0.5</span>
+   <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">reps</span><span class="p">):</span>
       <span class="n">a_0</span> <span class="o">=</span> <span class="n">g_strat</span> <span class="p">;</span> <span class="n">b_0</span> <span class="o">=</span> <span class="n">g_max</span> <span class="o">-</span> <span class="n">a_0</span>
       <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="n">a_0</span><span class="p">,</span> <span class="n">b_0</span><span class="p">])</span>
       <span class="n">b</span> <span class="o">=</span> <span class="n">g_max</span> <span class="o">-</span> <span class="n">a</span>
@@ -643,12 +619,19 @@ document.write(`
          <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>
       <span class="k">else</span><span class="p">:</span>
          <span class="n">v</span> <span class="o">=</span> <span class="mi">1</span>
-      <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-   <span class="n">temp</span> <span class="o">=</span> <span class="p">(</span> <span class="nb">sum</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span> <span class="p">)</span> <span class="o">/</span> <span class="mi">50</span>
-   <span class="n">t</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+      <span class="c1"># Update the EMA instead of appending to a list</span>
+      <span class="n">alpha</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span> <span class="mf">0.5</span> <span class="p">,</span> <span class="p">(</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">)</span> <span class="p">)</span>
+      <span class="n">win_pct_ema</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">win_pct_ema</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">))</span>
+   <span class="n">temp</span> <span class="o">=</span> <span class="n">win_pct_ema</span>
+   <span class="k">if</span> <span class="n">temp</span> <span class="o">&lt;=</span> <span class="mf">0.015</span><span class="p">:</span>
+      <span class="n">t</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+   <span class="k">elif</span> <span class="n">temp</span> <span class="o">&gt;=</span> <span class="mf">0.985</span><span class="p">:</span>
+      <span class="n">t</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+   <span class="k">else</span><span class="p">:</span>
+      <span class="n">t</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
    <span class="c1">## uncomment line below to help with debugging the init() function.</span>
    <span class="c1">#   print(f&quot;police play ({A},{B}) while guerrillas play ({a},{b})&quot;)</span>
-   <span class="k">return</span> <span class="n">t</span>   
+   <span class="k">return</span> <span class="n">t</span>
 </pre></div>
 </div>
 </div>
@@ -656,295 +639,70 @@ document.write(`
 <p>The function above will be used in a nested for-loop to calculate the needed values and assign them to the correct entry in the <strong>results</strong> dataframe. The code below accomplishes the initialization of the <strong>results</strong> table created above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="n">g</span> <span class="o">=</span> <span class="mi">7</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
    <span class="c1">##print(f&quot;Processing row {i}...&quot;) # Debugging line</span>
    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
-      <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">init</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+      <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
 
-<span class="n">results</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="c1"># To give the &quot;table&quot; a title in a Jupyter Notebook display:</span>
+<span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerrillas&lt;/b&gt;&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
+<div class="output text_html"><style type="text/css">
 </style>
-<table border="1" class="dataframe">
+<table id="T_f182a">
+  <caption><b>8 Police vs. 7 Guerrillas</b></caption>
   <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>4 - 3</th>
-      <th>5 - 2</th>
-      <th>6 - 1</th>
-      <th>7 - 0</th>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_f182a_level0_col0" class="col_heading level0 col0" >4 - 3</th>
+      <th id="T_f182a_level0_col1" class="col_heading level0 col1" >5 - 2</th>
+      <th id="T_f182a_level0_col2" class="col_heading level0 col2" >6 - 1</th>
+      <th id="T_f182a_level0_col3" class="col_heading level0 col3" >7 - 0</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>4 - 4</th>
-      <td>0.90</td>
-      <td>0.10</td>
-      <td>0.10</td>
-      <td>0.10</td>
+      <th id="T_f182a_level0_row0" class="row_heading level0 row0" >4 - 4</th>
+      <td id="T_f182a_row0_col0" class="data row0 col0" >1</td>
+      <td id="T_f182a_row0_col1" class="data row0 col1" >0</td>
+      <td id="T_f182a_row0_col2" class="data row0 col2" >0</td>
+      <td id="T_f182a_row0_col3" class="data row0 col3" >0</td>
     </tr>
     <tr>
-      <th>5 - 3</th>
-      <td>0.38</td>
-      <td>0.46</td>
-      <td>0.10</td>
-      <td>0.10</td>
+      <th id="T_f182a_level0_row1" class="row_heading level0 row1" >5 - 3</th>
+      <td id="T_f182a_row1_col0" class="data row1 col0" >1/2</td>
+      <td id="T_f182a_row1_col1" class="data row1 col1" >1/2</td>
+      <td id="T_f182a_row1_col2" class="data row1 col2" >0</td>
+      <td id="T_f182a_row1_col3" class="data row1 col3" >0</td>
     </tr>
     <tr>
-      <th>6 - 2</th>
-      <td>0.10</td>
-      <td>0.50</td>
-      <td>0.52</td>
-      <td>0.10</td>
+      <th id="T_f182a_level0_row2" class="row_heading level0 row2" >6 - 2</th>
+      <td id="T_f182a_row2_col0" class="data row2 col0" >0</td>
+      <td id="T_f182a_row2_col1" class="data row2 col1" >1/2</td>
+      <td id="T_f182a_row2_col2" class="data row2 col2" >1/2</td>
+      <td id="T_f182a_row2_col3" class="data row2 col3" >0</td>
     </tr>
     <tr>
-      <th>7 - 1</th>
-      <td>0.10</td>
-      <td>0.10</td>
-      <td>0.62</td>
-      <td>0.54</td>
+      <th id="T_f182a_level0_row3" class="row_heading level0 row3" >7 - 1</th>
+      <td id="T_f182a_row3_col0" class="data row3 col0" >0</td>
+      <td id="T_f182a_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_f182a_row3_col2" class="data row3 col2" >1/2</td>
+      <td id="T_f182a_row3_col3" class="data row3 col3" >1/2</td>
     </tr>
     <tr>
-      <th>8 - 0</th>
-      <td>0.10</td>
-      <td>0.10</td>
-      <td>0.10</td>
-      <td>0.54</td>
+      <th id="T_f182a_level0_row4" class="row_heading level0 row4" >8 - 0</th>
+      <td id="T_f182a_row4_col0" class="data row4 col0" >0</td>
+      <td id="T_f182a_row4_col1" class="data row4 col1" >0</td>
+      <td id="T_f182a_row4_col2" class="data row4 col2" >0</td>
+      <td id="T_f182a_row4_col3" class="data row4 col3" >1/2</td>
     </tr>
   </tbody>
 </table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">row_column</span><span class="p">():</span>
-  <span class="c1"># Calculate Column Weights and Row Weights</span>
-  <span class="n">col_means</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-  <span class="n">col_probs</span> <span class="o">=</span> <span class="n">col_means</span> <span class="o">/</span> <span class="n">col_means</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-  <span class="n">row_means</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-  <span class="n">row_probs</span> <span class="o">=</span> <span class="n">row_means</span> <span class="o">/</span> <span class="n">row_means</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-  <span class="c1"># Choose a row and column based on average win percentage</span>
-  <span class="n">chosen_col</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">col_probs</span><span class="p">)</span>
-  <span class="n">chosen_row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">row_probs</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">chosen_row</span> <span class="p">,</span> <span class="n">chosen_col</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ema</span><span class="p">(</span><span class="n">current_ema</span><span class="p">,</span> <span class="n">new_result</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
-  <span class="n">new_ema</span> <span class="o">=</span> <span class="p">(</span><span class="n">new_result</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">current_ema</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">))</span>
-  <span class="k">return</span> <span class="n">new_ema</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>4 - 3</th>
-      <th>5 - 2</th>
-      <th>6 - 1</th>
-      <th>7 - 0</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>4 - 4</th>
-      <td>0.90</td>
-      <td>0.10</td>
-      <td>0.10</td>
-      <td>0.10</td>
-    </tr>
-    <tr>
-      <th>5 - 3</th>
-      <td>0.38</td>
-      <td>0.46</td>
-      <td>0.10</td>
-      <td>0.10</td>
-    </tr>
-    <tr>
-      <th>6 - 2</th>
-      <td>0.10</td>
-      <td>0.50</td>
-      <td>0.52</td>
-      <td>0.10</td>
-    </tr>
-    <tr>
-      <th>7 - 1</th>
-      <td>0.10</td>
-      <td>0.10</td>
-      <td>0.62</td>
-      <td>0.54</td>
-    </tr>
-    <tr>
-      <th>8 - 0</th>
-      <td>0.10</td>
-      <td>0.10</td>
-      <td>0.10</td>
-      <td>0.54</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verifying that p, g, and alpah are set correctly.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
-7
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;alpha&#39; is not defined
-</pre></div>
-</div>
-</div>
-</div>
-<p>The play function does not appear to be working correctly right now.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
-  <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">row_column</span><span class="p">()</span>
-  <span class="n">p_0</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-  <span class="n">G</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-  <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="n">p_0</span><span class="p">,</span> <span class="n">p</span> <span class="o">-</span> <span class="n">p_0</span><span class="p">])</span> <span class="p">;</span> <span class="n">B</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">A</span> <span class="p">;</span>
-  <span class="n">F</span> <span class="o">=</span> <span class="n">g</span> <span class="o">-</span> <span class="n">G</span> <span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">G</span> <span class="o">&gt;</span> <span class="n">A</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">F</span> <span class="o">&gt;</span> <span class="n">B</span><span class="p">):</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="k">else</span><span class="p">:</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="mi">1</span>
-  <span class="n">old</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">]</span>
-  <span class="n">new</span> <span class="o">=</span> <span class="n">ema</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span> 
-  <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">new</span>
-  <span class="k">return</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">new</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">winloss</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">0.05</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">winloss</span><span class="p">)</span>
-<span class="n">results</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">14</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">winloss</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">0.05</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
-
-<span class="nn">Cell In[13], line 12,</span> in <span class="ni">play</span><span class="nt">(p, g, alpha)</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>   <span class="n">v</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">old</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">]</span>
-<span class="ne">---&gt; </span><span class="mi">12</span> <span class="n">new</span> <span class="o">=</span> <span class="n">ema</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span> 
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">new</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="k">return</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">new</span>
-
-<span class="ne">NameError</span>: name &#39;val&#39; is not defined
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reps</span> <span class="o">=</span> <span class="mi">25</span> <span class="p">;</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span>
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">reps</span><span class="p">):</span>
-  <span class="n">play</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
-
-<span class="n">reps</span> <span class="o">=</span> <span class="mi">50</span> <span class="p">;</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">reps</span><span class="p">):</span>
-  <span class="n">play</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
-    
-<span class="n">reps</span> <span class="o">=</span> <span class="mi">125</span> <span class="p">;</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">reps</span><span class="p">):</span>
-  <span class="n">play</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
-
-<span class="n">results</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">reps</span> <span class="o">=</span> <span class="mi">25</span> <span class="p">;</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">reps</span><span class="p">):</span>
-<span class="ne">----&gt; </span><span class="mi">3</span>   <span class="n">play</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">reps</span> <span class="o">=</span> <span class="mi">50</span> <span class="p">;</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">reps</span><span class="p">):</span>
-
-<span class="nn">Cell In[13], line 12,</span> in <span class="ni">play</span><span class="nt">(p, g, alpha)</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>   <span class="n">v</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">old</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">]</span>
-<span class="ne">---&gt; </span><span class="mi">12</span> <span class="n">new</span> <span class="o">=</span> <span class="n">ema</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span> 
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">new</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="k">return</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">new</span>
-
-<span class="ne">NameError</span>: name &#39;val&#39; is not defined
-</pre></div>
-</div>
-</div>
+</div></div>
 </div>
 </section>
 </section>
@@ -1017,7 +775,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-game">Setting up the Game</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#game-matrix">Game Matrix</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#init-function">Init() Function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Setting Up the Game</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#play-function">Play() Function</a></li>
 </ul>
 </li>
 </ul>
