@@ -476,7 +476,7 @@ document.write(`
 </ul>
 <p>Hence, the game they are playing can be shown in matrix form:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|cc} &amp; \textbf{2 - 0} &amp; \textbf{1 - 1}\\ \hline \textbf{3 - 0} &amp; \frac{1}{2} &amp; 0 \\ \textbf{2 - 1} &amp; \frac{1}{2} &amp; 1 \end{array} \end{array}\end{split}\]</div>
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|cc} &amp; \textbf{1 - 1} &amp; \textbf{2 - 0} \\ \hline  \textbf{2 - 1} &amp; 1 &amp; \frac{1}{2} \\ \textbf{3 - 0} &amp; 0 &amp; \frac{1}{2} \end{array} \end{array}\end{split}\]</div>
 <p>Notice the outcome of <span class="math notranslate nohighlight">\(\textbf{3 - 0}\)</span> versus <span class="math notranslate nohighlight">\(\textbf{2 - 0}\)</span> is an expected value. Half the time, the units will be sent to the same arsenal, and the police will win. When the units are sent to different arsenals, the guerrillas win. Thus,
 $<span class="math notranslate nohighlight">\(E(\text{3 - 0 versus 2 - 0}) = \frac{1}{2}(0) + \frac{1}{2}(1) = \frac{1}{2}\)</span>$</p>
 <p>and the same is true for <span class="math notranslate nohighlight">\(\textbf{2 - 1}\)</span> versus <span class="math notranslate nohighlight">\(\textbf{2 - 0}\)</span>.</p>
@@ -495,16 +495,17 @@ $<span class="math notranslate nohighlight">\(\begin{align}\textbf{Police: }&amp
 <h2>Example: 5 Police versus 4 Guerrillas<a class="headerlink" href="#example-5-police-versus-4-guerrillas" title="Link to this heading">#</a></h2>
 <p>Reasoning as above, the game matrix for these forces is as follow:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|ccc} &amp; \textbf{4 - 0} &amp; \textbf{3 - 1} &amp; \textbf{2 - 2}\\ \hline \textbf{5 - 0} &amp; \frac{1}{2} &amp; 0 &amp; 0 \\ \textbf{4 - 1} &amp; \frac{1}{2} &amp; \frac{1}{2} &amp; 0 \\ \textbf{3 - 2} &amp; 0 &amp; \frac{1}{2} &amp; 1\end{array} \end{array}\end{split}\]</div>
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|ccc} &amp; \textbf{2 - 2} &amp; \textbf{3 - 1} &amp; \textbf{4 - 0}\\ \hline \textbf{3 - 2} &amp; 1 &amp; \frac{1}{2} &amp; 0 \\ \textbf{4 - 1} &amp; 0 &amp; \frac{1}{2} &amp; \frac{1}{2} \\ \textbf{5 - 0} &amp; 0 &amp; 0 &amp; \frac{1}{2} \end{array} \end{array}\end{split}\]</div>
 <p>You should work through each strategy pair to ensure you know how to do the calcuations of the expected values correctly.</p>
 <section id="reducing-by-dominance-5-police-versus-4-guerrillas">
 <h3>Reducing by Dominance: 5 Police versus 4 Guerrillas<a class="headerlink" href="#reducing-by-dominance-5-police-versus-4-guerrillas" title="Link to this heading">#</a></h3>
-<p>The <span class="math notranslate nohighlight">\(\textbf{Police : 5 - 0}\)</span> strategy is dominated. Thus, the game reduces to the following:</p>
+<p>The <span class="math notranslate nohighlight">\(\textbf{Police : 5 - 0}\)</span> strategy is dominated by <span class="math notranslate nohighlight">\(\textbf{4 - 1}\)</span>. Thus, the game reduces to the following:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|ccc} &amp; \textbf{4 - 0} &amp; \textbf{3 - 1} &amp; \textbf{2 - 2}\\ \hline \textbf{4 - 1} &amp; \frac{1}{2} &amp; \frac{1}{2} &amp; 0 \\ \textbf{3 - 2} &amp; 0 &amp; \frac{1}{2} &amp; 1\end{array} \end{array}\end{split}\]</div>
-<p>At the second, we see that the guerrillas now have a dominated strategy because <span class="math notranslate nohighlight">\(\textbf{4 - 0}\)</span> dominates <span class="math notranslate nohighlight">\(\textbf{3 - 1}\)</span>. Hence, we can further reduce the game to the following:</p>
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|ccc} &amp; \textbf{2 - 2} &amp; \textbf{3 - 1} &amp; \textbf{4 - 0}\\ \hline \textbf{3 - 2} &amp; 1 &amp; \frac{1}{2} &amp; 0 \\ \textbf{4 - 1} &amp; 0 &amp; \frac{1}{2} &amp; \frac{1}{2} \end{array} \end{array}\end{split}\]</div>
+<p>At the second level, we see that the guerrillas now have a dominated strategy because <span class="math notranslate nohighlight">\(\textbf{4 - 0}\)</span> dominates <span class="math notranslate nohighlight">\(\textbf{3 - 1}\)</span>. Hence, we can further reduce the game to the following:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|ccc} &amp; \textbf{4 - 0} &amp; \textbf{2 - 2}\\ \hline \textbf{4 - 1} &amp; \frac{1}{2} &amp; 0 \\ \textbf{3 - 2} &amp; 0 &amp; 1\end{array} \end{array}\end{split}\]</div>
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|cc} &amp; \textbf{2 - 2} &amp; \textbf{4 - 0}\\ \hline \textbf{3 - 2} &amp; 1 &amp; 0 \\ \textbf{4 - 1} &amp; 0 &amp; \frac{1}{2} \end{array} \end{array}\end{split}\]</div>
+<p>With no other dominance, we are unable to reduce further. The quickest way to solve the resuling <span class="math notranslate nohighlight">\(2\times 2\)</span> is using oddments.</p>
 </section>
 <section id="oddments-5-police-versus-4-guerrillas">
 <h3>Oddments:  5 Police versus 4 Guerrillas<a class="headerlink" href="#oddments-5-police-versus-4-guerrillas" title="Link to this heading">#</a></h3>

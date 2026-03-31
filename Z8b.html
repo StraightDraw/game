@@ -383,7 +383,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -399,6 +401,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-that-create-the-game-matrix">Functions that Create the Game Matrix</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -414,7 +424,7 @@ document.write(`
 <p class="sidebar-title">Discovering Game Theory</p>
 <p>This course uses an <strong>online textbook</strong>: <a class="reference external" href="https://nordstrommath.com/IntroGameTheory2e/intro_game_theory.html">Game Theory, a Discovery Approach</a>, by Jennifer Nordstrom.</p>
 </aside>
-<p>The functions below will create the correct game matrix and will calculate the winning percentages of the various strategies. First, we initialize python in the code block below.</p>
+<p>The functions below will create the correct game matrix and will calculate the winning percentages of the various strategies. First, we <strong>initialize python</strong> in the code block below.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -441,6 +451,8 @@ document.write(`
 </div>
 </details>
 </div>
+<section id="functions-that-create-the-game-matrix">
+<h2>Functions that Create the Game Matrix<a class="headerlink" href="#functions-that-create-the-game-matrix" title="Link to this heading">#</a></h2>
 <div class="cell tag_hide-input docutils container">
 <details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -488,7 +500,7 @@ document.write(`
    <span class="k">elif</span> <span class="n">temp</span> <span class="o">&gt;=</span> <span class="mf">0.985</span><span class="p">:</span>
       <span class="n">t</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
    <span class="k">else</span><span class="p">:</span>
-      <span class="n">t</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+      <span class="n">t</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
    <span class="c1">## uncomment line below to help with debugging the init() function.</span>
    <span class="c1">#   print(f&quot;police play ({A},{B}) while guerrillas play ({a},{b})&quot;)</span>
    <span class="k">return</span> <span class="n">t</span>
@@ -500,65 +512,32 @@ document.write(`
 <p>Given that all three toolkit functions are working properly, the following code will generate any Police versus Guerrillas example game matrix we wish.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting number of Police and Guerrillas to p and g respectively</span>
-<span class="n">p</span> <span class="o">=</span> <span class="mi">5</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">7</span>
 <span class="n">g</span> <span class="o">=</span> <span class="mi">4</span>
-
-<span class="c1"># Creating the dictionaries</span>
-<span class="n">P</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
-<span class="n">G</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
-
-<span class="c1"># Creating the initial game matrix</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">game_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">G</span><span class="p">)</span>
-
-<span class="c1"># Calculating outcomes for interior of results dataframe</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
-   <span class="c1">##print(f&quot;Processing row {i}...&quot;) # Debugging line</span>
    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
       <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
 
-<span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="c1"># To give the &quot;table&quot; a title in a Jupyter Notebook display:</span>
 <span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerrillas&lt;/b&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style type="text/css">
-</style>
-<table id="T_ef247">
-  <caption><b>5 Police vs. 4 Guerrillas</b></caption>
-  <thead>
-    <tr>
-      <th class="blank level0" >&nbsp;</th>
-      <th id="T_ef247_level0_col0" class="col_heading level0 col0" >2 - 2</th>
-      <th id="T_ef247_level0_col1" class="col_heading level0 col1" >3 - 1</th>
-      <th id="T_ef247_level0_col2" class="col_heading level0 col2" >4 - 0</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th id="T_ef247_level0_row0" class="row_heading level0 row0" >3 - 2</th>
-      <td id="T_ef247_row0_col0" class="data row0 col0" >1</td>
-      <td id="T_ef247_row0_col1" class="data row0 col1" >1/2</td>
-      <td id="T_ef247_row0_col2" class="data row0 col2" >0</td>
-    </tr>
-    <tr>
-      <th id="T_ef247_level0_row1" class="row_heading level0 row1" >4 - 1</th>
-      <td id="T_ef247_row1_col0" class="data row1 col0" >0</td>
-      <td id="T_ef247_row1_col1" class="data row1 col1" >1/2</td>
-      <td id="T_ef247_row1_col2" class="data row1 col2" >1/2</td>
-    </tr>
-    <tr>
-      <th id="T_ef247_level0_row2" class="row_heading level0 row2" >5 - 0</th>
-      <td id="T_ef247_row2_col0" class="data row2 col0" >0</td>
-      <td id="T_ef247_row2_col1" class="data row2 col1" >0</td>
-      <td id="T_ef247_row2_col2" class="data row2 col2" >1/2</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">g</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>       <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="ne">NameError</span>: name &#39;P&#39; is not defined
+</pre></div>
 </div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -615,6 +594,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-that-create-the-game-matrix">Functions that Create the Game Matrix</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -546,34 +546,34 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_50b9c">
+<table id="T_36f8c">
   <caption><b>5 Police vs. 4 Guerrillas</b></caption>
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_50b9c_level0_col0" class="col_heading level0 col0" >2 - 2</th>
-      <th id="T_50b9c_level0_col1" class="col_heading level0 col1" >3 - 1</th>
-      <th id="T_50b9c_level0_col2" class="col_heading level0 col2" >4 - 0</th>
+      <th id="T_36f8c_level0_col0" class="col_heading level0 col0" >2 - 2</th>
+      <th id="T_36f8c_level0_col1" class="col_heading level0 col1" >3 - 1</th>
+      <th id="T_36f8c_level0_col2" class="col_heading level0 col2" >4 - 0</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_50b9c_level0_row0" class="row_heading level0 row0" >3 - 2</th>
-      <td id="T_50b9c_row0_col0" class="data row0 col0" >0.5</td>
-      <td id="T_50b9c_row0_col1" class="data row0 col1" >0.5</td>
-      <td id="T_50b9c_row0_col2" class="data row0 col2" >0.5</td>
+      <th id="T_36f8c_level0_row0" class="row_heading level0 row0" >3 - 2</th>
+      <td id="T_36f8c_row0_col0" class="data row0 col0" >0.5</td>
+      <td id="T_36f8c_row0_col1" class="data row0 col1" >0.5</td>
+      <td id="T_36f8c_row0_col2" class="data row0 col2" >0.5</td>
     </tr>
     <tr>
-      <th id="T_50b9c_level0_row1" class="row_heading level0 row1" >4 - 1</th>
-      <td id="T_50b9c_row1_col0" class="data row1 col0" >0.5</td>
-      <td id="T_50b9c_row1_col1" class="data row1 col1" >0.5</td>
-      <td id="T_50b9c_row1_col2" class="data row1 col2" >0.5</td>
+      <th id="T_36f8c_level0_row1" class="row_heading level0 row1" >4 - 1</th>
+      <td id="T_36f8c_row1_col0" class="data row1 col0" >0.5</td>
+      <td id="T_36f8c_row1_col1" class="data row1 col1" >0.5</td>
+      <td id="T_36f8c_row1_col2" class="data row1 col2" >0.5</td>
     </tr>
     <tr>
-      <th id="T_50b9c_level0_row2" class="row_heading level0 row2" >5 - 0</th>
-      <td id="T_50b9c_row2_col0" class="data row2 col0" >0.5</td>
-      <td id="T_50b9c_row2_col1" class="data row2 col1" >0.5</td>
-      <td id="T_50b9c_row2_col2" class="data row2 col2" >0.5</td>
+      <th id="T_36f8c_level0_row2" class="row_heading level0 row2" >5 - 0</th>
+      <td id="T_36f8c_row2_col0" class="data row2 col0" >0.5</td>
+      <td id="T_36f8c_row2_col1" class="data row2 col1" >0.5</td>
+      <td id="T_36f8c_row2_col2" class="data row2 col2" >0.5</td>
     </tr>
   </tbody>
 </table>
@@ -611,7 +611,7 @@ document.write(`
    <span class="k">elif</span> <span class="n">temp</span> <span class="o">&gt;=</span> <span class="mf">0.985</span><span class="p">:</span>
       <span class="n">t</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
    <span class="k">else</span><span class="p">:</span>
-      <span class="n">t</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+      <span class="n">t</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
    <span class="c1">## uncomment line below to help with debugging the init() function.</span>
    <span class="c1">#   print(f&quot;police play ({A},{B}) while guerrillas play ({a},{b})&quot;)</span>
    <span class="k">return</span> <span class="n">t</span>
@@ -626,13 +626,12 @@ document.write(`
 <h2>Game Matrix: 5 Police vs. 4 Guerrillas<a class="headerlink" href="#game-matrix-5-police-vs-4-guerrillas" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
-   <span class="c1">##print(f&quot;Processing row {i}...&quot;) # Debugging line</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
       <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
 
-<span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="c1"># To give the &quot;table&quot; a title in a Jupyter Notebook display:</span>
 <span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerrillas&lt;/b&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -640,34 +639,34 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_60b2e">
+<table id="T_822d1">
   <caption><b>5 Police vs. 4 Guerrillas</b></caption>
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_60b2e_level0_col0" class="col_heading level0 col0" >2 - 2</th>
-      <th id="T_60b2e_level0_col1" class="col_heading level0 col1" >3 - 1</th>
-      <th id="T_60b2e_level0_col2" class="col_heading level0 col2" >4 - 0</th>
+      <th id="T_822d1_level0_col0" class="col_heading level0 col0" >2 - 2</th>
+      <th id="T_822d1_level0_col1" class="col_heading level0 col1" >3 - 1</th>
+      <th id="T_822d1_level0_col2" class="col_heading level0 col2" >4 - 0</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_60b2e_level0_row0" class="row_heading level0 row0" >3 - 2</th>
-      <td id="T_60b2e_row0_col0" class="data row0 col0" >1</td>
-      <td id="T_60b2e_row0_col1" class="data row0 col1" >1/2</td>
-      <td id="T_60b2e_row0_col2" class="data row0 col2" >0</td>
+      <th id="T_822d1_level0_row0" class="row_heading level0 row0" >3 - 2</th>
+      <td id="T_822d1_row0_col0" class="data row0 col0" >1</td>
+      <td id="T_822d1_row0_col1" class="data row0 col1" >1/2</td>
+      <td id="T_822d1_row0_col2" class="data row0 col2" >0</td>
     </tr>
     <tr>
-      <th id="T_60b2e_level0_row1" class="row_heading level0 row1" >4 - 1</th>
-      <td id="T_60b2e_row1_col0" class="data row1 col0" >0</td>
-      <td id="T_60b2e_row1_col1" class="data row1 col1" >9/19</td>
-      <td id="T_60b2e_row1_col2" class="data row1 col2" >1/2</td>
+      <th id="T_822d1_level0_row1" class="row_heading level0 row1" >4 - 1</th>
+      <td id="T_822d1_row1_col0" class="data row1 col0" >0</td>
+      <td id="T_822d1_row1_col1" class="data row1 col1" >1/2</td>
+      <td id="T_822d1_row1_col2" class="data row1 col2" >1/2</td>
     </tr>
     <tr>
-      <th id="T_60b2e_level0_row2" class="row_heading level0 row2" >5 - 0</th>
-      <td id="T_60b2e_row2_col0" class="data row2 col0" >0</td>
-      <td id="T_60b2e_row2_col1" class="data row2 col1" >0</td>
-      <td id="T_60b2e_row2_col2" class="data row2 col2" >1/2</td>
+      <th id="T_822d1_level0_row2" class="row_heading level0 row2" >5 - 0</th>
+      <td id="T_822d1_row2_col0" class="data row2 col0" >0</td>
+      <td id="T_822d1_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_822d1_row2_col2" class="data row2 col2" >1/2</td>
     </tr>
   </tbody>
 </table>
@@ -679,23 +678,12 @@ document.write(`
 <p>Using all the above user-defined functions, we can quickly create the new game matrix:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting number of Police and Guerrillas to p and g respectively</span>
-<span class="n">p</span> <span class="o">=</span> <span class="mi">3</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">g</span> <span class="o">=</span> <span class="mi">2</span>
-
-<span class="c1"># Recreating the dictionaries</span>
-<span class="n">P</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
-<span class="n">G</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
-
-<span class="c1"># Recreating the game matrix</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">game_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">G</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
-   <span class="c1">##print(f&quot;Processing row {i}...&quot;) # Debugging line</span>
    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
       <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
 
-<span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="c1"># To give the &quot;table&quot; a title in a Jupyter Notebook display:</span>
 <span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerrillas&lt;/b&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -703,25 +691,34 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_c3580">
+<table id="T_ac21d">
   <caption><b>3 Police vs. 2 Guerrillas</b></caption>
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_c3580_level0_col0" class="col_heading level0 col0" >1 - 1</th>
-      <th id="T_c3580_level0_col1" class="col_heading level0 col1" >2 - 0</th>
+      <th id="T_ac21d_level0_col0" class="col_heading level0 col0" >2 - 2</th>
+      <th id="T_ac21d_level0_col1" class="col_heading level0 col1" >3 - 1</th>
+      <th id="T_ac21d_level0_col2" class="col_heading level0 col2" >4 - 0</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_c3580_level0_row0" class="row_heading level0 row0" >2 - 1</th>
-      <td id="T_c3580_row0_col0" class="data row0 col0" >1</td>
-      <td id="T_c3580_row0_col1" class="data row0 col1" >1/2</td>
+      <th id="T_ac21d_level0_row0" class="row_heading level0 row0" >3 - 2</th>
+      <td id="T_ac21d_row0_col0" class="data row0 col0" >1/2</td>
+      <td id="T_ac21d_row0_col1" class="data row0 col1" >1/2</td>
+      <td id="T_ac21d_row0_col2" class="data row0 col2" >0</td>
     </tr>
     <tr>
-      <th id="T_c3580_level0_row1" class="row_heading level0 row1" >3 - 0</th>
-      <td id="T_c3580_row1_col0" class="data row1 col0" >0</td>
-      <td id="T_c3580_row1_col1" class="data row1 col1" >1/2</td>
+      <th id="T_ac21d_level0_row1" class="row_heading level0 row1" >4 - 1</th>
+      <td id="T_ac21d_row1_col0" class="data row1 col0" >0</td>
+      <td id="T_ac21d_row1_col1" class="data row1 col1" >1/2</td>
+      <td id="T_ac21d_row1_col2" class="data row1 col2" >1/2</td>
+    </tr>
+    <tr>
+      <th id="T_ac21d_level0_row2" class="row_heading level0 row2" >5 - 0</th>
+      <td id="T_ac21d_row2_col0" class="data row2 col0" >0</td>
+      <td id="T_ac21d_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_ac21d_row2_col2" class="data row2 col2" >1/2</td>
     </tr>
   </tbody>
 </table>
@@ -732,23 +729,12 @@ document.write(`
 <h2>Game Matrix: 7 Police vs. 5 Guerrillas<a class="headerlink" href="#game-matrix-7-police-vs-5-guerrillas" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting number of Police and Guerrillas to p and g respectively</span>
-<span class="n">p</span> <span class="o">=</span> <span class="mi">7</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">7</span>
 <span class="n">g</span> <span class="o">=</span> <span class="mi">5</span>
-
-<span class="c1"># Recreating the dictionaries</span>
-<span class="n">P</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
-<span class="n">G</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
-
-<span class="c1"># Recreating the game matrix</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">game_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">G</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
-   <span class="c1">##print(f&quot;Processing row {i}...&quot;) # Debugging line</span>
    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
       <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
 
-<span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="c1"># To give the &quot;table&quot; a title in a Jupyter Notebook display:</span>
 <span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerrillas&lt;/b&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -756,40 +742,34 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_a537d">
+<table id="T_230f4">
   <caption><b>7 Police vs. 5 Guerrillas</b></caption>
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_a537d_level0_col0" class="col_heading level0 col0" >3 - 2</th>
-      <th id="T_a537d_level0_col1" class="col_heading level0 col1" >4 - 1</th>
-      <th id="T_a537d_level0_col2" class="col_heading level0 col2" >5 - 0</th>
+      <th id="T_230f4_level0_col0" class="col_heading level0 col0" >2 - 2</th>
+      <th id="T_230f4_level0_col1" class="col_heading level0 col1" >3 - 1</th>
+      <th id="T_230f4_level0_col2" class="col_heading level0 col2" >4 - 0</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_a537d_level0_row0" class="row_heading level0 row0" >4 - 3</th>
-      <td id="T_a537d_row0_col0" class="data row0 col0" >1</td>
-      <td id="T_a537d_row0_col1" class="data row0 col1" >9/19</td>
-      <td id="T_a537d_row0_col2" class="data row0 col2" >0</td>
+      <th id="T_230f4_level0_row0" class="row_heading level0 row0" >3 - 2</th>
+      <td id="T_230f4_row0_col0" class="data row0 col0" >1</td>
+      <td id="T_230f4_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_230f4_row0_col2" class="data row0 col2" >1/2</td>
     </tr>
     <tr>
-      <th id="T_a537d_level0_row1" class="row_heading level0 row1" >5 - 2</th>
-      <td id="T_a537d_row1_col0" class="data row1 col0" >1/2</td>
-      <td id="T_a537d_row1_col1" class="data row1 col1" >1/2</td>
-      <td id="T_a537d_row1_col2" class="data row1 col2" >1/2</td>
+      <th id="T_230f4_level0_row1" class="row_heading level0 row1" >4 - 1</th>
+      <td id="T_230f4_row1_col0" class="data row1 col0" >1</td>
+      <td id="T_230f4_row1_col1" class="data row1 col1" >1</td>
+      <td id="T_230f4_row1_col2" class="data row1 col2" >1/2</td>
     </tr>
     <tr>
-      <th id="T_a537d_level0_row2" class="row_heading level0 row2" >6 - 1</th>
-      <td id="T_a537d_row2_col0" class="data row2 col0" >0</td>
-      <td id="T_a537d_row2_col1" class="data row2 col1" >1/2</td>
-      <td id="T_a537d_row2_col2" class="data row2 col2" >1/2</td>
-    </tr>
-    <tr>
-      <th id="T_a537d_level0_row3" class="row_heading level0 row3" >7 - 0</th>
-      <td id="T_a537d_row3_col0" class="data row3 col0" >0</td>
-      <td id="T_a537d_row3_col1" class="data row3 col1" >0</td>
-      <td id="T_a537d_row3_col2" class="data row3 col2" >1/2</td>
+      <th id="T_230f4_level0_row2" class="row_heading level0 row2" >5 - 0</th>
+      <td id="T_230f4_row2_col0" class="data row2 col0" >1/2</td>
+      <td id="T_230f4_row2_col1" class="data row2 col1" >1/2</td>
+      <td id="T_230f4_row2_col2" class="data row2 col2" >1/2</td>
     </tr>
   </tbody>
 </table>
