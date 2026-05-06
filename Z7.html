@@ -208,6 +208,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="Z8.html">Police versus Guerillas</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="Z8a.html">Simulating P vs. G</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z8b.html">Solving Police vs. Guerrillas</a></li>
 </ul>
 </details></li>
 </ul>
@@ -523,44 +524,42 @@ document.write(`
 </ul>
 <p>We have two vertical lines in the graphic above:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(x=0\)</span> : where coordinator chooses to play <span class="math notranslate nohighlight">\(0\%\)</span> A</p></li>
-<li><p><span class="math notranslate nohighlight">\(x=1\)</span> : where coordinator choose to play <span class="math notranslate nohighlight">\(100\%\)</span> A</p></li>
+<li><p><span class="math notranslate nohighlight">\(x=0\)</span> : where coordinator chooses to play <span class="math notranslate nohighlight">\(100\%\)</span> A</p></li>
+<li><p><span class="math notranslate nohighlight">\(x=1\)</span> : where coordinator choose to play <span class="math notranslate nohighlight">\(100\%\)</span> B</p></li>
 </ul>
-<p>For the column player, the value at <span class="math notranslate nohighlight">\(x=0\)</span> is the outcome in Row B, while the value at <span class="math notranslate nohighlight">\(x=1\)</span> is the outcome in Row A. Hence, the row player hopes to maximize which will only happen if he or she can <span style="color:darkblue"><b>play along the upper envelope</span></b> shown above.</p>
+<p>For the column player, the <span class="math notranslate nohighlight">\(y\)</span>-intercept is the outcome in Row A, while the value at <span class="math notranslate nohighlight">\(x=1\)</span> is the outcome in Row B. Hence, the column player who hopes to minimize which will  happen if he or she can <span style="color:darkblue"><b>play along the lower envelope</span></b> of the graphed lines above.</p>
 </section>
 </section>
 <section id="optimal-strategy">
 <h3>Optimal Strategy<a class="headerlink" href="#optimal-strategy" title="Link to this heading">#</a></h3>
-<p>The row player optimizes by finding the intersection of the green and red lines above. The <span class="math notranslate nohighlight">\(x\)</span>-coordinate of the intersection represents the equilibrium value for proprotion of times to play strategy A, and the <span class="math notranslate nohighlight">\(y\)</span>-value is the game’s equilibrium value.</p>
+<p>The column player has more than two strategies and thus chooses to minimize – this means he or she will play along the lower envelope. The row player optimizes by finding maximize point on the lower envelope which is the intersection of the blue and green lines above. The <span class="math notranslate nohighlight">\(x\)</span>-coordinate of the intersection point is the optimal strategy mixture value for the row player to play strategy B, and the <span class="math notranslate nohighlight">\(y\)</span>-value is the game’s equilibrium value.</p>
 <section id="equations-of-the-lines">
 <h4>Equations of the Lines<a class="headerlink" href="#equations-of-the-lines" title="Link to this heading">#</a></h4>
 <p>The graph essentially shows the <span class="math notranslate nohighlight">\(y\)</span>-intercept with the <strong>slope</strong> easily calculated since the “change in x” (or denominator) is equal to <span class="math notranslate nohighlight">\(1\)</span>. The warlord (column player) will choose to play the red and green strategies.</p>
 <ul>
-<li><p><strong>Red Line</strong></p>
+<li><p><strong>Blue Line</strong></p>
 <div class="math notranslate nohighlight">
-\[y = 70x+10\]</div>
+\[y_1 = 40 + 10x_1\]</div>
 </li>
 <li><p><strong>Green Line</strong></p>
 <div class="math notranslate nohighlight">
-\[y=-70x+90\]</div>
+\[y_2=90-70x_2\]</div>
 </li>
 </ul>
-<p>The slope of the red line is <span class="math notranslate nohighlight">\(70\)</span> units, and its intercept is <span class="math notranslate nohighlight">\(10\)</span>. The slope of the green line is <span class="math notranslate nohighlight">\(-70\)</span> with an intercept of <span class="math notranslate nohighlight">\(90\)</span>. When we set the <span class="math notranslate nohighlight">\(y\)</span>-values equal and solve, we find:</p>
+<p>The slope of the blue line is <span class="math notranslate nohighlight">\(10\)</span> units, and its intercept is <span class="math notranslate nohighlight">\(40\)</span>. The slope of the green line is <span class="math notranslate nohighlight">\(-70\)</span> with an intercept of <span class="math notranslate nohighlight">\(90\)</span>. At the point of intersection, we know that <span class="math notranslate nohighlight">\((x_1,y_1) = (x_2, y_2)\)</span>. Setting the <span class="math notranslate nohighlight">\(y\)</span>-values and <span class="math notranslate nohighlight">\(y\)</span>-values equal, we can solve for <span class="math notranslate nohighlight">\(x\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{align}140x&amp;=80\\
-x&amp;=\frac{8}{14}\\
-x&amp;=\frac{4}{7}
-\end{align}\end{split}\]</div>
+\[\begin{split}\begin{align}40 + 10x&amp;=90-70x\\80x&amp;=50\\
+x&amp;=\frac{50}{80}\\x&amp;=\frac{5}{8}\end{align}\end{split}\]</div>
 <p>This indicates that the coordinator’s (row player’s) optimal strategy set is given by:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\vec r = \left[\begin{array}{r}\frac{4}{7}\\ \frac{3}{7}\end{array}\right]\end{split}\]</div>
+\[\begin{split}\vec r = \left[\begin{array}{r}\frac{5}{8}\\ \frac{4}{8}\end{array}\right]\end{split}\]</div>
 </section>
 </section>
 <section id="game-value">
 <h3>Game Value<a class="headerlink" href="#game-value" title="Link to this heading">#</a></h3>
 <p>The value of the game is the <span class="math notranslate nohighlight">\(y\)</span> coordinate of the intersection point which can be found by plugging <span class="math notranslate nohighlight">\(x=\frac{4}{7}\)</span> into either the red or green equation:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{align}y&amp;=70\left(\frac{4}{7}\right)+10\\y&amp;=40+10\\y&amp;=50\end{align}\end{split}\]</div>
+\[\begin{split}\begin{align}y&amp;=40 + 10\left(\frac{5}{8}\right)\\y&amp;=40+\left(\frac{50}{8}\right)\\y&amp;=\frac{370}{8}\\y&amp;=46.25\end{align}\end{split}\]</div>
 </section>
 <section id="optimal-strategy-set-for-the-other-player">
 <h3>Optimal Strategy Set for the Other Player<a class="headerlink" href="#optimal-strategy-set-for-the-other-player" title="Link to this heading">#</a></h3>
@@ -579,8 +578,8 @@ matrix game is finding the correct <span class="math notranslate nohighlight">\(
 </div>
 <p>By the square matrix solution principal and a quick check of the graph above, we can see the correct subgame to solve is the following:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\textbf{Warlord}\\\textbf{Coordinator}&amp; \begin{array}{r|cc} &amp; 1 &amp; 2\\\hline A &amp; 80 &amp; 20 \\ B &amp; 10 &amp; 90 \end{array} \end{array}\end{split}\]</div>
-<p>The <span style='color:blue'><b>blue line</b></span> in the graph represented the Checkpoint 3 strategy which, while not dominated by either <span style='color:red'><b>red</b></span> or <span style='color:green'><b>green</b></span>, still is outclassed by a combination of the two.</p>
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Warlord}\\\textbf{Coordinator}&amp; \begin{array}{r|cc} &amp; 1 &amp; 2\\\hline A &amp; 20 &amp; 50 \\ B &amp; 90 &amp; 40 \end{array} \end{array}\end{split}\]</div>
+<p>The <span style='color:red'><b>red</b></span> in the graph represented the Checkpoint 3 strategy which, while not dominated by either <span style='color:blue'><b>blue line</b></span> or <span style='color:green'><b>green</b></span>, still is forced on the column player by the row player’s choice to maximize along the lower envelope.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><strong>Reduction Issues</strong></p>
@@ -590,15 +589,14 @@ matrix game is finding the correct <span class="math notranslate nohighlight">\(
 </section>
 <section id="overall-solution">
 <h2>Overall Solution<a class="headerlink" href="#overall-solution" title="Link to this heading">#</a></h2>
-<p>The row oddments are <span class="math notranslate nohighlight">\(60\)</span> and <span class="math notranslate nohighlight">\(80\)</span> which gives the optimal strategy set</p>
+<p>The row oddments are <span class="math notranslate nohighlight">\(30\)</span> and <span class="math notranslate nohighlight">\(50\)</span> which gives the optimal strategy set</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\vec r = \left[\begin{array}{r}\frac{4}{7}\\\frac{3}{7}\end{array}\right]\end{split}\]</div>
-<p>which, happily, aggrees with our work above.</p>
-<p>For the column player, the oddments are <span class="math notranslate nohighlight">\(70\)</span> and <span class="math notranslate nohighlight">\(70\)</span>. Hence, the warlord (column player) will play:</p>
+\[\begin{split}\vec r = \left[\begin{array}{r}\frac{5}{8}\\\frac{3}{8}\end{array}\right]\end{split}\]</div>
+<p>which, happily, aggrees with our work above. For the column player, the oddments are <span class="math notranslate nohighlight">\(70\)</span> and <span class="math notranslate nohighlight">\(10\)</span>. Hence, the warlord (column player) will play:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\vec c = \left[\begin{array}{r}\frac{1}{2}\\\frac{1}{2}\end{array}\right]\end{split}\]</div>
+\[\begin{split}\vec c = \left[\begin{array}{r}\frac{1}{8}\\\frac{7}{8}\end{array}\right]\end{split}\]</div>
 <p>A quick glance at the original matrix knowing the warlord’s optimal strategies indicates the</p>
-<center><span style='color:red'>game value is 50.<b></b></span></center></section>
+<center><span style='color:red'><b>game value is $\frac{370}{8}$.</b></span></center></section>
 <div class="toctree-wrapper compound">
 </div>
 </section>

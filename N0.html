@@ -57,11 +57,13 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'N0';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Tools of Game Theory" href="T0.html" />
-    <link rel="prev" title="Strategies and Solutions" href="Z1.html" />
+    <link rel="prev" title="Solving Police vs. Guerrillas" href="Z8b.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -183,6 +185,32 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Z0.html">The Nature of Games</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Z1.html">Strategies and Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Z2.html">Game Matrices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Z3.html">Equilibrium Pairs</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Z4.html">Dominance</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Z4e.html">Exercises</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Z5.html">Expectation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Z5a.html">Expected Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z5b.html">Equalized Expectations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z5e.html">Exercises</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Z6.html">Oddments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Z6e.html">Exercises</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Z7.html">Graphical Method</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Z7a.html">Graphical Method: <span class="math notranslate nohighlight">\(n\times 2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z7b.html">Exercises</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Z8.html">Police versus Guerillas</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Z8a.html">Simulating P vs. G</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z8b.html">Solving Police vs. Guerrillas</a></li>
+</ul>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Non Zero Sum Games</span></p>
 <ul class="current nav bd-sidenav">
@@ -197,6 +225,7 @@
 <li class="toctree-l2"><a class="reference internal" href="T2b.html">Horiztonal and Vertical Lines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="T2c.html">Line Through 2 Points</a></li>
 <li class="toctree-l2"><a class="reference internal" href="T2d.html">Polygons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T2e.html">Finding Intersection of 2 Lines</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="T3.html">Game Solver Code</a></li>
@@ -356,7 +385,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -372,6 +403,19 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#battle-of-the-movies">Battle of the Movies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rose-s-game">Rose’s Game</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#colin-s-game">Colin’s Game</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nash-equilibrium-for-non-zero-sum-games">Nash Equilibrium for Non-zero-sum Games</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -383,7 +427,37 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="non-zero-sum-games">
 <h1>Non-zero-sum Games<a class="headerlink" href="#non-zero-sum-games" title="Link to this heading">#</a></h1>
-<p>This page will be updated soon.</p>
+<aside class="sidebar">
+<p class="sidebar-title">Discovering Game Theory</p>
+<p>This course uses an <strong>online textbook</strong>: <a class="reference external" href="https://nordstrommath.com/IntroGameTheory2e/intro_game_theory.html">Game Theory, a Discovery Approach</a>, by Jennifer Nordstrom.</p>
+</aside>
+<p>The Nordstrom textbook gives the following example of a non-zero-sum game:</p>
+<section id="battle-of-the-movies">
+<h2>Battle of the Movies<a class="headerlink" href="#battle-of-the-movies" title="Link to this heading">#</a></h2>
+<p>Rose and Colin want to go out to a movie. Colin wants to see an action movie, Rose wants to see a comedy. Both prefer to go to a movie together rather than to go alone. We can represent the situation with the payoff matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|cc}&amp;A&amp;B\\ \hline A&amp;(2,1)&amp;(-1,-1)\\ B&amp;(-1,-1)&amp;(1,2)\end{array}\end{array}\end{split}\]</div>
+<p>We notice immediately that, instead of a single value for our outcomes or a pair of values that sum to zero, we have an ordered pair of values that do not fit our definition of <strong>zero-sum</strong>.</p>
+<section id="rose-s-game">
+<h3>Rose’s Game<a class="headerlink" href="#rose-s-game" title="Link to this heading">#</a></h3>
+<p>We can analyze the <strong>zero-sum</strong> game from Rose’s perspective where she focuses on her own payoffs and ignores Colin’s payoffs completely:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|rr}&amp;A&amp;B\\ \hline A&amp;2&amp;-1\\ B&amp;-1&amp;1\end{array}\end{array}\end{split}\]</div>
+</section>
+<section id="colin-s-game">
+<h3>Colin’s Game<a class="headerlink" href="#colin-s-game" title="Link to this heading">#</a></h3>
+<p>Colin’s game is also <strong>zero-sum</strong> where he does the same thing:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|rr}&amp;A&amp;B\\ \hline A&amp;1&amp;-1\\ B&amp;-1&amp;2\end{array}\end{array}\end{split}\]</div>
+</section>
+</section>
+<section id="nash-equilibrium-for-non-zero-sum-games">
+<h2>Nash Equilibrium for Non-zero-sum Games<a class="headerlink" href="#nash-equilibrium-for-non-zero-sum-games" title="Link to this heading">#</a></h2>
+<p>If Colin’s optimal strategies arise from Colin playing Rose’s game using his oddments strategy mixture while Rose’s optimal strategies from her playing Colin’s game using her oddments strategy, we will arrive at a point which qualifies as a Nash Equilibrium.</p>
+<p>Colin’s oddments strategy in Rose’s game will equalize her expectation. Rose will therefore have no incentive to deviate.</p>
+<p>Similarly, Rose’s oddments strategy in Colin’s game will equalize his expectation. Colin has no incentive to deviate either.</p>
+<p>To wrap up, a Nash Equilibrium in a non-zero-sum game is an outcome (in mixed strategies) from which neither player can profit by deviating.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -417,12 +491,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Z1.html"
+       href="Z8b.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Strategies and Solutions</p>
+        <p class="prev-next-title">Solving Police vs. Guerrillas</p>
       </div>
     </a>
     <a class="right-next"
@@ -440,6 +514,26 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#battle-of-the-movies">Battle of the Movies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rose-s-game">Rose’s Game</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#colin-s-game">Colin’s Game</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nash-equilibrium-for-non-zero-sum-games">Nash Equilibrium for Non-zero-sum Games</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
