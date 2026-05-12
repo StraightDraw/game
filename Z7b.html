@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Exercises &#8212; Game Theory</title>
+    <title>Solving Police vs. Guerrillas &#8212; Game Theory</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Z7b';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Police versus Guerillas" href="Z8.html" />
-    <link rel="prev" title="Graphical Method: \(n\times 2\)" href="Z7a.html" />
+    <link rel="next" title="Non-zero-sum Games" href="N0.html" />
+    <link rel="prev" title="Simulating P vs. G" href="Z7a.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -194,19 +194,21 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="Z5.html">Expectation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="Z5a.html">Expected Value</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Z5b.html">Equalized Expectations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Z5e.html">Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z5c.html">Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z5d.html">Oddments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z5e.html">More Exercises</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="Z6.html">Oddments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Z6e.html">Exercises</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Z6.html">Graphical Method</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Z6a.html">Graphical Method: <span class="math notranslate nohighlight">\(n\times 2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z6b.html">Exercises</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="Z7.html">Graphical Method</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="Z7a.html">Graphical Method: <span class="math notranslate nohighlight">\(n\times 2\)</span></a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z7a.html">Simulating P vs. G</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Solving Police vs. Guerrillas</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="Z8.html">Police versus Guerillas</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Non Zero Sum Games</span></p>
 <ul class="nav bd-sidenav">
@@ -381,7 +383,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -392,11 +396,29 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Exercises</h1>
+    <h1>Solving Police vs. Guerrillas</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-that-create-the-game-matrix">Functions that Create the Game Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-8p-vs-6g">Example 1: 8P vs. 6G</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-reducing-by-doominance">Example 1: Reducing by Doominance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-10p-vs-8g">Example 2: 10P vs. 8G</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-reduction-by-dominance">Example 2: Reduction by Dominance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-11p-vs-9g">Example 3: 11P vs. 9G</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -406,19 +428,26 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="exercises">
-<h1>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="solving-police-vs-guerrillas">
+<h1>Solving Police vs. Guerrillas<a class="headerlink" href="#solving-police-vs-guerrillas" title="Link to this heading">#</a></h1>
 <aside class="sidebar">
 <p class="sidebar-title">Discovering Game Theory</p>
 <p>This course uses an <strong>online textbook</strong>: <a class="reference external" href="https://nordstrommath.com/IntroGameTheory2e/intro_game_theory.html">Game Theory, a Discovery Approach</a>, by Jennifer Nordstrom.</p>
 </aside>
-<p>The following problems will be useful practice for the graphing method of solution.</p>
-<div class="cell docutils container">
+<p>The functions below will create the correct game matrix and will calculate the winning percentages of the various strategies. First, we <strong>initialize python</strong> in the code block below. Then, we can generate several version of Police vs. Guerrillas.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Do not change this cell, only execute it. </span>
 <span class="c1">## This cell initializes Python so that pandas, numpy and scipy packages are ready to use.</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">datascience</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plots</span>
 <span class="n">plots</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
@@ -430,70 +459,343 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\robbs\anaconda3\envs\GameTheory\Lib\site-packages\datascience\maps.py:13: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
-  import pkg_resources
+</details>
+</div>
+<section id="functions-that-create-the-game-matrix">
+<h2>Functions that Create the Game Matrix<a class="headerlink" href="#functions-that-create-the-game-matrix" title="Link to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_player_dict</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">anchor_val</span><span class="p">):</span>
+    <span class="n">strat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">anchor_val</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">anchor_val</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">strat</span><span class="p">))</span>
+    <span class="n">strat_name</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">anchor_val</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">strat</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;player&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="n">index</span><span class="p">,</span>
+        <span class="s1">&#39;strat&#39;</span><span class="p">:</span> <span class="n">strat</span><span class="p">,</span>
+        <span class="s1">&#39;strat_name&#39;</span><span class="p">:</span> <span class="n">strat_name</span>
+    <span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">game_matrix</span><span class="p">(</span><span class="n">player1</span><span class="p">,</span> <span class="n">player2</span><span class="p">):</span>
+   <span class="c1"># Create an empty DataFrame with specified index and columns</span>
+   <span class="n">res</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">player1</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">player2</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">],</span> 
+                       <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+   <span class="k">return</span> <span class="n">res</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">play</span><span class="p">(</span><span class="n">p_max</span><span class="p">,</span> <span class="n">g_max</span><span class="p">,</span> <span class="n">p_strat</span><span class="p">,</span> <span class="n">g_strat</span><span class="p">):</span>
+   <span class="n">A_0</span> <span class="o">=</span> <span class="n">p_strat</span> <span class="p">;</span> <span class="n">B_0</span> <span class="o">=</span> <span class="n">p_max</span> <span class="o">-</span> <span class="n">A_0</span>
+   <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="n">A_0</span><span class="p">,</span> <span class="n">B_0</span><span class="p">])</span>
+   <span class="n">B</span> <span class="o">=</span> <span class="n">p_max</span> <span class="o">-</span> <span class="n">A</span> 
+   <span class="n">reps</span> <span class="o">=</span> <span class="mi">10000</span>
+   <span class="n">win_pct_ema</span> <span class="o">=</span> <span class="mf">0.5</span>
+   <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">reps</span><span class="p">):</span>
+      <span class="n">a_0</span> <span class="o">=</span> <span class="n">g_strat</span> <span class="p">;</span> <span class="n">b_0</span> <span class="o">=</span> <span class="n">g_max</span> <span class="o">-</span> <span class="n">a_0</span>
+      <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="n">a_0</span><span class="p">,</span> <span class="n">b_0</span><span class="p">])</span>
+      <span class="n">b</span> <span class="o">=</span> <span class="n">g_max</span> <span class="o">-</span> <span class="n">a</span>
+      <span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">A</span> <span class="p">)</span> <span class="ow">or</span> <span class="p">(</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="n">B</span> <span class="p">)</span> <span class="p">):</span>
+         <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">else</span><span class="p">:</span>
+         <span class="n">v</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="c1"># Update the EMA instead of appending to a list</span>
+      <span class="n">alpha</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span> <span class="mf">0.5</span> <span class="p">,</span> <span class="p">(</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">)</span> <span class="p">)</span>
+      <span class="n">win_pct_ema</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">win_pct_ema</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">))</span>
+   <span class="n">temp</span> <span class="o">=</span> <span class="n">win_pct_ema</span>
+   <span class="k">if</span> <span class="n">temp</span> <span class="o">&lt;=</span> <span class="mf">0.015</span><span class="p">:</span>
+      <span class="n">t</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+   <span class="k">elif</span> <span class="n">temp</span> <span class="o">&gt;=</span> <span class="mf">0.985</span><span class="p">:</span>
+      <span class="n">t</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+   <span class="k">else</span><span class="p">:</span>
+      <span class="n">t</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+   <span class="c1">## uncomment line below to help with debugging the init() function.</span>
+   <span class="c1">#   print(f&quot;police play ({A},{B}) while guerrillas play ({a},{b})&quot;)</span>
+   <span class="k">return</span> <span class="n">t</span>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="admonition-exercise-1 admonition">
-<p class="admonition-title">Exercise 1</p>
-<p>Solve the game using the graphing method backstopped by oddments.</p>
+<p>Given that all three toolkit functions are working properly, the following code will generate any Police versus Guerrillas example game matrix we wish.</p>
+</section>
+<section id="example-1-8p-vs-6g">
+<h2>Example 1: 8P vs. 6G<a class="headerlink" href="#example-1-8p-vs-6g" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">game_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">G</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+      <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerrillas&lt;/b&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_9c0e4">
+  <caption><b>8 Police vs. 6 Guerrillas</b></caption>
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_9c0e4_level0_col0" class="col_heading level0 col0" >3 - 3</th>
+      <th id="T_9c0e4_level0_col1" class="col_heading level0 col1" >4 - 2</th>
+      <th id="T_9c0e4_level0_col2" class="col_heading level0 col2" >5 - 1</th>
+      <th id="T_9c0e4_level0_col3" class="col_heading level0 col3" >6 - 0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_9c0e4_level0_row0" class="row_heading level0 row0" >4 - 4</th>
+      <td id="T_9c0e4_row0_col0" class="data row0 col0" >1</td>
+      <td id="T_9c0e4_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_9c0e4_row0_col2" class="data row0 col2" >0</td>
+      <td id="T_9c0e4_row0_col3" class="data row0 col3" >0</td>
+    </tr>
+    <tr>
+      <th id="T_9c0e4_level0_row1" class="row_heading level0 row1" >5 - 3</th>
+      <td id="T_9c0e4_row1_col0" class="data row1 col0" >1</td>
+      <td id="T_9c0e4_row1_col1" class="data row1 col1" >1/2</td>
+      <td id="T_9c0e4_row1_col2" class="data row1 col2" >1/2</td>
+      <td id="T_9c0e4_row1_col3" class="data row1 col3" >0</td>
+    </tr>
+    <tr>
+      <th id="T_9c0e4_level0_row2" class="row_heading level0 row2" >6 - 2</th>
+      <td id="T_9c0e4_row2_col0" class="data row2 col0" >0</td>
+      <td id="T_9c0e4_row2_col1" class="data row2 col1" >1/2</td>
+      <td id="T_9c0e4_row2_col2" class="data row2 col2" >1/2</td>
+      <td id="T_9c0e4_row2_col3" class="data row2 col3" >1/2</td>
+    </tr>
+    <tr>
+      <th id="T_9c0e4_level0_row3" class="row_heading level0 row3" >7 - 1</th>
+      <td id="T_9c0e4_row3_col0" class="data row3 col0" >0</td>
+      <td id="T_9c0e4_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_9c0e4_row3_col2" class="data row3 col2" >1/2</td>
+      <td id="T_9c0e4_row3_col3" class="data row3 col3" >1/2</td>
+    </tr>
+    <tr>
+      <th id="T_9c0e4_level0_row4" class="row_heading level0 row4" >8 - 0</th>
+      <td id="T_9c0e4_row4_col0" class="data row4 col0" >0</td>
+      <td id="T_9c0e4_row4_col1" class="data row4 col1" >0</td>
+      <td id="T_9c0e4_row4_col2" class="data row4 col2" >0</td>
+      <td id="T_9c0e4_row4_col3" class="data row4 col3" >1/2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<section id="example-1-reducing-by-doominance">
+<h3>Example 1: Reducing by Doominance<a class="headerlink" href="#example-1-reducing-by-doominance" title="Link to this heading">#</a></h3>
+<p>Notice that Police <strong>6 - 2</strong> dominates <strong>7 - 1</strong> and <strong>8 - 0</strong>. After these two rows are deleted, then Guerrillas <strong>6 - 0</strong> dominates <strong>5 - 1</strong> and <strong>4 - 2</strong>. This leaves:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\textbf{Rose}\\\textbf{Colin}&amp; \begin{array}{r|cccc} &amp; A &amp; B &amp; C &amp; D \\ \hline A &amp; 2 &amp; 6 &amp; 1 &amp; 4 \\ B &amp; 5 &amp; 0 &amp; 7 &amp; 3\end{array} \end{array}\end{split}\]</div>
-</div>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-<span class="sd-summary-text">Solution</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">Coming soon …</p>
-</div>
-</details><div class="admonition-exercise-2 admonition">
-<p class="admonition-title">Exercise 2</p>
-<p>Solve the game using the graphing method backstopped by oddments.</p>
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|cc} &amp; \textbf{3 - 3} &amp; \textbf{6 - 0}\\ \hline \textbf{4 - 4} &amp; 1 &amp; 0 \\ \textbf{5 - 3} &amp; 1 &amp; 0 \\ \textbf{6 - 2} &amp; 0 &amp; \frac{1}{2} \end{array} \end{array}\end{split}\]</div>
+<p>With Police <strong>4 - 4</strong> and <strong>5 - 3</strong> equally effective, we can choose either one to retain while deleting the other, so we have the following:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\textbf{Rose}\\\textbf{Colin}&amp; \begin{array}{r|cc} &amp; A &amp; B\\ \hline A &amp; 1 &amp; 8 \\ B &amp; 3 &amp; 2 \\ C &amp; 7 &amp; 0 \\ D &amp; 4 &amp; 5 \end{array} \end{array}\end{split}\]</div>
-</div>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-<span class="sd-summary-text">Solution</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">Coming soon …</p>
-</div>
-</details><div class="admonition-exercise-3 admonition">
-<p class="admonition-title">Exercise 3</p>
-<p>Solve the game using the graphing method backstopped by oddments.</p>
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|cc} &amp; \textbf{3 - 3} &amp; \textbf{6 - 0}\\ \hline \textbf{4 - 4} &amp; 1 &amp; 0 \\ \textbf{6 - 2} &amp; 0 &amp; \frac{1}{2} \end{array} \end{array}\end{split}\]</div>
+<p>The solution by oddments: both players oddments will be <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>, so the players optimal strategy sets (including all original strategies) will be as follows:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\textbf{Rose}\\\textbf{Colin}&amp; \begin{array}{r|ccccc} &amp; A &amp; B &amp; C &amp; D &amp; E\\ \hline A &amp; 10 &amp; 2 &amp; 5 &amp; 8 &amp; 3 \\ B &amp;
-1 &amp; 9 &amp; 6 &amp; 2 &amp; 7 \end{array} \end{array}\end{split}\]</div>
+\[\begin{split}\begin{align}\vec r &amp;= \left[\frac{1}{3},0,0,\frac{2}{3}\right]\\
+\vec c &amp;= \left[\frac{1}{3},0,\frac{2}{3},0,0\right]\\v &amp;=\frac{1}{3}\end{align}\end{split}\]</div>
+</section>
+</section>
+<section id="example-2-10p-vs-8g">
+<h2>Example 2: 10P vs. 8G<a class="headerlink" href="#example-2-10p-vs-8g" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">game_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">G</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+      <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerrillas&lt;/b&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
 </div>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-<span class="sd-summary-text">Solution</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">Coming soon …</p>
 </div>
-</details><div class="admonition-exercise-4 admonition">
-<p class="admonition-title">Exercise 4</p>
-<p>Solve the game using the graphing method backstopped by oddments.</p>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_a63ff">
+  <caption><b>10 Police vs. 8 Guerrillas</b></caption>
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_a63ff_level0_col0" class="col_heading level0 col0" >4 - 4</th>
+      <th id="T_a63ff_level0_col1" class="col_heading level0 col1" >5 - 3</th>
+      <th id="T_a63ff_level0_col2" class="col_heading level0 col2" >6 - 2</th>
+      <th id="T_a63ff_level0_col3" class="col_heading level0 col3" >7 - 1</th>
+      <th id="T_a63ff_level0_col4" class="col_heading level0 col4" >8 - 0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_a63ff_level0_row0" class="row_heading level0 row0" >5 - 5</th>
+      <td id="T_a63ff_row0_col0" class="data row0 col0" >1</td>
+      <td id="T_a63ff_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_a63ff_row0_col2" class="data row0 col2" >0</td>
+      <td id="T_a63ff_row0_col3" class="data row0 col3" >0</td>
+      <td id="T_a63ff_row0_col4" class="data row0 col4" >0</td>
+    </tr>
+    <tr>
+      <th id="T_a63ff_level0_row1" class="row_heading level0 row1" >6 - 4</th>
+      <td id="T_a63ff_row1_col0" class="data row1 col0" >1</td>
+      <td id="T_a63ff_row1_col1" class="data row1 col1" >1/2</td>
+      <td id="T_a63ff_row1_col2" class="data row1 col2" >1/2</td>
+      <td id="T_a63ff_row1_col3" class="data row1 col3" >0</td>
+      <td id="T_a63ff_row1_col4" class="data row1 col4" >0</td>
+    </tr>
+    <tr>
+      <th id="T_a63ff_level0_row2" class="row_heading level0 row2" >7 - 3</th>
+      <td id="T_a63ff_row2_col0" class="data row2 col0" >0</td>
+      <td id="T_a63ff_row2_col1" class="data row2 col1" >1/2</td>
+      <td id="T_a63ff_row2_col2" class="data row2 col2" >1/2</td>
+      <td id="T_a63ff_row2_col3" class="data row2 col3" >1/2</td>
+      <td id="T_a63ff_row2_col4" class="data row2 col4" >0</td>
+    </tr>
+    <tr>
+      <th id="T_a63ff_level0_row3" class="row_heading level0 row3" >8 - 2</th>
+      <td id="T_a63ff_row3_col0" class="data row3 col0" >0</td>
+      <td id="T_a63ff_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_a63ff_row3_col2" class="data row3 col2" >1/2</td>
+      <td id="T_a63ff_row3_col3" class="data row3 col3" >1/2</td>
+      <td id="T_a63ff_row3_col4" class="data row3 col4" >1/2</td>
+    </tr>
+    <tr>
+      <th id="T_a63ff_level0_row4" class="row_heading level0 row4" >9 - 1</th>
+      <td id="T_a63ff_row4_col0" class="data row4 col0" >0</td>
+      <td id="T_a63ff_row4_col1" class="data row4 col1" >0</td>
+      <td id="T_a63ff_row4_col2" class="data row4 col2" >0</td>
+      <td id="T_a63ff_row4_col3" class="data row4 col3" >1/2</td>
+      <td id="T_a63ff_row4_col4" class="data row4 col4" >1/2</td>
+    </tr>
+    <tr>
+      <th id="T_a63ff_level0_row5" class="row_heading level0 row5" >10 - 0</th>
+      <td id="T_a63ff_row5_col0" class="data row5 col0" >0</td>
+      <td id="T_a63ff_row5_col1" class="data row5 col1" >0</td>
+      <td id="T_a63ff_row5_col2" class="data row5 col2" >0</td>
+      <td id="T_a63ff_row5_col3" class="data row5 col3" >1/2</td>
+      <td id="T_a63ff_row5_col4" class="data row5 col4" >1/2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<section id="example-2-reduction-by-dominance">
+<h3>Example 2: Reduction by Dominance<a class="headerlink" href="#example-2-reduction-by-dominance" title="Link to this heading">#</a></h3>
+<p>After seeing that Police <strong>8 - 2</strong> dominates <strong>9 - 1</strong> and <strong>10 - 0</strong>, and then that Guerrillas <strong>8 - 0</strong> dominates <strong>7 - 1</strong> and <strong>6 - 2</strong>, we are left with the follwing:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\textbf{Rose}\\\textbf{Colin}&amp; \begin{array}{r|rr} &amp; A &amp; B\\ \hline A &amp; -2 &amp; 4 \\ B &amp; 3 &amp; -1 \\ C &amp; 0 &amp; 2 \end{array} \end{array}\end{split}\]</div>
-</div>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-<span class="sd-summary-text">Solution</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">Coming soon …</p>
-</div>
-</details><div class="admonition-exercise-5 admonition">
-<p class="admonition-title">Exercise 5</p>
-<p>Solve the game using the graphing method backstopped by oddments.</p>
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|ccc} &amp; \textbf{4 - 4} &amp; \textbf{5 - 3} &amp; \textbf{8 - 0}\\ \hline \textbf{5 - 5} &amp; 1 &amp; 1 &amp; 0\\ \textbf{6 - 4} &amp; 1 &amp; \frac{1}{2} &amp; 0 \\ \textbf{7 - 3} &amp; 0 &amp; \frac{1}{2} &amp; 0\\ \textbf{8 - 2} &amp; 0 &amp; 0 &amp; \frac{1}{2}\end{array} \end{array}\end{split}\]</div>
+<p>Police <strong>5 - 5</strong> dominates <strong>6 - 4</strong> and <strong>7 - 3</strong> which gives the following:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\textbf{Rose}\\\textbf{Colin}&amp; \begin{array}{r|cccc} &amp; A &amp; B &amp; C\\ \hline A &amp; 4 &amp; 1 &amp; 8 \\ B &amp; 2 &amp; 5 &amp; 0\end{array} \end{array}\end{split}\]</div>
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|ccc} &amp; \textbf{4 - 4} &amp; \textbf{5 - 3} &amp; \textbf{8 - 0}\\ \hline \textbf{5 - 5} &amp; 1 &amp; 1 &amp; 0\\ \textbf{8 - 2} &amp; 0 &amp; 0 &amp; \frac{1}{2}\end{array} \end{array}\end{split}\]</div>
+<p>The Guerrillas now have <span class="math notranslate nohighlight">\(2\)</span> identical strategies and therefore we have the following:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|cc} &amp; \textbf{4 - 4} &amp; \textbf{8 - 0}\\ \hline \textbf{5 - 5} &amp; 1 &amp; 0\\ \textbf{8 - 2} &amp; 0 &amp; \frac{1}{2}\end{array} \end{array}\end{split}\]</div>
+</section>
+<section id="solution">
+<h3>Solution<a class="headerlink" href="#solution" title="Link to this heading">#</a></h3>
+<p>As we have seen before, the oddments are <span class="math notranslate nohighlight">\(\frac{1}{3}\)</span> and <span class="math notranslate nohighlight">\(\frac{2}{3}\)</span> for both players while the value is <span class="math notranslate nohighlight">\(\frac{1}{3}\)</span>.</p>
+</section>
+</section>
+<section id="example-3-11p-vs-9g">
+<h2>Example 3: 11P vs. 9G<a class="headerlink" href="#example-3-11p-vs-9g" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">game_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">G</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+      <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerrillas&lt;/b&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
 </div>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-<span class="sd-summary-text">Solution</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">Coming soon …</p>
 </div>
-</details></section>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_5bc53">
+  <caption><b>11 Police vs. 9 Guerrillas</b></caption>
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_5bc53_level0_col0" class="col_heading level0 col0" >5 - 4</th>
+      <th id="T_5bc53_level0_col1" class="col_heading level0 col1" >6 - 3</th>
+      <th id="T_5bc53_level0_col2" class="col_heading level0 col2" >7 - 2</th>
+      <th id="T_5bc53_level0_col3" class="col_heading level0 col3" >8 - 1</th>
+      <th id="T_5bc53_level0_col4" class="col_heading level0 col4" >9 - 0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_5bc53_level0_row0" class="row_heading level0 row0" >6 - 5</th>
+      <td id="T_5bc53_row0_col0" class="data row0 col0" >1</td>
+      <td id="T_5bc53_row0_col1" class="data row0 col1" >1/2</td>
+      <td id="T_5bc53_row0_col2" class="data row0 col2" >0</td>
+      <td id="T_5bc53_row0_col3" class="data row0 col3" >0</td>
+      <td id="T_5bc53_row0_col4" class="data row0 col4" >0</td>
+    </tr>
+    <tr>
+      <th id="T_5bc53_level0_row1" class="row_heading level0 row1" >7 - 4</th>
+      <td id="T_5bc53_row1_col0" class="data row1 col0" >1/2</td>
+      <td id="T_5bc53_row1_col1" class="data row1 col1" >1/2</td>
+      <td id="T_5bc53_row1_col2" class="data row1 col2" >1/2</td>
+      <td id="T_5bc53_row1_col3" class="data row1 col3" >0</td>
+      <td id="T_5bc53_row1_col4" class="data row1 col4" >0</td>
+    </tr>
+    <tr>
+      <th id="T_5bc53_level0_row2" class="row_heading level0 row2" >8 - 3</th>
+      <td id="T_5bc53_row2_col0" class="data row2 col0" >0</td>
+      <td id="T_5bc53_row2_col1" class="data row2 col1" >1/2</td>
+      <td id="T_5bc53_row2_col2" class="data row2 col2" >1/2</td>
+      <td id="T_5bc53_row2_col3" class="data row2 col3" >1/2</td>
+      <td id="T_5bc53_row2_col4" class="data row2 col4" >0</td>
+    </tr>
+    <tr>
+      <th id="T_5bc53_level0_row3" class="row_heading level0 row3" >9 - 2</th>
+      <td id="T_5bc53_row3_col0" class="data row3 col0" >0</td>
+      <td id="T_5bc53_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_5bc53_row3_col2" class="data row3 col2" >1/2</td>
+      <td id="T_5bc53_row3_col3" class="data row3 col3" >1/2</td>
+      <td id="T_5bc53_row3_col4" class="data row3 col4" >1/2</td>
+    </tr>
+    <tr>
+      <th id="T_5bc53_level0_row4" class="row_heading level0 row4" >10 - 1</th>
+      <td id="T_5bc53_row4_col0" class="data row4 col0" >0</td>
+      <td id="T_5bc53_row4_col1" class="data row4 col1" >0</td>
+      <td id="T_5bc53_row4_col2" class="data row4 col2" >0</td>
+      <td id="T_5bc53_row4_col3" class="data row4 col3" >1/2</td>
+      <td id="T_5bc53_row4_col4" class="data row4 col4" >1/2</td>
+    </tr>
+    <tr>
+      <th id="T_5bc53_level0_row5" class="row_heading level0 row5" >11 - 0</th>
+      <td id="T_5bc53_row5_col0" class="data row5 col0" >0</td>
+      <td id="T_5bc53_row5_col1" class="data row5 col1" >0</td>
+      <td id="T_5bc53_row5_col2" class="data row5 col2" >0</td>
+      <td id="T_5bc53_row5_col3" class="data row5 col3" >1/2</td>
+      <td id="T_5bc53_row5_col4" class="data row5 col4" >1/2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>The solution to 11P vs. 9G is quite similar to the work shown above.</p>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -531,15 +833,15 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Graphical Method: <span class="math notranslate nohighlight">\(n\times 2\)</span></p>
+        <p class="prev-next-title">Simulating P vs. G</p>
       </div>
     </a>
     <a class="right-next"
-       href="Z8.html"
+       href="N0.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Police versus Guerillas</p>
+        <p class="prev-next-title">Non-zero-sum Games</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -549,6 +851,31 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-that-create-the-game-matrix">Functions that Create the Game Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-8p-vs-6g">Example 1: 8P vs. 6G</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-reducing-by-doominance">Example 1: Reducing by Doominance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-10p-vs-8g">Example 2: 10P vs. 8G</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-reduction-by-dominance">Example 2: Reduction by Dominance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-11p-vs-9g">Example 3: 11P vs. 9G</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Oddments &#8212; Game Theory</title>
+    <title>Graphical Method &#8212; Game Theory</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Z6';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Exercises" href="Z6e.html" />
-    <link rel="prev" title="Exercises" href="Z5e.html" />
+    <link rel="next" title="Graphical Method: \(n\times 2\)" href="Z6a.html" />
+    <link rel="prev" title="More Exercises" href="Z5e.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -194,20 +194,19 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="Z5.html">Expectation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="Z5a.html">Expected Value</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Z5b.html">Equalized Expectations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Z5e.html">Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z5c.html">Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z5d.html">Oddments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z5e.html">More Exercises</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Oddments</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Z6e.html">Exercises</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Graphical Method</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Z6a.html">Graphical Method: <span class="math notranslate nohighlight">\(n\times 2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z6b.html">Exercises</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="Z7.html">Graphical Method</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Z7a.html">Graphical Method: <span class="math notranslate nohighlight">\(n\times 2\)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="Z7b.html">Exercises</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="Z8.html">Police versus Guerillas</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Z8a.html">Simulating P vs. G</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z7a.html">Simulating P vs. G</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z7b.html">Solving Police vs. Guerrillas</a></li>
 </ul>
 </details></li>
 </ul>
@@ -397,7 +396,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Oddments</h1>
+    <h1>Graphical Method</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -407,9 +406,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problem-1">Practice Problem 1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problem-2">Practice Problem 2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problem-3">Practice Problem 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blackhawk-down">Blackhawk Down</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-payoff-matrix">The Payoff Matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-graphics-mean">What the Graphics Mean</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-strategy">Optimal Strategy</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#equations-of-the-lines">Equations of the Lines</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#game-value">Game Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-strategy-set-for-the-other-player">Optimal Strategy Set for the Other Player</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-solution">Overall Solution</a></li>
 </ul>
             </nav>
         </div>
@@ -421,229 +432,169 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="oddments">
-<h1>Oddments<a class="headerlink" href="#oddments" title="Link to this heading">#</a></h1>
-<aside class="sidebar">
-<p class="sidebar-title">Discovering Game Theory</p>
-<p>This course uses an <strong>online textbook</strong>: <a class="reference external" href="https://nordstrommath.com/IntroGameTheory2e/intro_game_theory.html">Game Theory, a Discovery Approach</a>, by Jennifer Nordstrom.</p>
-</aside>
-<p>A very efficient method for solving <span class="math notranslate nohighlight">\(2\times 2\)</span> matrix games with mixed strategy solutions (MSS) is using the technique of <span style="color:blue"><strong>oddments</strong></span>. We calculate oddments by taking the absolute value differences across the rows and down the colums. From the oddments, we can calculate the proportions needed for <span class="math notranslate nohighlight">\(\vec r\)</span> and <span class="math notranslate nohighlight">\(\vec c\)</span> and then determine the overall game <strong>value</strong>.</p>
-<div class="admonition-teaching-example admonition">
-<p class="admonition-title">Teaching Example</p>
-<p>Given the example game below, first verify that no domination exists for either player. Then, solve for Rose’s and Colin’s <strong>optimal strategy mixture (OSM)</strong>.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|rr}&amp;A&amp;B&amp;\\ \hline A&amp;7&amp;2\\B&amp;-1&amp;6
-\end{array}\end{array}\end{split}\]</div>
-</div>
-<p>To begin, we calculate the row oddments which are the absolute value difference of the entries in the row.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{ll}&amp;\hspace{9mm}\text{Colin}\\\text{Rose}&amp;\begin{array}{r|ccccccc}&amp;A&amp;B&amp;&amp;\text{Row Diffs}&amp;\text{Oddments}\\\hline A&amp;7&amp;2&amp;&amp;|7-2|&amp;5&amp;\\B&amp;-1&amp;6&amp;&amp;|-1-6|&amp;7
-\end{array}\end{array}\end{split}\]</div>
-<p>Next, we calculate the column oddments in a similar way.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{ll}&amp;\hspace{9mm}\text{Colin}\\\text{Rose}&amp;\begin{array}{r|ccccccc}&amp;A&amp;B&amp;&amp;\text{Row Diffs}&amp;\text{Oddments}\\\hline A&amp;7&amp;2&amp;&amp;|7-2|&amp;5&amp;\\B&amp;-1&amp;6&amp;&amp;|-1-6|&amp;7\\\text{Column Diffs}&amp;|7-(-1)|&amp;|2-6|\\&amp;8&amp;4
-\end{array}\end{array}\end{split}\]</div>
-<p>Creating the <span style="color:blue"><strong>optimal strategy proportions (OSP)</strong></span> works as follows:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="graphical-method">
+<h1>Graphical Method<a class="headerlink" href="#graphical-method" title="Link to this heading">#</a></h1>
+<p>Two special cases of zero-sum matrix games can be handled using a visual display:</p>
 <ul class="simple">
-<li><p>OSP for Rose A is equal to $<span class="math notranslate nohighlight">\(\frac{\text{Row B Oddment}}{\text{Sum of Oddments}}\)</span>$</p></li>
-<li><p>OSP for Rose B is equal to $<span class="math notranslate nohighlight">\(\frac{\text{Row A Oddment}}{\text{Sum of Oddments}}\)</span>$</p></li>
+<li><p><span class="math notranslate nohighlight">\(n \times 2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(2\times n\)</span></p></li>
 </ul>
-<p>Notice that the numerators <strong>swap position</strong> compared to the oddments as demonstrated with arrows below.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{ll}&amp;\hspace{9mm}\text{Colin}\\\text{Rose}&amp;\begin{array}{r|ccccccc}&amp;A&amp;B&amp;&amp;\text{Row Diffs}&amp;\text{Oddments}&amp;&amp;\text{Rose OSP}\\\hline A&amp;7&amp;2&amp;&amp;|7-2|&amp;5&amp;\searrow&amp;\frac{7}{12}\\B&amp;-1&amp;6&amp;&amp;|-1-6|&amp;7&amp;\nearrow&amp;\frac{5}{12}\\\text{Column Diffs}&amp;|7-(-1)|&amp;|2-6|&amp;&amp;\\\text{Oddments}&amp;8&amp;4&amp;&amp;&amp;\end{array}\end{array}\end{split}\]</div>
-<p>Colin’s OSP are calculated in an analagous way as shown below.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{ll}&amp;\hspace{9mm}\text{Colin}\\\text{Rose}&amp;\begin{array}{r|ccccccc}&amp;A&amp;B&amp;&amp;\text{Row Diffs}&amp;\text{Oddments}&amp;&amp;\text{Rose OSP}\\\hline A&amp;7&amp;2&amp;&amp;|7-2|&amp;5&amp;\searrow&amp;\frac{7}{12}\\B&amp;-1&amp;6&amp;&amp;|-1-6|&amp;7&amp;\nearrow&amp;\frac{5}{12}\\\text{Column Diffs}&amp;|7-(-1)|&amp;|2-6|&amp;&amp;\\\text{Oddments}&amp;8&amp;4&amp;&amp;&amp;\\&amp;\searrow&amp;\swarrow\\ \text{Colin OSP}&amp;\frac{4}{12}&amp;\frac{8}{12}
-\end{array}\end{array}\end{split}\]</div>
-<p>Thus, we have from the OSP the following <strong>optimal strategy sets</strong> for Rose and Colin.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\vec r = \left[\begin{array}{rr} \frac{7}{12}\\ \frac{5}{12}\end{array}\right]\hspace{5mm}\text{and}\hspace{5mm}\vec c = \left[\begin{array}{rr}\frac{1}{3}\\ \frac{2}{3}\end{array}\right]\end{split}\]</div>
-<p>We find the game value by determining Rose’s (or Colin’s) expected value given the opponent plays her or his optimal strategy proprotions:</p>
-<div class="math notranslate nohighlight">
-\[E(\text{Rose }A) = (7) \frac{1}{3} + (2) \frac{2}{3} =\frac{11}{3}\]</div>
-<p>If we insert the game solver code, we can evaluate our solution to verify it. Remember that we enter the matrix game values as</p>
-<p><code class="docutils literal notranslate"><span class="pre">example_game</span> <span class="pre">=</span> <span class="pre">np.array([[7,2],[-1,6]])</span></code></p>
-<p>We first must initialize python:</p>
-<div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
-<summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
-</summary>
+<p>We will employ the <span style='color:blue'><b>graphical method</span></b> to solve these two cases.</p>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Do not change this cell, only execute it. </span>
-<span class="c1">## This cell initializes Python so that numpy and scipy packages are ready to use.</span>
+<span class="c1">## This cell initializes Python so that pandas, numpy and scipy packages are ready to use.</span>
 
+<span class="kn">import</span><span class="w"> </span><span class="nn">datascience</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plots</span>
 <span class="n">plots</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">linprog</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">stats</span>
 </pre></div>
 </div>
 </div>
-</details>
-</div>
-<p>Next, the game solver code:</p>
-<div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
-<summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">solver</span><span class="p">(</span><span class="n">payoff_matrix</span><span class="p">):</span>
-    <span class="n">payoff_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">payoff_matrix</span><span class="p">)</span>
-    <span class="n">row_counts</span><span class="p">,</span> <span class="n">col_counts</span> <span class="o">=</span> <span class="n">payoff_matrix</span><span class="o">.</span><span class="n">shape</span>
-<span class="c1"># 1. Shift matrix to ensure all values are positive</span>
-<span class="c1"># This ensures the game value V &gt; 0</span>
-    <span class="n">shift</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">payoff_matrix</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">A_shifted</span> <span class="o">=</span> <span class="n">payoff_matrix</span> <span class="o">+</span> <span class="n">shift</span>
-<span class="c1"># 2. Solve for Row Player (Maximizer)</span>
-<span class="c1"># We minimize 1/V = sum(p_i/V). Let x_i = p_i/V</span>
-<span class="c1"># Objective: min (1 * x1 + 1 * x2 + ...)</span>
-    <span class="n">c_row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">row_counts</span><span class="p">)</span>
-<span class="c1"># Constraints: A_shifted.T * x &gt;= 1  =&gt;  -A_shifted.T * x &lt;= -1</span>
-    <span class="n">A_ub_row</span> <span class="o">=</span> <span class="o">-</span><span class="n">A_shifted</span><span class="o">.</span><span class="n">T</span>
-    <span class="n">b_ub_row</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">col_counts</span><span class="p">)</span>
-    <span class="n">res_row</span> <span class="o">=</span> <span class="n">linprog</span><span class="p">(</span><span class="n">c_row</span><span class="p">,</span> <span class="n">A_ub</span><span class="o">=</span><span class="n">A_ub_row</span><span class="p">,</span> <span class="n">b_ub</span><span class="o">=</span><span class="n">b_ub_row</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;highs&#39;</span><span class="p">)</span>
-<span class="c1"># Game Value V = 1 / sum(x_i)</span>
-    <span class="n">v_shifted</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">res_row</span><span class="o">.</span><span class="n">fun</span>
-    <span class="n">row_strategy</span> <span class="o">=</span> <span class="n">res_row</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">v_shifted</span>
-<span class="c1"># 3. Solve for Column Player (Minimizer) using the Dual</span>
-<span class="c1"># Objective: max (1 * y1 + 1 * y2 + ...) =&gt; min (-1 * y1 - 1 * y2)</span>
-    <span class="n">c_col</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">col_counts</span><span class="p">)</span>
-<span class="c1"># Constraints: A_shifted * y &lt;= 1</span>
-    <span class="n">A_ub_col</span> <span class="o">=</span> <span class="n">A_shifted</span>
-    <span class="n">b_ub_col</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">row_counts</span><span class="p">)</span>
-    <span class="n">res_col</span> <span class="o">=</span> <span class="n">linprog</span><span class="p">(</span><span class="n">c_col</span><span class="p">,</span> <span class="n">A_ub</span><span class="o">=</span><span class="n">A_ub_col</span><span class="p">,</span> <span class="n">b_ub</span><span class="o">=</span><span class="n">b_ub_col</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;highs&#39;</span><span class="p">)</span>
-    <span class="n">col_strategy</span> <span class="o">=</span> <span class="n">res_col</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">res_col</span><span class="o">.</span><span class="n">fun</span><span class="p">))</span>
-<span class="c1"># Final Game Value</span>
-    <span class="n">game_value</span> <span class="o">=</span> <span class="n">v_shifted</span> <span class="o">-</span> <span class="n">shift</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Game Value: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">game_value</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rose Strategy: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">row_strategy</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Colin Strategy: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">col_strategy</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="kc">None</span>
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-<div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
-<summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_game</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
-
-<span class="n">solver</span><span class="p">(</span><span class="n">example_game</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Game Value: 3.667
-Rose Strategy: [0.583, 0.417]
-Colin Strategy: [0.333, 0.667]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\robbs\anaconda3\envs\GameTheory\Lib\site-packages\datascience\maps.py:13: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
+  import pkg_resources
 </pre></div>
 </div>
 </div>
 </div>
-<p>Hence, we have verified that our oddments solution above was indeed correct.</p>
-<div class="admonition-additional-practice admonition">
-<p class="admonition-title">Additional Practice</p>
-<p>Let’s now provide some game examples so that we can practice how to compute matrix game solutions using oddments.</p>
-</div>
-<section id="practice-problem-1">
-<h2>Practice Problem 1<a class="headerlink" href="#practice-problem-1" title="Link to this heading">#</a></h2>
+<section id="blackhawk-down">
+<h2>Blackhawk Down<a class="headerlink" href="#blackhawk-down" title="Link to this heading">#</a></h2>
+<p>The <strong>primary example</strong> in this section relates to the backstory to the Blackhawk Down <a class="reference external" href="https://en.wikipedia.org/wiki/Battle_of_Mogadishu_(1993)">movie plot</a> was a <strong>logistics standoff</strong> between international relief organizations trying to help prevent starvation due to a famine and warlords who were diverting the aid. If the warlords seized control of some of the donated supplies, they could profit by selling the supplies to the civilians who needed them. The situation oocurs often, sadly, and forms the basis for our game in this lesson.</p>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<p>Imagine a <span style="color: blue;"><b>logistics coordinator</b></span> for a relief agency and a <span style="color: red;"><b>Local Warlord</b></span> in a fictional region. The Coordinator must choose one of two routes to deliver supplies, while the Warlord can choose from three different locations to set up a checkpoint to tax or seize the goods. This is a zero-sum game: any supplies seized by the Warlord are a direct loss to the Coordinator.</p>
+<section id="the-payoff-matrix">
+<h4>The Payoff Matrix<a class="headerlink" href="#the-payoff-matrix" title="Link to this heading">#</a></h4>
+<p>The outcomes in the game matrix represent the Coordinator’s gains. The <span style="color: blue;"><b>Coordinator (Row Player)</span></b> has two strategies: Route A and Route B. The <span style="color: red;"><b>Warlord (Column Player)</span></b> has three strategies: Checkpoint 1, 2, or 3. The payoffs to the players represent the percentage of the total supplies that reach their destination successfully.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|rr}&amp;A&amp;B&amp;\\ \hline A&amp;1&amp;3\\B&amp;11&amp;-1
-\end{array}\end{array}\end{split}\]</div>
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Warlord}\\\textbf{Coordinator}&amp; \begin{array}{r|cc} &amp; 1 &amp; 2 &amp; 3\\\hline A &amp; 80 &amp; 20 &amp; 50 \\ B &amp; 10 &amp; 90 &amp; 40 \end{array} \end{array}\end{split}\]</div>
+<p>With no dominance available to simplify the game, we <span style="color: darkblue;"><b>graph the <span class="math notranslate nohighlight">\(3\)</span> column strategies</span></b> to determine what the Row Player should do. Using the method of graphing a line through 2 points, we display three lines representing the outcomes of all three column strategies. Recall:</p>
+<ul class="simple">
+<li><p>The row player is <strong>maximizing</strong>, and</p></li>
+<li><p>The column player in <strong>minimizing</strong>.</p></li>
+</ul>
+<p>The <span style='color:red'><b>key point in the graph below</span></b> is that the <span style='color:blue;'><b>coordinator</span></b> will play along the upper envelope in an attempt to <span style='color:red;'><b>maximize</span></b> the outcomes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do your work in this cell:</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">11</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">);</span> <span class="n">plots</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;x = 1&#39;</span><span class="p">)</span>
+<span class="n">points1</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points1</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Checkpoint 1&#39;</span><span class="p">)</span>
 
-<span class="n">solver</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+<span class="n">points2</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points2</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Checkpoint 2&#39;</span><span class="p">)</span>
+
+<span class="n">points3</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points3</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Checkpoint 3&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add labels and title</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Coordinator&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Warlord&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Plotting the 3 Column Strategies&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add a grid, add legend, and place legend below figure.</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">),</span><span class="n">framealpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Game Value: 2.429
-Rose Strategy: [0.857, 0.143]
-Colin Strategy: [0.286, 0.714]
-</pre></div>
-</div>
+<img alt="_images/c0590e173bc310cdcc612c3ddafb1394d158089a0d2f078337c93b131aeed82c.png" src="_images/c0590e173bc310cdcc612c3ddafb1394d158089a0d2f078337c93b131aeed82c.png" />
 </div>
 </div>
 </section>
-<section id="practice-problem-2">
-<h2>Practice Problem 2<a class="headerlink" href="#practice-problem-2" title="Link to this heading">#</a></h2>
+<section id="what-the-graphics-mean">
+<h4>What the Graphics Mean<a class="headerlink" href="#what-the-graphics-mean" title="Link to this heading">#</a></h4>
+<p>Consider that the row player is choosing the value of <span class="math notranslate nohighlight">\(x\)</span> which is the proportion of times, in repeated play, that he or she will choose Route A. Thus, the <span style="color:blue"><b>coordinator (row player)</span></b> will play the optimal strategy set:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x\)</span> : proportion of times choosing A</p></li>
+<li><p><span class="math notranslate nohighlight">\(1-x\)</span> : proportion of times choosing B</p></li>
+</ul>
+<p>We have two vertical lines in the graphic above:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x=0\)</span> : where coordinator chooses to play <span class="math notranslate nohighlight">\(100\%\)</span> A</p></li>
+<li><p><span class="math notranslate nohighlight">\(x=1\)</span> : where coordinator choose to play <span class="math notranslate nohighlight">\(100\%\)</span> B</p></li>
+</ul>
+<p>For the column player, the <span class="math notranslate nohighlight">\(y\)</span>-intercept is the outcome in Row A, while the value at <span class="math notranslate nohighlight">\(x=1\)</span> is the outcome in Row B. Hence, the column player who hopes to minimize which will  happen if he or she can <span style="color:darkblue"><b>play along the lower envelope</span></b> of the graphed lines above.</p>
+</section>
+</section>
+<section id="optimal-strategy">
+<h3>Optimal Strategy<a class="headerlink" href="#optimal-strategy" title="Link to this heading">#</a></h3>
+<p>The column player has more than two strategies and thus chooses to minimize – this means he or she will play along the lower envelope. The row player optimizes by finding maximize point on the lower envelope which is the intersection of the blue and green lines above. The <span class="math notranslate nohighlight">\(x\)</span>-coordinate of the intersection point is the optimal strategy mixture value for the row player to play strategy B, and the <span class="math notranslate nohighlight">\(y\)</span>-value is the game’s equilibrium value.</p>
+<section id="equations-of-the-lines">
+<h4>Equations of the Lines<a class="headerlink" href="#equations-of-the-lines" title="Link to this heading">#</a></h4>
+<p>The graph essentially shows the <span class="math notranslate nohighlight">\(y\)</span>-intercept with the <strong>slope</strong> easily calculated since the “change in x” (or denominator) is equal to <span class="math notranslate nohighlight">\(1\)</span>. The warlord (column player) will choose to play the red and green strategies.</p>
+<ul>
+<li><p><strong>Blue Line</strong></p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|rr}&amp;A&amp;B&amp;\\ \hline A&amp;0&amp;6\\B&amp;2&amp;0
-\end{array}\end{array}\end{split}\]</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do your work in this cell:</span>
-</pre></div>
+\[y_1 = 40 + 10x_1\]</div>
+</li>
+<li><p><strong>Green Line</strong></p>
+<div class="math notranslate nohighlight">
+\[y_2=90-70x_2\]</div>
+</li>
+</ul>
+<p>The slope of the blue line is <span class="math notranslate nohighlight">\(10\)</span> units, and its intercept is <span class="math notranslate nohighlight">\(40\)</span>. The slope of the green line is <span class="math notranslate nohighlight">\(-70\)</span> with an intercept of <span class="math notranslate nohighlight">\(90\)</span>. At the point of intersection, we know that <span class="math notranslate nohighlight">\((x_1,y_1) = (x_2, y_2)\)</span>. Setting the <span class="math notranslate nohighlight">\(y\)</span>-values and <span class="math notranslate nohighlight">\(y\)</span>-values equal, we can solve for <span class="math notranslate nohighlight">\(x\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}40 + 10x&amp;=90-70x\\80x&amp;=50\\
+x&amp;=\frac{50}{80}\\x&amp;=\frac{5}{8}\end{align}\end{split}\]</div>
+<p>This indicates that the coordinator’s (row player’s) optimal strategy set is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec r = \left[\begin{array}{r}\frac{5}{8}\\ \frac{4}{8}\end{array}\right]\end{split}\]</div>
+</section>
+</section>
+<section id="game-value">
+<h3>Game Value<a class="headerlink" href="#game-value" title="Link to this heading">#</a></h3>
+<p>The value of the game is the <span class="math notranslate nohighlight">\(y\)</span> coordinate of the intersection point which can be found by plugging <span class="math notranslate nohighlight">\(x=\frac{4}{7}\)</span> into either the red or green equation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}y&amp;=40 + 10\left(\frac{5}{8}\right)\\y&amp;=40+\left(\frac{50}{8}\right)\\y&amp;=\frac{370}{8}\\y&amp;=46.25\end{align}\end{split}\]</div>
+</section>
+<section id="optimal-strategy-set-for-the-other-player">
+<h3>Optimal Strategy Set for the Other Player<a class="headerlink" href="#optimal-strategy-set-for-the-other-player" title="Link to this heading">#</a></h3>
+<aside class="sidebar">
+<p>The key to solving a</br>
+<span class="math notranslate nohighlight">\(\hspace{5mm}2\times n\)</span> or</br>
+<span class="math notranslate nohighlight">\(\hspace{5mm}n \times 2\)</span> </br>
+matrix game is finding the correct <span class="math notranslate nohighlight">\(2\times 2\)</span> subgame to solve.</p>
+</aside>
+<p>The graphical method shows only player’s optimal strategy set. How do we find the other? We use</p>
+<center><span style='color:blue'><b>Oddments</b></span></center></br>
+<p>after identifying the correct <span class="math notranslate nohighlight">\(2\times 2\)</span> matrix subgame to solve. The graphical method not only provides us with this knowledge, we can solve for one player’s optimal strategy set and the game value. Thus, the graphical method also confirms that the answer at which we arrive using oddments is correct.</p>
+<div class="admonition-square-matrix-solution-principal admonition">
+<p class="admonition-title"><strong>Square Matrix Solution Principal</strong></p>
+<p>In an <span class="math notranslate nohighlight">\(m\times n\)</span> zero-sum matrix game, the solution will be a sqaure matrix subgame where both players have the same number of active strategies. For example, if the strategy is an MSS, the solution to a <span class="math notranslate nohighlight">\(3\times 4\)</span> matrix game will be either a <span class="math notranslate nohighlight">\(3\times 3\)</span> or a <span class="math notranslate nohighlight">\(2\times 2\)</span> matrix subgame.</p>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
-
-<span class="n">solver</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Game Value: 1.5
-Rose Strategy: [0.25, 0.75]
-Colin Strategy: [0.75, 0.25]
-</pre></div>
-</div>
-</div>
+<p>By the square matrix solution principal and a quick check of the graph above, we can see the correct subgame to solve is the following:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Warlord}\\\textbf{Coordinator}&amp; \begin{array}{r|cc} &amp; 1 &amp; 2\\\hline A &amp; 20 &amp; 50 \\ B &amp; 90 &amp; 40 \end{array} \end{array}\end{split}\]</div>
+<p>The <span style='color:red'><b>red</b></span> in the graph represented the Checkpoint 3 strategy which, while not dominated by either <span style='color:blue'><b>blue line</b></span> or <span style='color:green'><b>green</b></span>, still is forced on the column player by the row player’s choice to maximize along the lower envelope.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Reduction Issues</strong></p>
+<p>The above example shows a situation where the game reduces, but <span sytle ='color:red'><b>the game does not reduce by dominance</span></b>.</p>
 </div>
 </section>
-<section id="practice-problem-3">
-<h2>Practice Problem 3<a class="headerlink" href="#practice-problem-3" title="Link to this heading">#</a></h2>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\text{Colin}\\\text{Rose}&amp;\begin{array}{r|rr}&amp;A&amp;B&amp;\\ \hline A&amp;-3&amp;9\\B&amp;0&amp;-4
-\end{array}\end{array}\end{split}\]</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do your work in this cell:</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">]])</span>
-
-<span class="n">solver</span><span class="p">(</span><span class="n">p3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Game Value: -0.75
-Rose Strategy: [0.25, 0.75]
-Colin Strategy: [0.812, 0.188]
-</pre></div>
-</div>
-</div>
-</div>
 </section>
+<section id="overall-solution">
+<h2>Overall Solution<a class="headerlink" href="#overall-solution" title="Link to this heading">#</a></h2>
+<p>The row oddments are <span class="math notranslate nohighlight">\(30\)</span> and <span class="math notranslate nohighlight">\(50\)</span> which gives the optimal strategy set</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec r = \left[\begin{array}{r}\frac{5}{8}\\\frac{3}{8}\end{array}\right]\end{split}\]</div>
+<p>which, happily, aggrees with our work above. For the column player, the oddments are <span class="math notranslate nohighlight">\(70\)</span> and <span class="math notranslate nohighlight">\(10\)</span>. Hence, the warlord (column player) will play:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec c = \left[\begin{array}{r}\frac{1}{8}\\\frac{7}{8}\end{array}\right]\end{split}\]</div>
+<p>A quick glance at the original matrix knowing the warlord’s optimal strategies indicates the</p>
+<center><span style='color:red'><b>game value is $\frac{370}{8}$.</b></span></center></section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -684,15 +635,15 @@ Colin Strategy: [0.812, 0.188]
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Exercises</p>
+        <p class="prev-next-title">More Exercises</p>
       </div>
     </a>
     <a class="right-next"
-       href="Z6e.html"
+       href="Z6a.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Exercises</p>
+        <p class="prev-next-title">Graphical Method: <span class="math notranslate nohighlight">\(n\times 2\)</span></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -712,9 +663,21 @@ Colin Strategy: [0.812, 0.188]
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problem-1">Practice Problem 1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problem-2">Practice Problem 2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problem-3">Practice Problem 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blackhawk-down">Blackhawk Down</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-payoff-matrix">The Payoff Matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-graphics-mean">What the Graphics Mean</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-strategy">Optimal Strategy</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#equations-of-the-lines">Equations of the Lines</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#game-value">Game Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-strategy-set-for-the-other-player">Optimal Strategy Set for the Other Player</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-solution">Overall Solution</a></li>
 </ul>
   </nav></div>
 

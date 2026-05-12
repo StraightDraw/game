@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Graphical Method: \(n\times 2\) &#8212; Game Theory</title>
+    <title>Simulating P vs. G &#8212; Game Theory</title>
   
   
   
@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Z7a';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Exercises" href="Z7b.html" />
+    <link rel="next" title="Solving Police vs. Guerrillas" href="Z7b.html" />
     <link rel="prev" title="Graphical Method" href="Z7.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -194,21 +194,19 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="Z5.html">Expectation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="Z5a.html">Expected Value</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Z5b.html">Equalized Expectations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Z5e.html">Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z5c.html">Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z5d.html">Oddments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z5e.html">More Exercises</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="Z6.html">Oddments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Z6e.html">Exercises</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Z6.html">Graphical Method</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Z6a.html">Graphical Method: <span class="math notranslate nohighlight">\(n\times 2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z6b.html">Exercises</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="Z7.html">Graphical Method</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Graphical Method: <span class="math notranslate nohighlight">\(n\times 2\)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="Z7b.html">Exercises</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="Z8.html">Police versus Guerillas</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Z8a.html">Simulating P vs. G</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Z8b.html">Solving Police vs. Guerrillas</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Simulating P vs. G</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z7b.html">Solving Police vs. Guerrillas</a></li>
 </ul>
 </details></li>
 </ul>
@@ -398,7 +396,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Graphical Method: n\times 2</h1>
+    <h1>Simulating P vs. G</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -408,11 +406,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-missile-defense">Example: Missile Defense</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-with-graphing">Solution with Graphing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-game">Setting up the Game</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries-and-game-matrix-layout">Dictionaries and Game Matrix Layout</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Setting Up the Game</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#play-function">Play() Function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-matrix-5-police-vs-4-guerrillas">Game Matrix: 5 Police vs. 4 Guerrillas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-matrix-3-police-vs-2-guerrillas">Game Matrix: 3 Police vs. 2 Guerrillas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-matrix-7-police-vs-5-guerrillas">Game Matrix: 7 Police vs. 5 Guerrillas</a></li>
 </ul>
             </nav>
         </div>
@@ -424,19 +428,28 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="graphical-method-n-times-2">
-<h1>Graphical Method: <span class="math notranslate nohighlight">\(n\times 2\)</span><a class="headerlink" href="#graphical-method-n-times-2" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="simulating-p-vs-g">
+<h1>Simulating P vs. G<a class="headerlink" href="#simulating-p-vs-g" title="Link to this heading">#</a></h1>
 <aside class="sidebar">
 <p class="sidebar-title">Discovering Game Theory</p>
 <p>This course uses an <strong>online textbook</strong>: <a class="reference external" href="https://nordstrommath.com/IntroGameTheory2e/intro_game_theory.html">Game Theory, a Discovery Approach</a>, by Jennifer Nordstrom.</p>
 </aside>
-<p>When the column player has 2 strategies but the row player has <span class="math notranslate nohighlight">\(n&gt;2\)</span> strategies, the graphical method reverses due to the fact the <strong>column player is minimizing</strong>. This means the <span style='color:blue'><b>best strategic choice will lie along the lower envelope</b></span> of graph.</p>
-<div class="cell docutils container">
+<p>Following on from the previous section, we would like to be able to construct a way to simulate the <strong>Police vs. Guerrillas</strong> game. The functions below will create the correct game matrix and will calculate the winning percentages of the various strategies.</p>
+<p>Based upon the winning percentages, the simulation will choose from the strategies that have performed best in the past. Using an <strong>exponential moving average (ema)</strong>, the winning percentages will be updated after each round of simulation. The convergence to the correct strategy mixture for each player will be sped up as the <strong>ema</strong> will emphasize recent results over the older, less accurate results.</p>
+<p>The simulation functions are described further below. The next code block will initialize python and load the packages we need.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Do not change this cell, only execute it. </span>
 <span class="c1">## This cell initializes Python so that pandas, numpy and scipy packages are ready to use.</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">datascience</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plots</span>
 <span class="n">plots</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
@@ -448,129 +461,330 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\robbs\anaconda3\envs\GameTheory\Lib\site-packages\datascience\maps.py:13: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
-  import pkg_resources
-</pre></div>
+</details>
 </div>
-</div>
-</div>
-<section id="example-missile-defense">
-<h2>Example: Missile Defense<a class="headerlink" href="#example-missile-defense" title="Link to this heading">#</a></h2>
-<p>In a missile defense scenario, the <span style='color:blue'><b>Attacker (Row Player)</b></span> chooses from <span class="math notranslate nohighlight">\(\textbf{\textcolor{blue}{n}}\)</span> different warhead configurations, while the <span style='color:red'><b>Defender (Column Player)</b></span> chooses between <span class="math notranslate nohighlight">\(\textbf{\textcolor{red}{2}}\)</span> interceptor systems. In this model, the values in the matrix represent the probability of a missile successfully evading the interceptors.</p>
-<p>The game is zero-sum. Thus, the Attacker wishes to maximize this probability while the Defender wants to minimize it. The game matrix is shown below with whole number percentages of success are represented as single digits. For example, an <span class="math notranslate nohighlight">\(8\)</span> in the game matrix indicates an <span class="math notranslate nohighlight">\(80\%\)</span> success rate, and so on.</p>
+<section id="setting-up-the-game">
+<h2>Setting up the Game<a class="headerlink" href="#setting-up-the-game" title="Link to this heading">#</a></h2>
+<p>When playing Police vs. Guerrillas, we would like functions that create the correct game matrix given any values of</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\textbf{Defense}\\\textbf{Attack}&amp; \begin{array}{r|cc} &amp; \text{Kinetic} &amp; \text{Laser}\\\hline \text{Fast} &amp; 8 &amp; 2 \\ \text{Stealth} &amp; 4 &amp; 7 \\ \text{Decoy} &amp; 6 &amp; 5 \end{array} \end{array}\end{split}\]</div>
-<p>The attackers have three warhead types (Fast, Stealthy, Decoy-Heavy) against two interceptor systems (High-Altitude Kinetic vs. Low-Altitude Laser). The decoy-heavy attack uses a combination of real and fake warheads so that the interceptors chase kill the dummy warheads rather than the real threat.</p>
-<p>The payoff <span class="math notranslate nohighlight">\(a_{ij}\)</span> represents the hit probability for warhead <span class="math notranslate nohighlight">\(i\)</span> against interceptor <span class="math notranslate nohighlight">\(j\)</span>. Note that the percentages do not necessarily sum to <span class="math notranslate nohighlight">\(100\%\)</span>. Each entry represents the specific success rate given the attacker’s choice and the defense’s choice.</p>
-<p>The key point in the graph below is that the <span style='color:red'><b>defender</span></b> will play along the <span style='color:red'><b>lower envelope</span></b> in an attempt to maximize the outcomes.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">);</span> <span class="n">plots</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;x = 1&#39;</span><span class="p">)</span>
-<span class="n">points1</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points1</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fast&#39;</span><span class="p">)</span>
-
-<span class="n">points2</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points2</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Stealth&#39;</span><span class="p">)</span>
-
-<span class="n">points3</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points3</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Decoy&#39;</span><span class="p">)</span>
-
-<span class="c1"># Add labels and title</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Defense&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Attack&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Plotting the 3 Column Strategies&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
-
-<span class="c1"># Add a grid, add legend, and place legend below figure.</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">),</span><span class="n">framealpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/d6705e5ab64ef56f9a346a97d47453b8cfccd0c89aa5476f47ed510d82d30885.png" src="_images/d6705e5ab64ef56f9a346a97d47453b8cfccd0c89aa5476f47ed510d82d30885.png" />
-</div>
-</div>
-<section id="solution">
-<h3>Solution<a class="headerlink" href="#solution" title="Link to this heading">#</a></h3>
-<p>The defense will play along the lower envelope, so the correct proportion will be found as the <span class="math notranslate nohighlight">\(x\)</span>-coordinate of the piont of intersection of the red (fast) and green (stealth) strategies. Thus, the game to be solved using oddments is shown below:</p>
+\[2\leq p,q \leq 20\]</div>
+<p>where, as discussed <a class="reference internal" href="#Z8.ipynb"><span class="xref myst">above</span></a>, we have:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\textbf{Defense}\\\textbf{Attack}&amp; \begin{array}{r|cc} &amp; \text{Kinetic} &amp; \text{Laser}\\\hline \text{Fast} &amp; 8 &amp; 2 \\ \text{Stealth} &amp; 4 &amp; 7 \end{array} \end{array}\end{split}\]</div>
-<p>The row oddments are <span class="math notranslate nohighlight">\(6\)</span> and <span class="math notranslate nohighlight">\(3\)</span>, and thus the optimal strategy set is given by:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\vec r = \left[\begin{array}{c}\frac{1}{3}\\\frac{2}{3}\end{array}\right]\end{split}\]</div>
-<p>The column oddments are <span class="math notranslate nohighlight">\(4\)</span> and <span class="math notranslate nohighlight">\(5\)</span>, and the corresponding optimal strategy set is given by:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\vec c = \left[\begin{array}{c}\frac{5}{9}\\\frac{4}{9}\end{array}\right]\end{split}\]</div>
-<p>The value of the game will be</p>
-<div class="math notranslate nohighlight">
-\[v=\frac{16}{3}\]</div>
-</section>
-<section id="solution-with-graphing">
-<h3>Solution with Graphing<a class="headerlink" href="#solution-with-graphing" title="Link to this heading">#</a></h3>
-<p>We need a function to calculate two things</p>
+\[g &lt; p &lt; 2g \]</div>
+<p>We will initialize the values we need:</p>
 <ul class="simple">
-<li><p>the slope between two points</p></li>
-<li><p>the <span class="math notranslate nohighlight">\(y\)</span>-intercept of the line between those two points.</p></li>
+<li><p><span class="math notranslate nohighlight">\(p\)</span> : number of police units</p></li>
+<li><p><span class="math notranslate nohighlight">\(g\)</span> : number of guerrilla units</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> : the memory factor for the exponential moving average</p></li>
 </ul>
-<p>That function returns <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, the coefficents needed to write the line in standard slope-intercept form:</p>
-<div class="math notranslate nohighlight">
-\[y = mx + b\]</div>
-<p>That function is shown below.</p>
-<div class="cell docutils container">
+<p>The player dictionaries will be created based upon the specific values of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(g\)</span>, and two functions will help accomplish the task:</p>
+<ol class="arabic simple">
+<li><p><strong>create_players_dict()</strong></p></li>
+<li><p><strong>game_matrix()</strong></p></li>
+</ol>
+<section id="dictionaries-and-game-matrix-layout">
+<h3>Dictionaries and Game Matrix Layout<a class="headerlink" href="#dictionaries-and-game-matrix-layout" title="Link to this heading">#</a></h3>
+<p>The <span style='color:blue'><b>create_player_dict()</b></span> function creates player dictionaries that keep track of the following:</p>
+<ul class="simple">
+<li><p>Row-Column indexes in the results table,</p></li>
+<li><p>Strategy numbers (integers), and</p></li>
+<li><p>Strategy names.</p></li>
+</ul>
+<p>The <span style='color:blue'><b>game_matrix()</b></span> function takes the players and their strategies as configured above, and from there develops a tenative outline of the game including initial values for the outcomes.</p>
+<p><span style='color:red'><b>The code for both functions can be collapsed or expanded below:</b></span></p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_slope_int</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">):</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">m</span> <span class="o">*</span> <span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">m</span><span class="p">,</span> <span class="n">b</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_player_dict</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">anchor_val</span><span class="p">):</span>
+    <span class="n">strat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">anchor_val</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">anchor_val</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">strat</span><span class="p">))</span>
+    <span class="n">strat_name</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">anchor_val</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">strat</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;player&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="n">index</span><span class="p">,</span>
+        <span class="s1">&#39;strat&#39;</span><span class="p">:</span> <span class="n">strat</span><span class="p">,</span>
+        <span class="s1">&#39;strat_name&#39;</span><span class="p">:</span> <span class="n">strat_name</span>
+    <span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">game_matrix</span><span class="p">(</span><span class="n">player1</span><span class="p">,</span> <span class="n">player2</span><span class="p">):</span>
+   <span class="c1"># Create an empty DataFrame with specified index and columns</span>
+   <span class="n">res</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">player1</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">player2</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">],</span> 
+                       <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+   <span class="k">return</span> <span class="n">res</span>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<p>In our graphics code, after defining the two lines by the two points on those lines, we can graph the intersection and calculate the coordinates of the intersection as shown below.</p>
+</section>
+</section>
+<section id="id1">
+<h2>Setting Up the Game<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>The functions above work only if the values for <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are known. If so, the player dictionaries and initial game matrix can be developed quickly. The code to do so is given below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">);</span> <span class="n">plots</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting number of Police and Guerrillas to p and g respectively</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mi">4</span>
 
-<span class="n">points1</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points1</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fast&#39;</span><span class="p">)</span>
+<span class="c1"># Creating the dictionaries</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
 
-<span class="n">points2</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points2</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Stealth&#39;</span><span class="p">)</span>
-
-<span class="n">m1</span><span class="p">,</span> <span class="n">b1</span> <span class="o">=</span> <span class="n">get_slope_int</span><span class="p">(</span><span class="n">points1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">points1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">m2</span><span class="p">,</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">get_slope_int</span><span class="p">(</span><span class="n">points2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">points2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">x_0</span> <span class="o">=</span> <span class="p">(</span><span class="n">b2</span> <span class="o">-</span> <span class="n">b1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">m1</span> <span class="o">-</span> <span class="n">m2</span><span class="p">)</span>
-<span class="n">y_0</span> <span class="o">=</span> <span class="n">m1</span> <span class="o">*</span> <span class="n">x_0</span> <span class="o">+</span> <span class="n">b1</span>
-
-<span class="c1"># Rationalize the values</span>
-<span class="n">rx</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">()</span>
-<span class="n">ry</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">y_0</span><span class="p">)</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">()</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_0</span><span class="p">,</span> <span class="n">y_0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Intersection (</span><span class="si">{</span><span class="n">rx</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">ry</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Defense&#39;</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Attacker&#39;</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Plotting the Intersection of 2 Strategies&#39;</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">),</span><span class="n">framealpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># Creating the game matrix</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">game_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">G</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerrillas&lt;/b&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e72932b3273391ff951d99a2364a0338dbb99dc65c69cd2436e1aefc299048c5.png" src="_images/e72932b3273391ff951d99a2364a0338dbb99dc65c69cd2436e1aefc299048c5.png" />
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_18568">
+  <caption><b>5 Police vs. 4 Guerrillas</b></caption>
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_18568_level0_col0" class="col_heading level0 col0" >2 - 2</th>
+      <th id="T_18568_level0_col1" class="col_heading level0 col1" >3 - 1</th>
+      <th id="T_18568_level0_col2" class="col_heading level0 col2" >4 - 0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_18568_level0_row0" class="row_heading level0 row0" >3 - 2</th>
+      <td id="T_18568_row0_col0" class="data row0 col0" >0.5</td>
+      <td id="T_18568_row0_col1" class="data row0 col1" >0.5</td>
+      <td id="T_18568_row0_col2" class="data row0 col2" >0.5</td>
+    </tr>
+    <tr>
+      <th id="T_18568_level0_row1" class="row_heading level0 row1" >4 - 1</th>
+      <td id="T_18568_row1_col0" class="data row1 col0" >0.5</td>
+      <td id="T_18568_row1_col1" class="data row1 col1" >0.5</td>
+      <td id="T_18568_row1_col2" class="data row1 col2" >0.5</td>
+    </tr>
+    <tr>
+      <th id="T_18568_level0_row2" class="row_heading level0 row2" >5 - 0</th>
+      <td id="T_18568_row2_col0" class="data row2 col0" >0.5</td>
+      <td id="T_18568_row2_col1" class="data row2 col1" >0.5</td>
+      <td id="T_18568_row2_col2" class="data row2 col2" >0.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>We can access the <span class="math notranslate nohighlight">\((i,j)\)</span> entry in the matrix above using the pandas method</p>
+<center><span style='color:blue'>.iloc[i,j]</span></center></br>
+<p>We can also use <center><span style='color:blue'>.loc[P[‘strat_name’][i],G[‘strat_name’][j]]</span></center></br></p>
+<p>if we know the column strategy or row strategy indentifier.</p>
+<section id="play-function">
+<h3>Play() Function<a class="headerlink" href="#play-function" title="Link to this heading">#</a></h3>
+<p>The interior entries of the <strong>results</strong> dataframe will be winning percentages of the row and column strategies when played against one another. To calculate the outcomes for the interior of the dataframe, we begin by playing each column strategy against each row strategy in <span class="math notranslate nohighlight">\(10,000\)</span> simulated battles. The <span style='color:blue'><b>play()</b></span> function code is given below.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">play</span><span class="p">(</span><span class="n">p_max</span><span class="p">,</span> <span class="n">g_max</span><span class="p">,</span> <span class="n">p_strat</span><span class="p">,</span> <span class="n">g_strat</span><span class="p">):</span>
+   <span class="n">A_0</span> <span class="o">=</span> <span class="n">p_strat</span> <span class="p">;</span> <span class="n">B_0</span> <span class="o">=</span> <span class="n">p_max</span> <span class="o">-</span> <span class="n">A_0</span>
+   <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="n">A_0</span><span class="p">,</span> <span class="n">B_0</span><span class="p">])</span>
+   <span class="n">B</span> <span class="o">=</span> <span class="n">p_max</span> <span class="o">-</span> <span class="n">A</span> 
+   <span class="n">reps</span> <span class="o">=</span> <span class="mi">10000</span>
+   <span class="n">win_pct_ema</span> <span class="o">=</span> <span class="mf">0.5</span>
+   <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">reps</span><span class="p">):</span>
+      <span class="n">a_0</span> <span class="o">=</span> <span class="n">g_strat</span> <span class="p">;</span> <span class="n">b_0</span> <span class="o">=</span> <span class="n">g_max</span> <span class="o">-</span> <span class="n">a_0</span>
+      <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="n">a_0</span><span class="p">,</span> <span class="n">b_0</span><span class="p">])</span>
+      <span class="n">b</span> <span class="o">=</span> <span class="n">g_max</span> <span class="o">-</span> <span class="n">a</span>
+      <span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">A</span> <span class="p">)</span> <span class="ow">or</span> <span class="p">(</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="n">B</span> <span class="p">)</span> <span class="p">):</span>
+         <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">else</span><span class="p">:</span>
+         <span class="n">v</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="c1"># Update the EMA instead of appending to a list</span>
+      <span class="n">alpha</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span> <span class="mf">0.5</span> <span class="p">,</span> <span class="p">(</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">)</span> <span class="p">)</span>
+      <span class="n">win_pct_ema</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">win_pct_ema</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">))</span>
+   <span class="n">temp</span> <span class="o">=</span> <span class="n">win_pct_ema</span>
+   <span class="k">if</span> <span class="n">temp</span> <span class="o">&lt;=</span> <span class="mf">0.015</span><span class="p">:</span>
+      <span class="n">t</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+   <span class="k">elif</span> <span class="n">temp</span> <span class="o">&gt;=</span> <span class="mf">0.985</span><span class="p">:</span>
+      <span class="n">t</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+   <span class="k">else</span><span class="p">:</span>
+      <span class="n">t</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+   <span class="c1">## uncomment line below to help with debugging the init() function.</span>
+   <span class="c1">#   print(f&quot;police play ({A},{B}) while guerrillas play ({a},{b})&quot;)</span>
+   <span class="k">return</span> <span class="n">t</span>
+</pre></div>
 </div>
 </div>
-<p>Note how we confirmation from the intersection of <span class="math notranslate nohighlight">\((4/9, 16/3)\)</span> that our optimal strategy proportion for the defense was correct as was our value of the game.</p>
+</details>
+</div>
+<p>The function above will be used in a nested for-loop to calculate the needed values and assign them to the correct entry in the <strong>results</strong> dataframe. The code below accomplishes the initialization of the <strong>results</strong> table created above.</p>
 </section>
+</section>
+<section id="game-matrix-5-police-vs-4-guerrillas">
+<h2>Game Matrix: 5 Police vs. 4 Guerrillas<a class="headerlink" href="#game-matrix-5-police-vs-4-guerrillas" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">game_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">G</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+      <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerrillas&lt;/b&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_ff78d">
+  <caption><b>5 Police vs. 4 Guerrillas</b></caption>
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_ff78d_level0_col0" class="col_heading level0 col0" >2 - 2</th>
+      <th id="T_ff78d_level0_col1" class="col_heading level0 col1" >3 - 1</th>
+      <th id="T_ff78d_level0_col2" class="col_heading level0 col2" >4 - 0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_ff78d_level0_row0" class="row_heading level0 row0" >3 - 2</th>
+      <td id="T_ff78d_row0_col0" class="data row0 col0" >1</td>
+      <td id="T_ff78d_row0_col1" class="data row0 col1" >1/2</td>
+      <td id="T_ff78d_row0_col2" class="data row0 col2" >0</td>
+    </tr>
+    <tr>
+      <th id="T_ff78d_level0_row1" class="row_heading level0 row1" >4 - 1</th>
+      <td id="T_ff78d_row1_col0" class="data row1 col0" >0</td>
+      <td id="T_ff78d_row1_col1" class="data row1 col1" >1/2</td>
+      <td id="T_ff78d_row1_col2" class="data row1 col2" >1/2</td>
+    </tr>
+    <tr>
+      <th id="T_ff78d_level0_row2" class="row_heading level0 row2" >5 - 0</th>
+      <td id="T_ff78d_row2_col0" class="data row2 col0" >0</td>
+      <td id="T_ff78d_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_ff78d_row2_col2" class="data row2 col2" >1/2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="game-matrix-3-police-vs-2-guerrillas">
+<h2>Game Matrix: 3 Police vs. 2 Guerrillas<a class="headerlink" href="#game-matrix-3-police-vs-2-guerrillas" title="Link to this heading">#</a></h2>
+<p>Using all the above user-defined functions, we can quickly create the new game matrix:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">game_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">G</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+      <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerrillas&lt;/b&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_ef591">
+  <caption><b>3 Police vs. 2 Guerrillas</b></caption>
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_ef591_level0_col0" class="col_heading level0 col0" >1 - 1</th>
+      <th id="T_ef591_level0_col1" class="col_heading level0 col1" >2 - 0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_ef591_level0_row0" class="row_heading level0 row0" >2 - 1</th>
+      <td id="T_ef591_row0_col0" class="data row0 col0" >1</td>
+      <td id="T_ef591_row0_col1" class="data row0 col1" >1/2</td>
+    </tr>
+    <tr>
+      <th id="T_ef591_level0_row1" class="row_heading level0 row1" >3 - 0</th>
+      <td id="T_ef591_row1_col0" class="data row1 col0" >0</td>
+      <td id="T_ef591_row1_col1" class="data row1 col1" >1/2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="game-matrix-7-police-vs-5-guerrillas">
+<h2>Game Matrix: 7 Police vs. 5 Guerrillas<a class="headerlink" href="#game-matrix-7-police-vs-5-guerrillas" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">create_player_dict</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">game_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">G</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]:</span>
+      <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">g</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="s1">&#39;strat_name&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> Police vs. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2"> Guerrillas&lt;/b&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_fe41f">
+  <caption><b>7 Police vs. 5 Guerrillas</b></caption>
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_fe41f_level0_col0" class="col_heading level0 col0" >3 - 2</th>
+      <th id="T_fe41f_level0_col1" class="col_heading level0 col1" >4 - 1</th>
+      <th id="T_fe41f_level0_col2" class="col_heading level0 col2" >5 - 0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_fe41f_level0_row0" class="row_heading level0 row0" >4 - 3</th>
+      <td id="T_fe41f_row0_col0" class="data row0 col0" >1</td>
+      <td id="T_fe41f_row0_col1" class="data row0 col1" >1/2</td>
+      <td id="T_fe41f_row0_col2" class="data row0 col2" >0</td>
+    </tr>
+    <tr>
+      <th id="T_fe41f_level0_row1" class="row_heading level0 row1" >5 - 2</th>
+      <td id="T_fe41f_row1_col0" class="data row1 col0" >1/2</td>
+      <td id="T_fe41f_row1_col1" class="data row1 col1" >1/2</td>
+      <td id="T_fe41f_row1_col2" class="data row1 col2" >1/2</td>
+    </tr>
+    <tr>
+      <th id="T_fe41f_level0_row2" class="row_heading level0 row2" >6 - 1</th>
+      <td id="T_fe41f_row2_col0" class="data row2 col0" >0</td>
+      <td id="T_fe41f_row2_col1" class="data row2 col1" >1/2</td>
+      <td id="T_fe41f_row2_col2" class="data row2 col2" >1/2</td>
+    </tr>
+    <tr>
+      <th id="T_fe41f_level0_row3" class="row_heading level0 row3" >7 - 0</th>
+      <td id="T_fe41f_row3_col0" class="data row3 col0" >0</td>
+      <td id="T_fe41f_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_fe41f_row3_col2" class="data row3 col2" >1/2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
 </section>
 </section>
 
@@ -618,7 +832,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Exercises</p>
+        <p class="prev-next-title">Solving Police vs. Guerrillas</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -638,11 +852,17 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-missile-defense">Example: Missile Defense</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-with-graphing">Solution with Graphing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-game">Setting up the Game</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries-and-game-matrix-layout">Dictionaries and Game Matrix Layout</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Setting Up the Game</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#play-function">Play() Function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-matrix-5-police-vs-4-guerrillas">Game Matrix: 5 Police vs. 4 Guerrillas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-matrix-3-police-vs-2-guerrillas">Game Matrix: 3 Police vs. 2 Guerrillas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-matrix-7-police-vs-5-guerrillas">Game Matrix: 7 Police vs. 5 Guerrillas</a></li>
 </ul>
   </nav></div>
 
