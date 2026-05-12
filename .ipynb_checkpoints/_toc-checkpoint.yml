@@ -16,18 +16,17 @@ parts:
       sections:
       - file: Z5a
       - file: Z5b
+      - file: Z5c
+      - file: Z5d
       - file: Z5e
     - file: Z6
       sections:
-      - file: Z6e
+      - file: Z6a
+      - file: Z6b
     - file: Z7
       sections:
       - file: Z7a
       - file: Z7b
-    - file: Z8
-      sections:
-      - file: Z8a
-      - file: Z8b
   - caption: Non Zero Sum Games
     chapters:
     - file: N0
