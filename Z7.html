@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Graphical Method &#8212; Game Theory</title>
+    <title>Police versus Guerillas &#8212; Game Theory</title>
   
   
   
@@ -204,7 +204,7 @@
 <li class="toctree-l2"><a class="reference internal" href="Z6b.html">Exercises</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Graphical Method</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Police versus Guerillas</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="Z7a.html">Simulating P vs. G</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Z7b.html">Solving Police vs. Guerrillas</a></li>
 </ul>
@@ -396,7 +396,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Graphical Method</h1>
+    <h1>Police versus Guerillas</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -406,21 +406,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blackhawk-down">Blackhawk Down</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-payoff-matrix">The Payoff Matrix</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-graphics-mean">What the Graphics Mean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-play">Game Play</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#units">Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-police-versus-2-guerrillas">Example: 3 Police versus 2 Guerrillas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reducing-by-dominance-3-police-versus-2-guerrillas">Reducing by Dominance:  3 Police versus 2 Guerrillas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-3-police-versus-2-guerrillas">Solution:  3 Police versus 2 Guerrillas</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-strategy">Optimal Strategy</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#equations-of-the-lines">Equations of the Lines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-5-police-versus-4-guerrillas">Example: 5 Police versus 4 Guerrillas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reducing-by-dominance-5-police-versus-4-guerrillas">Reducing by Dominance: 5 Police versus 4 Guerrillas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oddments-5-police-versus-4-guerrillas">Oddments:  5 Police versus 4 Guerrillas</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#game-value">Game Value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-strategy-set-for-the-other-player">Optimal Strategy Set for the Other Player</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-solution">Overall Solution</a></li>
 </ul>
             </nav>
         </div>
@@ -432,169 +429,91 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="graphical-method">
-<h1>Graphical Method<a class="headerlink" href="#graphical-method" title="Link to this heading">#</a></h1>
-<p>Two special cases of zero-sum matrix games can be handled using a visual display:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(n \times 2\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(2\times n\)</span></p></li>
-</ul>
-<p>We will employ the <span style='color:blue'><b>graphical method</span></b> to solve these two cases.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Do not change this cell, only execute it. </span>
-<span class="c1">## This cell initializes Python so that pandas, numpy and scipy packages are ready to use.</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">datascience</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plots</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">stats</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\robbs\anaconda3\envs\GameTheory\Lib\site-packages\datascience\maps.py:13: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
-  import pkg_resources
-</pre></div>
-</div>
-</div>
-</div>
-<section id="blackhawk-down">
-<h2>Blackhawk Down<a class="headerlink" href="#blackhawk-down" title="Link to this heading">#</a></h2>
-<p>The <strong>primary example</strong> in this section relates to the backstory to the Blackhawk Down <a class="reference external" href="https://en.wikipedia.org/wiki/Battle_of_Mogadishu_(1993)">movie plot</a> was a <strong>logistics standoff</strong> between international relief organizations trying to help prevent starvation due to a famine and warlords who were diverting the aid. If the warlords seized control of some of the donated supplies, they could profit by selling the supplies to the civilians who needed them. The situation oocurs often, sadly, and forms the basis for our game in this lesson.</p>
-<section id="example">
-<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
-<p>Imagine a <span style="color: blue;"><b>logistics coordinator</b></span> for a relief agency and a <span style="color: red;"><b>Local Warlord</b></span> in a fictional region. The Coordinator must choose one of two routes to deliver supplies, while the Warlord can choose from three different locations to set up a checkpoint to tax or seize the goods. This is a zero-sum game: any supplies seized by the Warlord are a direct loss to the Coordinator.</p>
-<section id="the-payoff-matrix">
-<h4>The Payoff Matrix<a class="headerlink" href="#the-payoff-matrix" title="Link to this heading">#</a></h4>
-<p>The outcomes in the game matrix represent the Coordinator’s gains. The <span style="color: blue;"><b>Coordinator (Row Player)</span></b> has two strategies: Route A and Route B. The <span style="color: red;"><b>Warlord (Column Player)</span></b> has three strategies: Checkpoint 1, 2, or 3. The payoffs to the players represent the percentage of the total supplies that reach their destination successfully.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\textbf{Warlord}\\\textbf{Coordinator}&amp; \begin{array}{r|cc} &amp; 1 &amp; 2 &amp; 3\\\hline A &amp; 80 &amp; 20 &amp; 50 \\ B &amp; 10 &amp; 90 &amp; 40 \end{array} \end{array}\end{split}\]</div>
-<p>With no dominance available to simplify the game, we <span style="color: darkblue;"><b>graph the <span class="math notranslate nohighlight">\(3\)</span> column strategies</span></b> to determine what the Row Player should do. Using the method of graphing a line through 2 points, we display three lines representing the outcomes of all three column strategies. Recall:</p>
-<ul class="simple">
-<li><p>The row player is <strong>maximizing</strong>, and</p></li>
-<li><p>The column player in <strong>minimizing</strong>.</p></li>
-</ul>
-<p>The <span style='color:red'><b>key point in the graph below</span></b> is that the <span style='color:blue;'><b>coordinator</span></b> will play along the upper envelope in an attempt to <span style='color:red;'><b>maximize</span></b> the outcomes.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plots</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">);</span> <span class="n">plots</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;x = 1&#39;</span><span class="p">)</span>
-<span class="n">points1</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points1</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Checkpoint 1&#39;</span><span class="p">)</span>
-
-<span class="n">points2</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points2</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Checkpoint 2&#39;</span><span class="p">)</span>
-
-<span class="n">points3</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points3</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Checkpoint 3&#39;</span><span class="p">)</span>
-
-<span class="c1"># Add labels and title</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Coordinator&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Warlord&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Plotting the 3 Column Strategies&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
-
-<span class="c1"># Add a grid, add legend, and place legend below figure.</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">),</span><span class="n">framealpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
-<span class="n">plots</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/c0590e173bc310cdcc612c3ddafb1394d158089a0d2f078337c93b131aeed82c.png" src="_images/c0590e173bc310cdcc612c3ddafb1394d158089a0d2f078337c93b131aeed82c.png" />
-</div>
-</div>
-</section>
-<section id="what-the-graphics-mean">
-<h4>What the Graphics Mean<a class="headerlink" href="#what-the-graphics-mean" title="Link to this heading">#</a></h4>
-<p>Consider that the row player is choosing the value of <span class="math notranslate nohighlight">\(x\)</span> which is the proportion of times, in repeated play, that he or she will choose Route A. Thus, the <span style="color:blue"><b>coordinator (row player)</span></b> will play the optimal strategy set:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(x\)</span> : proportion of times choosing A</p></li>
-<li><p><span class="math notranslate nohighlight">\(1-x\)</span> : proportion of times choosing B</p></li>
-</ul>
-<p>We have two vertical lines in the graphic above:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(x=0\)</span> : where coordinator chooses to play <span class="math notranslate nohighlight">\(100\%\)</span> A</p></li>
-<li><p><span class="math notranslate nohighlight">\(x=1\)</span> : where coordinator choose to play <span class="math notranslate nohighlight">\(100\%\)</span> B</p></li>
-</ul>
-<p>For the column player, the <span class="math notranslate nohighlight">\(y\)</span>-intercept is the outcome in Row A, while the value at <span class="math notranslate nohighlight">\(x=1\)</span> is the outcome in Row B. Hence, the column player who hopes to minimize which will  happen if he or she can <span style="color:darkblue"><b>play along the lower envelope</span></b> of the graphed lines above.</p>
-</section>
-</section>
-<section id="optimal-strategy">
-<h3>Optimal Strategy<a class="headerlink" href="#optimal-strategy" title="Link to this heading">#</a></h3>
-<p>The column player has more than two strategies and thus chooses to minimize – this means he or she will play along the lower envelope. The row player optimizes by finding maximize point on the lower envelope which is the intersection of the blue and green lines above. The <span class="math notranslate nohighlight">\(x\)</span>-coordinate of the intersection point is the optimal strategy mixture value for the row player to play strategy B, and the <span class="math notranslate nohighlight">\(y\)</span>-value is the game’s equilibrium value.</p>
-<section id="equations-of-the-lines">
-<h4>Equations of the Lines<a class="headerlink" href="#equations-of-the-lines" title="Link to this heading">#</a></h4>
-<p>The graph essentially shows the <span class="math notranslate nohighlight">\(y\)</span>-intercept with the <strong>slope</strong> easily calculated since the “change in x” (or denominator) is equal to <span class="math notranslate nohighlight">\(1\)</span>. The warlord (column player) will choose to play the red and green strategies.</p>
-<ul>
-<li><p><strong>Blue Line</strong></p>
-<div class="math notranslate nohighlight">
-\[y_1 = 40 + 10x_1\]</div>
-</li>
-<li><p><strong>Green Line</strong></p>
-<div class="math notranslate nohighlight">
-\[y_2=90-70x_2\]</div>
-</li>
-</ul>
-<p>The slope of the blue line is <span class="math notranslate nohighlight">\(10\)</span> units, and its intercept is <span class="math notranslate nohighlight">\(40\)</span>. The slope of the green line is <span class="math notranslate nohighlight">\(-70\)</span> with an intercept of <span class="math notranslate nohighlight">\(90\)</span>. At the point of intersection, we know that <span class="math notranslate nohighlight">\((x_1,y_1) = (x_2, y_2)\)</span>. Setting the <span class="math notranslate nohighlight">\(y\)</span>-values and <span class="math notranslate nohighlight">\(y\)</span>-values equal, we can solve for <span class="math notranslate nohighlight">\(x\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align}40 + 10x&amp;=90-70x\\80x&amp;=50\\
-x&amp;=\frac{50}{80}\\x&amp;=\frac{5}{8}\end{align}\end{split}\]</div>
-<p>This indicates that the coordinator’s (row player’s) optimal strategy set is given by:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\vec r = \left[\begin{array}{r}\frac{5}{8}\\ \frac{4}{8}\end{array}\right]\end{split}\]</div>
-</section>
-</section>
-<section id="game-value">
-<h3>Game Value<a class="headerlink" href="#game-value" title="Link to this heading">#</a></h3>
-<p>The value of the game is the <span class="math notranslate nohighlight">\(y\)</span> coordinate of the intersection point which can be found by plugging <span class="math notranslate nohighlight">\(x=\frac{4}{7}\)</span> into either the red or green equation:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align}y&amp;=40 + 10\left(\frac{5}{8}\right)\\y&amp;=40+\left(\frac{50}{8}\right)\\y&amp;=\frac{370}{8}\\y&amp;=46.25\end{align}\end{split}\]</div>
-</section>
-<section id="optimal-strategy-set-for-the-other-player">
-<h3>Optimal Strategy Set for the Other Player<a class="headerlink" href="#optimal-strategy-set-for-the-other-player" title="Link to this heading">#</a></h3>
+  <section class="tex2jax_ignore mathjax_ignore" id="police-versus-guerillas">
+<h1>Police versus Guerillas<a class="headerlink" href="#police-versus-guerillas" title="Link to this heading">#</a></h1>
 <aside class="sidebar">
-<p>The key to solving a</br>
-<span class="math notranslate nohighlight">\(\hspace{5mm}2\times n\)</span> or</br>
-<span class="math notranslate nohighlight">\(\hspace{5mm}n \times 2\)</span> </br>
-matrix game is finding the correct <span class="math notranslate nohighlight">\(2\times 2\)</span> subgame to solve.</p>
+<p class="sidebar-title">Discovering Game Theory</p>
+<p>This course uses an <strong>online textbook</strong>: <a class="reference external" href="https://nordstrommath.com/IntroGameTheory2e/intro_game_theory.html">Game Theory, a Discovery Approach</a>, by Jennifer Nordstrom.</p>
 </aside>
-<p>The graphical method shows only player’s optimal strategy set. How do we find the other? We use</p>
-<center><span style='color:blue'><b>Oddments</b></span></center></br>
-<p>after identifying the correct <span class="math notranslate nohighlight">\(2\times 2\)</span> matrix subgame to solve. The graphical method not only provides us with this knowledge, we can solve for one player’s optimal strategy set and the game value. Thus, the graphical method also confirms that the answer at which we arrive using oddments is correct.</p>
-<div class="admonition-square-matrix-solution-principal admonition">
-<p class="admonition-title"><strong>Square Matrix Solution Principal</strong></p>
-<p>In an <span class="math notranslate nohighlight">\(m\times n\)</span> zero-sum matrix game, the solution will be a sqaure matrix subgame where both players have the same number of active strategies. For example, if the strategy is an MSS, the solution to a <span class="math notranslate nohighlight">\(3\times 4\)</span> matrix game will be either a <span class="math notranslate nohighlight">\(3\times 3\)</span> or a <span class="math notranslate nohighlight">\(2\times 2\)</span> matrix subgame.</p>
-</div>
-<p>By the square matrix solution principal and a quick check of the graph above, we can see the correct subgame to solve is the following:</p>
+<p>We will investigate a genre of games called <span style='color:blue'><b>Police versus Guerrillas</b></span>. The idea is that an insurgency (the guerrilla force) is striking against the government (the police). The police have two arsenals filled with weapons and amunition, and the guerrillas would like to take either one of them, or both, if possible.</p>
+<section id="game-play">
+<h2>Game Play<a class="headerlink" href="#game-play" title="Link to this heading">#</a></h2>
+<p>The police defend <span class="math notranslate nohighlight">\(2\)</span> arsenals and the guerrillas win if they can take over either one, or both. The two players know at nightfall when the attack(s) will take place, but the police do not know how many attackers will be which locations. The guerrillas do not know how the police will arrange their forces.</p>
+<p><span style='color:blue'><b>Key:</b></span> The police <strong>hold</strong> an arsenal if an equal number of attacking and defending units engage there.</p>
+<p><strong>Suppose the police have <span class="math notranslate nohighlight">\(4\)</span> units</strong>. For a strategy such as</p>
+<center><span style='color:blue'>3 - 1</span></center></br>
+<p>they will randomize their choice of which arsenal to send their greater force to protect.</p>
+<p><strong>If the guerrillas have <span class="math notranslate nohighlight">\(3\)</span> units</strong> with which they can attack, they may play a strategy like</p>
+<center><span style='color:blue'>2 - 1 </span></center></br>
+<p>As do the police, the guerrillas will randomly select to which of the arsenals they will the greater force.</p>
+</section>
+<section id="units">
+<h2>Units<a class="headerlink" href="#units" title="Link to this heading">#</a></h2>
+<p>We must decide before analyzing outcomes the configuration of forces for both players. The police will have <span class="math notranslate nohighlight">\(p\)</span> units with which they may defend the arsenals while the guerrillas will have <span class="math notranslate nohighlight">\(g\)</span> units with which they can attack. Since <span class="math notranslate nohighlight">\(p\geq 2g\)</span> implies the <strong>police always win</strong> by dividing their forces equally, and <span class="math notranslate nohighlight">\(p\leq g\)</span> implies the guerrillas always have a winning strategy (send all their forces to one arsenal), we must only solve games where</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{cc}&amp;\textbf{Warlord}\\\textbf{Coordinator}&amp; \begin{array}{r|cc} &amp; 1 &amp; 2\\\hline A &amp; 20 &amp; 50 \\ B &amp; 90 &amp; 40 \end{array} \end{array}\end{split}\]</div>
-<p>The <span style='color:red'><b>red</b></span> in the graph represented the Checkpoint 3 strategy which, while not dominated by either <span style='color:blue'><b>blue line</b></span> or <span style='color:green'><b>green</b></span>, still is forced on the column player by the row player’s choice to maximize along the lower envelope.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><strong>Reduction Issues</strong></p>
-<p>The above example shows a situation where the game reduces, but <span sytle ='color:red'><b>the game does not reduce by dominance</span></b>.</p>
-</div>
+\[g &lt; p &lt; 2g\]</div>
+<p>Common scenarios would have us analyzing</p>
+<ul class="simple">
+<li><p>5P vs 3G</p></li>
+<li><p>7P vs 5G, or</p></li>
+<li><p>8P vs 7G</p></li>
+</ul>
+</section>
+<section id="example-3-police-versus-2-guerrillas">
+<h2>Example: 3 Police versus 2 Guerrillas<a class="headerlink" href="#example-3-police-versus-2-guerrillas" title="Link to this heading">#</a></h2>
+<p>The police with <span class="math notranslate nohighlight">\(3\)</span> units have only two distinct strategies:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\textbf{3 - 0}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\textbf{2 - 1}\)</span></p></li>
+</ul>
+<p>The strategies of <span class="math notranslate nohighlight">\(\textbf{0 - 3}\)</span> and <span class="math notranslate nohighlight">\(\textbf{2 - 1}\)</span> are just permutations of the above strategies that will randomize in exactly the same way. Therefore, we only need to analyze the two shown in the bullets above.</p>
+<p>The guerrillas with <span class="math notranslate nohighlight">\(2\)</span> units have two distinct stragegies:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\textbf{2 - 0}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\textbf{1 - 1}\)</span></p></li>
+</ul>
+<p>Hence, the game they are playing can be shown in matrix form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|cc} &amp; \textbf{1 - 1} &amp; \textbf{2 - 0} \\ \hline  \textbf{2 - 1} &amp; 1 &amp; \frac{1}{2} \\ \textbf{3 - 0} &amp; 0 &amp; \frac{1}{2} \end{array} \end{array}\end{split}\]</div>
+<p>Notice the outcome of <span class="math notranslate nohighlight">\(\textbf{3 - 0}\)</span> versus <span class="math notranslate nohighlight">\(\textbf{2 - 0}\)</span> is an expected value. Half the time, the units will be sent to the same arsenal, and the police will win. When the units are sent to different arsenals, the guerrillas win. Thus,
+$<span class="math notranslate nohighlight">\(E(\text{3 - 0 versus 2 - 0}) = \frac{1}{2}(0) + \frac{1}{2}(1) = \frac{1}{2}\)</span>$</p>
+<p>and the same is true for <span class="math notranslate nohighlight">\(\textbf{2 - 1}\)</span> versus <span class="math notranslate nohighlight">\(\textbf{2 - 0}\)</span>.</p>
+<p>For <span class="math notranslate nohighlight">\(\textbf{2 - 1}\)</span> versus <span class="math notranslate nohighlight">\(\textbf{1 - 1}\)</span>, the police always have at least one unit at both arsenals, so they hold both arsenals. In <span class="math notranslate nohighlight">\(\textbf{3 - 0}\)</span> versus <span class="math notranslate nohighlight">\(\textbf{1 - 1}\)</span>, the guerrillas attack both units while the police leave one undefended. Thus, this will always be a win for the guerrillas.</p>
+<section id="reducing-by-dominance-3-police-versus-2-guerrillas">
+<h3>Reducing by Dominance:  3 Police versus 2 Guerrillas<a class="headerlink" href="#reducing-by-dominance-3-police-versus-2-guerrillas" title="Link to this heading">#</a></h3>
+<p>The analysis is straightforward once we have constructed the matrix game. Police <span class="math notranslate nohighlight">\(\textbf{2 - 1}\)</span> dominates <span class="math notranslate nohighlight">\(\textbf{3 - 0}\)</span>, so the Police will always play it. You should verify the guerrillas do not have a dominated strategy. Yet, once they know the police will all play <span class="math notranslate nohighlight">\(\textbf{2 - 1}\)</span>, the guerrillas will minimize by playing <span class="math notranslate nohighlight">\(\textbf{2 - 0}\)</span>.</p>
+</section>
+<section id="solution-3-police-versus-2-guerrillas">
+<h3>Solution:  3 Police versus 2 Guerrillas<a class="headerlink" href="#solution-3-police-versus-2-guerrillas" title="Link to this heading">#</a></h3>
+<p>Thus, the equilibrium of the game is
+$<span class="math notranslate nohighlight">\(\begin{align}\textbf{Police: }&amp;\textbf{ 2 - 1}\\\textbf{Guerrillas: }&amp;\textbf{ 2 - 0}\\v &amp;= \frac{1}{2}\end{align}\)</span>$</p>
 </section>
 </section>
-<section id="overall-solution">
-<h2>Overall Solution<a class="headerlink" href="#overall-solution" title="Link to this heading">#</a></h2>
-<p>The row oddments are <span class="math notranslate nohighlight">\(30\)</span> and <span class="math notranslate nohighlight">\(50\)</span> which gives the optimal strategy set</p>
+<section id="example-5-police-versus-4-guerrillas">
+<h2>Example: 5 Police versus 4 Guerrillas<a class="headerlink" href="#example-5-police-versus-4-guerrillas" title="Link to this heading">#</a></h2>
+<p>Reasoning as above, the game matrix for these forces is as follow:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\vec r = \left[\begin{array}{r}\frac{5}{8}\\\frac{3}{8}\end{array}\right]\end{split}\]</div>
-<p>which, happily, aggrees with our work above. For the column player, the oddments are <span class="math notranslate nohighlight">\(70\)</span> and <span class="math notranslate nohighlight">\(10\)</span>. Hence, the warlord (column player) will play:</p>
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|ccc} &amp; \textbf{2 - 2} &amp; \textbf{3 - 1} &amp; \textbf{4 - 0}\\ \hline \textbf{3 - 2} &amp; 1 &amp; \frac{1}{2} &amp; 0 \\ \textbf{4 - 1} &amp; 0 &amp; \frac{1}{2} &amp; \frac{1}{2} \\ \textbf{5 - 0} &amp; 0 &amp; 0 &amp; \frac{1}{2} \end{array} \end{array}\end{split}\]</div>
+<p>You should work through each strategy pair to ensure you know how to do the calcuations of the expected values correctly.</p>
+<section id="reducing-by-dominance-5-police-versus-4-guerrillas">
+<h3>Reducing by Dominance: 5 Police versus 4 Guerrillas<a class="headerlink" href="#reducing-by-dominance-5-police-versus-4-guerrillas" title="Link to this heading">#</a></h3>
+<p>The <span class="math notranslate nohighlight">\(\textbf{Police : 5 - 0}\)</span> strategy is dominated by <span class="math notranslate nohighlight">\(\textbf{4 - 1}\)</span>. Thus, the game reduces to the following:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\vec c = \left[\begin{array}{r}\frac{1}{8}\\\frac{7}{8}\end{array}\right]\end{split}\]</div>
-<p>A quick glance at the original matrix knowing the warlord’s optimal strategies indicates the</p>
-<center><span style='color:red'><b>game value is $\frac{370}{8}$.</b></span></center></section>
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|ccc} &amp; \textbf{2 - 2} &amp; \textbf{3 - 1} &amp; \textbf{4 - 0}\\ \hline \textbf{3 - 2} &amp; 1 &amp; \frac{1}{2} &amp; 0 \\ \textbf{4 - 1} &amp; 0 &amp; \frac{1}{2} &amp; \frac{1}{2} \end{array} \end{array}\end{split}\]</div>
+<p>At the second level, we see that the guerrillas now have a dominated strategy because <span class="math notranslate nohighlight">\(\textbf{4 - 0}\)</span> dominates <span class="math notranslate nohighlight">\(\textbf{3 - 1}\)</span>. Hence, we can further reduce the game to the following:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc}&amp;\textbf{Guerrillas}\\\textbf{Police}&amp; \begin{array}{r|cc} &amp; \textbf{2 - 2} &amp; \textbf{4 - 0}\\ \hline \textbf{3 - 2} &amp; 1 &amp; 0 \\ \textbf{4 - 1} &amp; 0 &amp; \frac{1}{2} \end{array} \end{array}\end{split}\]</div>
+<p>With no other dominance, we are unable to reduce further. The quickest way to solve the resuling <span class="math notranslate nohighlight">\(2\times 2\)</span> is using oddments.</p>
+</section>
+<section id="oddments-5-police-versus-4-guerrillas">
+<h3>Oddments:  5 Police versus 4 Guerrillas<a class="headerlink" href="#oddments-5-police-versus-4-guerrillas" title="Link to this heading">#</a></h3>
+<p>The game now has oddments <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> and <span class="math notranslate nohighlight">\(1\)</span> for both players, and thus the optimal strategy mixture for both players is
+$<span class="math notranslate nohighlight">\(\vec r = \vec c = \left[\begin{array}{c} \frac{1}{\frac{3}{2}}\\ \frac{\frac{1}{2}}{\frac{3}{2}} \end{array}\right] = \left[\begin{array}{c} \frac{2}{3}\\ \frac{1}{3} \end{array}\right]\)</span>$</p>
+<p>and you can verify the value of the game is</p>
+<div class="math notranslate nohighlight">
+\[v = \frac{1}{3}\]</div>
+</section>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -663,21 +582,18 @@ matrix game is finding the correct <span class="math notranslate nohighlight">\(
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blackhawk-down">Blackhawk Down</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-payoff-matrix">The Payoff Matrix</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-graphics-mean">What the Graphics Mean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#game-play">Game Play</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#units">Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-police-versus-2-guerrillas">Example: 3 Police versus 2 Guerrillas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reducing-by-dominance-3-police-versus-2-guerrillas">Reducing by Dominance:  3 Police versus 2 Guerrillas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-3-police-versus-2-guerrillas">Solution:  3 Police versus 2 Guerrillas</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-strategy">Optimal Strategy</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#equations-of-the-lines">Equations of the Lines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-5-police-versus-4-guerrillas">Example: 5 Police versus 4 Guerrillas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reducing-by-dominance-5-police-versus-4-guerrillas">Reducing by Dominance: 5 Police versus 4 Guerrillas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oddments-5-police-versus-4-guerrillas">Oddments:  5 Police versus 4 Guerrillas</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#game-value">Game Value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-strategy-set-for-the-other-player">Optimal Strategy Set for the Other Player</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-solution">Overall Solution</a></li>
 </ul>
   </nav></div>
 
